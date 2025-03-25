@@ -243,6 +243,7 @@
             .container {
                 width: 95%;
                 padding: 15px;
+                margin-top: 150px; /* Increased to accommodate stacked menu */
             }
             
             .project-title {
@@ -253,15 +254,32 @@
                 font-size: 1.5rem;
             }
             
-            .menu-links {
-                gap: 15px;
-            }
-            
-            .social-buttons {
+            .menu {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px;
                 gap: 10px;
             }
             
+            .menu-links {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+            
+            .menu-links.right-links {
+                align-items: flex-end;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                align-items: flex-end;
+            }
+            
             .social-buttons a {
+                width: fit-content;
                 padding: 6px 12px;
                 font-size: 0.8rem;
             }
@@ -276,7 +294,15 @@
             }
             
             .home-icon {
-                display: none;
+                position: static;
+                transform: none;
+                margin: 10px auto;
+                order: -1; /* Move home icon to top in mobile */
+            }
+            
+            .two-columns {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
