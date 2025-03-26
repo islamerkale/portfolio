@@ -736,7 +736,7 @@
                 // Filtreleme işlemi
                 const category = filter.getAttribute('data-filter');
                 projects.forEach(project => {
-                    if (category === 'all' || project.getAttribute('data-category') === category) {
+                    if (category === 'all' || project.getAttribute('data-category').includes(category)) {
                         project.style.display = 'block';
                     } else {
                         project.style.display = 'none';
