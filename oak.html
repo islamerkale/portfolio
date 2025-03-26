@@ -27,9 +27,6 @@
         
         /* Home Icon in Menu */
         .home-icon {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
             width: 24px;
             height: 24px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>');
@@ -37,6 +34,9 @@
             background-position: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .home-icon:hover {
@@ -145,6 +145,7 @@
             line-height: 1.8;
         }
         
+        /* Menu Styles */
         .menu {
             position: fixed;
             top: 20px;
@@ -239,10 +240,86 @@
             margin-bottom: 60px;
         }
         
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            box-sizing: border-box;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: #ff6b6b;
+        }
+        
+        .mobile-menu .social-buttons {
+            margin-top: 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+        }
+        
         @media (max-width: 768px) {
             .container {
                 width: 95%;
                 padding: 15px;
+                margin-top: 80px;
             }
             
             .project-title {
@@ -253,17 +330,25 @@
                 font-size: 1.5rem;
             }
             
-            .menu-links {
-                gap: 15px;
+            /* Menu adjustments for mobile */
+            .menu {
+                padding: 12px 15px;
+                justify-content: space-between;
             }
             
-            .social-buttons {
-                gap: 10px;
+            .home-icon {
+                position: static;
+                transform: none;
+                left: auto;
+                margin-right: auto;
             }
             
-            .social-buttons a {
-                padding: 6px 12px;
-                font-size: 0.8rem;
+            .menu-links, .menu-links.right-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
             }
             
             .jump-menu {
@@ -275,33 +360,71 @@
                 font-size: 0.9rem;
             }
             
-            .home-icon {
-                display: none;
+            .two-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            /* Hamburger animation */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
             }
         }
     </style>
 </head>
 <body>
     <nav class="menu">
+        <!-- Desktop Menu -->
         <div class="menu-links">
-            <a href="uxuislam.html#info">About</a>
-            <a href="uxuislam.html#projects">Projects</a>
-            <a href="uxuislam.html#contact">Contact</a>
+            <a href="index.html#info">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
         </div>
-        <div class="home-icon" onclick="window.location.href='uxuislam.html'"></div>
+        
+        <!-- Home Icon - Center in desktop -->
+        <div class="home-icon" onclick="window.location.href='index.html'"></div>
+        
         <div class="menu-links right-links">
             <a href="https://www.canva.com/design/DAGiZVSFJhQ/kLvWrPIo4GkRSOeYo1DkKQ/edit?utm_content=DAGiZVSFJhQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Resume</a>
             <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank">LinkedIn</a>
-            <a href="https://www.behance.net" target="_blank">Behance</a>
+            <a href="https://www.behance.net/islamerkale" target="_blank">Behance</a>
+        </div>
+        
+        <!-- Hamburger Menu Button - Right side in mobile -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="toggleMenu()"></div>
+        
+        <a href="uxuislam.html" onclick="toggleMenu()">Home</a>
+        <a href="uxuislam.html#info" onclick="toggleMenu()">About</a>
+        <a href="uxuislam.html#projects" onclick="toggleMenu()">Projects</a>
+        <a href="uxuislam.html#contact" onclick="toggleMenu()">Contact</a>
+        <a href="https://www.canva.com/design/DAGiZVSFJhQ/kLvWrPIo4GkRSOeYo1DkKQ/edit?utm_content=DAGiZVSFJhQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" onclick="toggleMenu()">Resume</a>
+        <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" onclick="toggleMenu()">LinkedIn</a>
+        <a href="https://www.behance.net" target="_blank" onclick="toggleMenu()">Behance</a>
+    </div>
 
     <div class="container">
         <div class="project-hero">
             <img src="images/dc.jpg" alt="Project Hero Image" class="project-hero-image">
             <h1 class="project-title">DC Ticket App</h1>
             <p class="project-description">
-                Design an app  that allow people to find, contest, and pay their parking tickets.
+                Design an app that allow people to find, contest, and pay their parking tickets.
             </p>
         </div>
 
@@ -333,116 +456,121 @@
         <!-- User Research Section -->
         <div id="user-research" class="section">
             <h2 class="section-title">User Research</h2>
-            <img src="images/dc ticket/DC TICKET user research.jpg" alt="User Research" class="section-image">
+              <img src="images/dcticket/DC TICKET user research.jpg" alt="User Research" class="section-image">
             <div class="section-content">
-                <p>Conducted extensive research including surveys (150 participants) and interviews (20 users) to understand pain points in ticket purchasing. Key findings showed that 68% of users found existing apps confusing, and 82% wanted a simpler checkout process. Competitive analysis revealed opportunities to differentiate our solution.</p>
+                <p></p>
             </div>
-            <img src="images/dc ticket/DC TICKET user research (2).jpg" alt="User Research" class="section-image">
-            <img src="images/dc ticket/DC TICKET user research (3).jpg" alt="User Research" class="section-image">
-            <img src="images/dc ticket/DC TICKET user research (4).jpg" alt="User Research" class="section-image">
+          
+            <img src="images/dcticket/DC TICKET user research (2).jpg" alt="User Research" class="section-image">
+            <img src="images/dcticket/DC TICKET user research (2) (2).jpg" alt="User Research" class="section-image">
+            <img src="images/dcticket/DC TICKET user research (3).jpg" alt="User Research" class="section-image">
         </div>
         
         <!-- Persona Section -->
         <div id="persona" class="section">
             <h2 class="section-title">Persona</h2>
-            <img src="images/dc ticket/DC TICKET -persona.jpg" alt="User Persona" class="section-image">
+            <img src="images/dcticket/DC TICKET -persona.jpg" alt="User Persona" class="section-image">
             <div class="section-content">
-                <p>Developed three primary personas based on research data. The main persona, "Tech-Savvy Tom," represents our target demographic - 25-35 year old professionals who frequently attend events but are frustrated with current booking experiences. Personas guided all design decisions to ensure user needs were prioritized.</p>
+                <p></p>
             </div>
         </div>
         
         <!-- User Scenarios & Journeys Section -->
         <div id="scenarios-journeys" class="section">
             <h2 class="section-title">User Scenarios & Journeys</h2>
-            <img src="images/dc ticket/DC TICKET- user journey map.jpg" alt="User Journey Map" class="section-image">
+            <img src="images/dcticket/DC TICKET- user journey map.jpg" alt="User Journey Map" class="section-image">
             <div class="section-content">
-                <p>Created detailed user flows mapping the complete ticket purchase process from discovery to post-event. Identified critical pain points where users dropped off (particularly during seat selection and payment). Designed solutions to streamline these journeys, reducing steps from 7 to 4 in the primary flow.</p>
+                <p></p>
             </div>
         </div>
         
         <!-- Information Architecture Section -->
         <div id="information-architecture" class="section">
             <h2 class="section-title">Information Architecture</h2>
-            <img src="images/dc ticket/DC TICKET - information arc.jpg" alt="Information Architecture" class="section-image">
+            <img src="images/dcticket/DC TICKET information arc.jpg" alt="Information Architecture" class="section-image">
+            <img src="images/dcticket/DC TICKET information arc (2).jpg" alt="Information Architecture" class="section-image">
             <div class="section-content">
-                <p>Developed a hierarchical structure prioritizing event discovery and quick booking. Card sorting with 15 participants helped optimize categories. The final IA reduced menu items from 12 to 7 while improving findability (success rate increased from 65% to 92% in testing).</p>
+                <p></p>
             </div>
         </div>
         
         <!-- Wireframes Section -->
         <div id="wireframes" class="section">
             <h2 class="section-title">Wireframes</h2>
-            <img src="images/dc ticket/DC TICKET - wireframe.jpg" alt="Wireframes" class="section-image">
+            <img src="images/dcticket/DC TICKET - wireframe.jpg" alt="Wireframes" class="section-image">
+            <img src="images/dcticket/DC TICKET wireframe (2).jpg" alt="Wireframes" class="section-image">
             <div class="section-content">
                 <p></p>
             </div>
-            <img src="images/dc ticket/DC TICKET (2).jpg" alt="Wireframes" class="section-image">
+          
         </div>
         
         <!-- Style Guide & UI Kit Section -->
         <div id="style-guide" class="section">
             <h2 class="section-title">Style Guide & UI Kit</h2>
-            <img src="images/dc ticket/DC TICKET - ui kit.jpg" alt="Style Guide" class="section-image">
+            <img src="images/dcticket/DC TICKET - ui kit.jpg" alt="Style Guide" class="section-image">
             <div class="section-content">
-                <p>Developed a comprehensive design system including color palette (primary brand color #FF6B6B), typography (Inter font family), spacing system (8px grid), and component library. Ensured AA accessibility compliance for all interactive elements. The UI kit accelerated development and maintained consistency.</p>
+                <p></p>
             </div>
-            <img src="images/dc ticket/DC TICKET.jpg" alt="Style Guide" class="section-image">
+        
         </div>
         
         <!-- Low-Fidelity Prototyping Section -->
         <div id="low-fi-prototype" class="section">
             <h2 class="section-title">Prototyping</h2>
-            <img src="images/dc ticket/DC TICKET - low fidelity.jpg" alt="Low-Fidelity Prototype" class="section-image">
+            
             <div class="section-content">
-                <p>Built clickable prototypes to test core flows before visual design. Conducted 12 usability tests identifying 3 major navigation issues. Iterated to improve success rates from 70% to 95% on primary tasks. This phase saved approximately 40 hours of development time by catching issues early.</p>
+                <p></p>
             </div>
-            <img src="images/dc ticket/DC TICKET (3).jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dc ticket/DC TICKET (4).jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dc ticket/DC TICKET- prototyping.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dc ticket/DC TICKET (5).jpg" alt="Low-Fidelity Prototype" class="section-image">
+            <img src="images/dcticket/DC TICKET - prototayping.jpg" alt="Low-Fidelity Prototype" class="section-image">
+            <img src="images/dcticket/DC TICKET prototayping (2).jpg" alt="Low-Fidelity Prototype" class="section-image">
+            <img src="images/dcticket/DC TICKET prototayping (3)" alt="Low-Fidelity Prototype" class="section-image">
+            <img src="images/dcticket/DC TICKET -prototayping(4)" alt="Low-Fidelity Prototype" class="section-image">
+            <img src="images/dcticket/DC TICKET prototayping (5).jpg" alt="Low-Fidelity Prototype" class="section-image">
         </div>
         
         <!-- Usability Testing Section -->
         <div id="usability-testing" class="section">
             <h2 class="section-title">Usability Testing</h2>
-            <img src="images/dc ticket/DC TICKET - usability testing.jpg" alt="Usability Testing" class="section-image">
+            <img src="images/dcticket/DC TICKET - usability testing.jpg" alt="Usability Testing" class="section-image">
             <div class="section-content">
-                <p>Conducted two rounds of moderated testing with 8 participants each. Measured task completion rates, time-on-task, and satisfaction scores. Addressed all critical issues (like confusing seat selection) before moving to high-fidelity design. SUS score improved from 68 to 89 through iterations.</p>
+                <p></p>
             </div>
-            <img src="images/dc ticket/DC TICKET usability -2.jpg" alt="Usability Testing" class="section-image">
+            <img src="images/dcticket/DC TICKET usability testing (2).jpg" alt="Usability Testing" class="section-image">
         </div>
         
         <!-- Refining the Design Section -->
         <div id="refining-design" class="section">
             <h2 class="section-title">Refining the Design</h2>
-            <img src="images/dc ticket/DC TICKET (6).jpg" alt="Design Refinements" class="section-image">
-            <div class="section-content">
-                <p>Implemented changes based on testing feedback: simplified navigation, added progress indicators, and redesigned the checkout flow. Conducted A/B testing on key screens to validate improvements. The refined design reduced user errors by 60% and improved completion rates by 45%.</p>
-            </div>
             
-            <img src="images/dc ticket/DC TICKET (7).jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dc ticket/DC TICKET (8).jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dc ticket/DC TICKET (9).jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dc ticket/DC TICKET (10).jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dc ticket/DC TICKET (11).jpg" alt="Design Refinements" class="section-image">
+            <div class="section-content">
+                <p></p>
+            </div>
+            <img src="images/dcticket/DC TICKET refine design.jpg" alt="Design Refinements" class="section-image">
+            <img src="images/dcticket/DC TICKET refine design2.jpg" alt="Design Refinements" class="section-image">
+            <img src="images/dcticket/DC TICKET refine design3.jpg" alt="Design Refinements" class="section-image">
+            <img src="images/dcticket/DC TICKET refine design4.jpg" alt="Design Refinements" class="section-image">
+            <img src="images/dcticket/DC TICKET refine design5.jpg" alt="Design Refinements" class="section-image">
+            <img src="images/dcticket/DC TICKET refine design6.jpg" alt="Design Refinements" class="section-image">
         </div>
         
         <!-- Mockups Section -->
         <div id="mockups" class="section">
             <h2 class="section-title">Mockups</h2>
-            <img src="images/dc ticket/DC TICKET - mockups.jpg" alt="High-Fidelity Mockups" class="section-image">
+            <img src="images/dcticket/DC TICKET - mockups.jpg" alt="High-Fidelity Mockups" class="section-image">
+            <img src="images/dcticket/DC TICKET mockups2.jpg" alt="Design Refinements" class="section-image">
             <div class="section-content">
-                <p>Created pixel-perfect mockups for all key screens incorporating the visual design system. Included multiple states (default, hover, active, disabled) for interactive elements. Developed responsive layouts for mobile, tablet, and desktop to ensure consistent experience across devices.</p>
+                <p></p>
             </div>
-            <img src="images/dc ticket/DC TICKET (12).jpg" alt="High-Fidelity Mockups" class="section-image">
+           
         </div>
         
         <!-- High-fidelity Prototype Section -->
         <div id="high-fi-prototype" class="section">
             <h2 class="section-title">High-fidelity Prototype</h2>
-            <img src="images/dc ticket/DC TICKET - hig fidelity.jpg" alt="High-Fidelity Prototype" class="section-image">
+            <img src="images/dcticket/DC TICKET - hig fidelity.jpg" alt="High-Fidelity Prototype" class="section-image">
             <div class="section-content">
-                <p>Built an interactive prototype simulating the complete user experience with realistic animations and transitions. Used for final stakeholder reviews and developer handoff. The prototype achieved 98% task completion in validation testing, confirming readiness for development.</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -474,6 +602,29 @@
             } else {
                 scrollToTopBtn.classList.remove('visible');
             }
+        });
+        
+        // Hamburger menu functionality
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Disable scrolling when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
         });
     </script>
 </body>
