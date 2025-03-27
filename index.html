@@ -426,47 +426,59 @@
             overflow: hidden;
             position: relative;
             background-color: #222;
-            padding: 10px 0;
+            padding: 15px 0;
+        }
+
+        .kayan-wrapper {
+            display: flex;
+            width: max-content;
+            animation: infiniteScroll 15s linear infinite;
         }
 
         .kayan-yazi {
             display: flex;
-            gap: 40px;
+            gap: 80px; /* Tüm öğeler arasında eşit boşluk */
             white-space: nowrap;
-            animation: guzzleScroll 15s linear infinite;
         }
 
         .kayan-yazi span {
-            font-size: 18px; /* Mobilde daha iyi görünmesi için */
+            font-size: 20px;
             font-weight: 300;
             color: #fff;
-            padding: 6px 12px;
+            padding: 8px 16px;
             background: linear-gradient(45deg, #ff9d00, #ff2d55);
-            border-radius: 12px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
         }
 
         .kayan-yazi img {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
         }
 
-        @keyframes guzzleScroll {
-            0% {
-                transform: translateX(100%);
+        /* İlk öğeye ekstra boşluk ekleyerek sıkışmayı önlüyoruz */
+        .kayan-yazi span:first-child {
+            margin-left: 40px;
+        }
+
+        @keyframes infiniteScroll {
+            from {
+                transform: translateX(0);
             }
-            100% {
-                transform: translateX(-100%);
+            to {
+                transform: translateX(-50%);
             }
         }
 
-        /* Mobil uyumluluk */
         @media (max-width: 768px) {
             .kayan-yazi {
-                gap: 20px;
-                animation-duration: 12s; /* Küçük ekranlarda daha hızlı geçiş */
+                gap: 40px; /* Mobilde daha dar boşluk */
+            }
+
+            .kayan-wrapper {
+                animation-duration: 12s; /* Küçük ekranda hızlandı */
             }
 
             .kayan-yazi span {
@@ -637,15 +649,27 @@
         <img class="hero-img" src="https://islamerkale.github.io/portfolio/images/islam.jpeg" alt="My Picture">
     </section>
 
-      <div class="kayan-container">
-        <div class="kayan-yazi">
-            <span><img src="https://img.icons8.com/ios/452/information.png" alt="Information"> Information Architecture</span>
-            <span><img src="https://img.icons8.com/ios/452/design.png" alt="Design"> Visual Design</span>
-            <span><img src="https://img.icons8.com/ios/452/idea.png" alt="Problem Solving"> Problem Solving</span>
-            <span><img src="https://img.icons8.com/ios/452/feedback.png" alt="User Feedback"> User Feedback</span>
-            <span><img src="https://img.icons8.com/ios/452/responsive.png" alt="Responsive Design"> Responsive Design</span>
-            <span><img src="https://img.icons8.com/ios/452/typography.png" alt="Typography"> Typography</span>
-            <span><img src="https://img.icons8.com/ios/452/checked.png" alt="User Actions"> Clear User Actions</span>
+     <div class="kayan-container">
+        <div class="kayan-wrapper">
+            <div class="kayan-yazi">
+                <span><img src="https://img.icons8.com/ios/452/checked.png" alt="User Actions"> Clear User Actions</span>
+                <span><img src="https://img.icons8.com/ios/452/information.png" alt="Information"> Information Architecture</span>
+                <span><img src="https://img.icons8.com/ios/452/design.png" alt="Design"> Visual Design</span>
+                <span><img src="https://img.icons8.com/ios/452/idea.png" alt="Problem Solving"> Problem Solving</span>
+                <span><img src="https://img.icons8.com/ios/452/feedback.png" alt="User Feedback"> User Feedback</span>
+                <span><img src="https://img.icons8.com/ios/452/responsive.png" alt="Responsive Design"> Responsive Design</span>
+                <span><img src="https://img.icons8.com/ios/452/typography.png" alt="Typography"> Typography</span>
+            </div>
+            <!-- İçeriği tekrar ekleyerek kesintisiz döngü sağladık -->
+            <div class="kayan-yazi">
+                <span><img src="https://img.icons8.com/ios/452/checked.png" alt="User Actions"> Clear User Actions</span>
+                <span><img src="https://img.icons8.com/ios/452/information.png" alt="Information"> Information Architecture</span>
+                <span><img src="https://img.icons8.com/ios/452/design.png" alt="Design"> Visual Design</span>
+                <span><img src="https://img.icons8.com/ios/452/idea.png" alt="Problem Solving"> Problem Solving</span>
+                <span><img src="https://img.icons8.com/ios/452/feedback.png" alt="User Feedback"> User Feedback</span>
+                <span><img src="https://img.icons8.com/ios/452/responsive.png" alt="Responsive Design"> Responsive Design</span>
+                <span><img src="https://img.icons8.com/ios/452/typography.png" alt="Typography"> Typography</span>
+            </div>
         </div>
     </div>
 
