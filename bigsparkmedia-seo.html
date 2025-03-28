@@ -1,1 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX/UI Project - Detailed Process</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        
+        /* Home Icon in Menu */
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .home-icon:hover {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>');
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 107, 107, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: rgba(255, 107, 107, 1);
+            transform: translateY(-3px);
+        }
+        
+        /* Project Content Styles */
+        .project-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .project-hero-image {
+            width: 100%;
+            max-height: 700px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .project-title {
+            font-size: 2.5rem;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+        
+        .section {
+            margin-bottom: 80px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6b6b;
+            text-align: center;
+        }
+        
+        .section-image {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Menu Styles */
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+            background-color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .menu-links {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+            justify-content: flex-start;
+        }
+        
+        .menu-links.right-links {
+            justify-content: flex-end;
+        }
+        
+        .menu-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-links a:hover {
+            color: #ff6b6b;
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-buttons a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 18px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .social-buttons a:hover {
+            background-color: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+        
+        .jump-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 40px 0;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .jump-menu button {
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid #ff6b6b;
+            color: #ff6b6b;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .jump-menu button:hover {
+            background-color: #ff6b6b;
+            color: white;
+        }
 
+        .two-columns {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            box-sizing: border-box;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: #ff6b6b;
+        }
+        
+        .mobile-menu .social-buttons {
+            margin-top: 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+                margin-top: 80px;
+            }
+            
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            /* Menu adjustments for mobile */
+            .menu {
+                padding: 12px 15px;
+                justify-content: space-between;
+            }
+            
+            .home-icon {
+                position: static;
+                transform: none;
+                left: auto;
+                margin-right: auto;
+            }
+            
+            .menu-links, .menu-links.right-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .jump-menu {
+                gap: 10px;
+            }
+            
+            .jump-menu button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .two-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            /* Hamburger animation */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <!-- Desktop Menu -->
+        <div class="menu-links">
+            <a href="index.html#info">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        
+        <!-- Home Icon - Center in desktop -->
+        <div class="home-icon" onclick="window.location.href='index.html'"></div>
+        
+        <div class="menu-links right-links">
+            <a href="Islam Erkale - UX:UI Designer.pdf" target="_blank">Resume</a>
+            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank">LinkedIn</a>
+            <a href="https://www.behance.net/islamerkale" target="_blank">Behance</a>
+        </div>
+        
+        <!-- Hamburger Menu Button - Right side in mobile -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="toggleMenu()"></div>
+        
+        <a href="index.html" onclick="toggleMenu()">Home</a>
+        <a href="index.html#info" onclick="toggleMenu()">About</a>
+        <a href="index.html#projects" onclick="toggleMenu()">Projects</a>
+        <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
+        <a href="Islam Erkale - UX:UI Designer.pdf" target="_blank" onclick="toggleMenu()">Resume</a>
+        <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" onclick="toggleMenu()">LinkedIn</a>
+        <a href="https://www.behance.net" target="_blank" onclick="toggleMenu()">Behance</a>
+    </div>
+
+    <div class="container">
+        <div class="project-hero">
+            <img src="images/jumperzhang/JUMPER ZHANG.jpg" alt="Project Hero Image" class="project-hero-image">
+            <h1 class="project-title">Jumper Zhang E-Commercial Website</h1>
+            <p class="project-description">
+                A well-known designer, Jumper Zhang, requests an e-commerce site to operate in Canada.
+            </p>
+        </div>
+            
+        <div class="two-columns">
+            <div class="column">
+                <h2 class="section-title">Project Goals</h2>
+                <p class="section-content">The requested website will be an e-commerce system where customers can place orders and make payments. Additionally, the website should include information about the company and have a modern, minimalist design.</p>
+            </div>
+            <div class="column">
+                <h2 class="section-title">Target Audience</h2>
+                <p class="section-content">The target audience for this e-commerce website includes tech-savvy online shoppers who value a seamless and secure purchasing experience. They appreciate modern, minimalist designs that offer an intuitive and clutter-free interface, allowing for quick navigation and hassle-free transactions. These consumers, ranging from busy professionals to mobile users, seek efficiency and convenience in online shopping while also valuing transparency and brand credibility. By providing a sleek design, clear company information, and a smooth checkout process, the website will appeal to both local and global customers looking for a trustworthy and user-friendly shopping platform.</p>
+        
+            </div>
+        </div>
+        
+       
+        
+        <div class="jump-menu">
+            <button onclick="scrollToSection('user-research')">Sitemap</button>
+            <button onclick="scrollToSection('wireframes')">Wireframes</button>
+            <button onclick="scrollToSection('mockups')">Mockups</button>
+            <button onclick="window.location.href='https://www.jumperzhang.ca'">
+    Go to Website
+</button>
+
+        </div>
+        
+        <!-- User Research Section -->
+        <div id="user-research" class="section">
+            <h2 class="section-title">User Research</h2>
+              <img src="images/jumperzhang/JUMPER ZHANG sitemap.jpg" alt="User Research" class="section-image">
+            <div class="section-content">
+                <p></p>
+            </div>
+          
+        </div>
+    
+        
+        <!-- Wireframes Section -->
+        <div id="wireframes" class="section">
+            <h2 class="section-title">Wireframes</h2>
+            <img src="images/jumperzhang/JUMPER ZHANG wireframe.jpg" alt="Wireframes" class="section-image">
+            <img src="images/jumperzhang/JUMPER ZHANG wireframe2.jpg" alt="Wireframes" class="section-image">
+            <img src="images/jumperzhang/JUMPER ZHANG wireframe3.jpg" alt="Wireframes" class="section-image">
+            <img src="images/jumperzhang/JUMPER ZHANG wireframe4.jpg" alt="Wireframes" class="section-image">
+            <img src="images/jumperzhang/JUMPER ZHANG wireframe5.jpg" alt="Wireframes" class="section-image">
+          
+            <div class="section-content">
+                <p></p>
+            </div>
+          
+        </div>
+        
+   
+        <!-- Mockups Section -->
+        <div id="mockups" class="section">
+            <h2 class="section-title">Mockups</h2>
+            <img src="images/jumperzhang/JUMPER ZHANG mockups.jpg" alt="High-Fidelity Mockups" class="section-image">
+            <img src="images/jumperzhang/JUMPER ZHANG mockups2.jpg" alt="High-Fidelity Mockups" class="section-image">
+            <div class="section-content">
+                <p></p>
+            </div>
+           
+        </div>
+        
+        
+    </div>
+
+    <div class="scroll-to-top" onclick="scrollToTop()"></div>
+
+    <script>
+        // Scroll to section function
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        // Hamburger menu functionality
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Disable scrolling when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
