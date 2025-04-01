@@ -614,6 +614,86 @@
             line-height: 1.6;
         }
 
+        /* Logo Slider Styles */
+        .logo-slider-section {
+            background-color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-slider-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cloud-left, .cloud-right {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            z-index: 1;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .cloud-left {
+            left: 0;
+            background: radial-gradient(circle at 30px 30px, white 25%, transparent 25%),
+                        radial-gradient(circle at 60px 60px, white 35%, transparent 35%),
+                        radial-gradient(circle at 90px 30px, white 30%, transparent 30%);
+            filter: blur(5px);
+        }
+        
+        .cloud-right {
+            right: 0;
+            background: radial-gradient(circle at 170px 30px, white 25%, transparent 25%),
+                        radial-gradient(circle at 140px 60px, white 35%, transparent 35%),
+                        radial-gradient(circle at 110px 30px, white 30%, transparent 30%);
+            filter: blur(5px);
+        }
+        
+        .logo-track {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .logo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+        
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.8);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-item:hover .logo-img {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .logo-name {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+            text-align: center;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .three-columns {
@@ -625,6 +705,22 @@
             .round-image {
                 width: 150px;
                 height: 150px;
+            }
+
+            .logo-slider-section {
+                padding: 40px 0;
+            }
+
+            .logo-track {
+                gap: 30px;
+            }
+            
+            .cloud-left, .cloud-right {
+                width: 100px;
+            }
+            
+            .logo-img {
+                height: 50px;
             }
 
         /* Responsive Tasarım */
@@ -972,6 +1068,53 @@
         </div>
     </section>
 
+    <!-- Logo Slider Section -->
+    <section class="logo-slider-section">
+        <div class="cloud-left"></div>
+        <div class="cloud-right"></div>
+        
+        <div class="logo-slider-container">
+            <div class="logo-track" id="logoTrack">
+                <div class="logo-item">
+                    <img src="images/logos/figma.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/framer.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/ps.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/sketch.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/balsamiq.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/html.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/css.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/js.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/github.png" alt="" class="logo-img">
+                    <div class="logo-name"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section - Kajo Stili -->
     <section class="section" id="about">
         <h2 class="section-title">About Me</h2>
@@ -1195,6 +1338,46 @@
                 mobileMenu.classList.remove('active');
                 overlay.classList.remove('active');
             });
+
+            // Logo Slider Animation
+            const track = document.getElementById('logoTrack');
+            const logos = track.querySelectorAll('.logo-item');
+            
+            // Logoları klonlayarak sonsuz döngü efekti oluştur
+            logos.forEach(logo => {
+                const clone = logo.cloneNode(true);
+                track.appendChild(clone);
+            });
+            
+            let position = 0;
+            const speed = 0.5; // Kayma hızı (düşük değer = yavaş)
+            
+            // Slider'ı duraklatma ve devam ettirme
+            let isPaused = false;
+            
+            track.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            
+            track.addEventListener('mouseleave', () => {
+                isPaused = false;
+            });
+            
+            function animationLoop() {
+                if (!isPaused) {
+                    position -= speed;
+                    
+                    if (position <= -track.scrollWidth / 2) {
+                        position = 0;
+                    }
+                    
+                    track.style.transform = `translateX(${position}px)`;
+                }
+                
+                requestAnimationFrame(animationLoop);
+            }
+            
+            animationLoop();
         });
     </script>
 </body>
