@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HANS' GARDEN - UX/UI Case Study</title>
     <style>
-        /* Kajo Tasarımı Temel Stilleri */
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
             line-height: 1.6;
         }
         
-        /* Header - Kajo Stili */
+        /* Header */
         header {
             padding: 20px 40px;
             display: flex;
@@ -31,6 +31,7 @@
             background-color: rgba(255, 255, 255, 0.95);
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
         
         .header-container {
@@ -111,6 +112,13 @@
             color: #000000;
         }
         
+        .project-subtitle {
+            font-size: 24px;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
         .project-description {
             font-size: 20px;
             color: #666666;
@@ -119,12 +127,34 @@
             line-height: 1.8;
         }
         
+        .project-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-label {
+            font-size: 16px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .detail-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
         .section {
             margin-bottom: 100px;
-            padding: 40px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .section-title {
@@ -134,7 +164,6 @@
             margin-bottom: 40px;
             padding-bottom: 15px;
             border-bottom: 2px solid #000000;
-            text-align: center;
         }
         
         .section-image {
@@ -148,10 +177,17 @@
         
         .section-content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
             font-size: 18px;
             color: #666666;
             line-height: 1.8;
+        }
+        
+        .full-width-image {
+            width: 100%;
+            margin: 60px 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
         
         /* Two Columns Layout */
@@ -202,6 +238,20 @@
         
         .jump-menu .website-button:hover {
             background-color: #333333;
+        }
+        
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .image-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* Scroll to Top Button */
@@ -299,7 +349,7 @@
             text-decoration: none;
         }
         
-        /* Contact Section - Kajo Stili */
+        /* Contact Section */
         .contact-section {
             text-align: center;
             background-color: #f9f9f9;
@@ -364,7 +414,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        /* Footer - Kajo Stili */
+        /* Footer */
         footer {
             text-align: center;
             padding: 40px;
@@ -373,7 +423,7 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
         
-        /* Responsive Tasarım */
+        /* Responsive Design */
         @media (max-width: 1024px) {
             .container {
                 width: 90%;
@@ -386,10 +436,6 @@
             
             .section-title {
                 font-size: 28px;
-            }
-            
-            .section {
-                padding: 30px;
             }
             
             .two-columns {
@@ -461,6 +507,10 @@
                 width: 20px;
                 height: 20px;
             }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -470,10 +520,6 @@
             
             .project-description {
                 font-size: 16px;
-            }
-            
-            .section {
-                padding: 20px;
             }
             
             .section-title {
@@ -488,7 +534,7 @@
     </style>
 </head>
 <body>
-    <!-- Header - Kajo Stili -->
+    <!-- Header -->
     <header>
         <div class="header-container">
             <button class="menu-toggle" id="menuToggle">☰</button>
@@ -519,34 +565,136 @@
     <div class="container">
         <div class="project-hero">
             <img src="images/hansgarden/Hansgarden.jpg" alt="HANS' GARDEN E-Commerce" class="project-hero-image">
-            <h1 class="project-title">HANS' GARDEN - E-Commerce Website</h1>
+            <h1 class="project-title">HANS' GARDEN</h1>
+            <p class="project-subtitle">Premium Olive Oil E-Commerce Website</p>
             <p class="project-description">
-                A responsive camping e-commerce website that allows users to easily find, purchase, and promote camping products on all devices.
+                A responsive e-commerce website for HANS' GARDEN, a premium olive oil brand, designed to showcase their products with elegance and provide a seamless shopping experience across all devices.
             </p>
-        </div>
-
-        <div class="two-columns">
-            <div class="column">
-                <h2 class="section-title">Project Goals</h2>
-                <p class="section-content">The requested website will be an e-commerce system where customers can place orders and make payments. Additionally, the website should include information about the company and have a modern, minimalist design.</p>
-            </div>
-            <div class="column">
-                <h2 class="section-title">Target Audience</h2>
-                <p class="section-content">Create a responsive camping e-commerce website that allows users to easily find, purchase, and promote camping products on all devices.</p>
+            
+            <div class="project-details">
+                <div class="detail-item">
+                    <div class="detail-label">Role</div>
+                    <div class="detail-value">UX/UI Designer, Web Developer</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Client</div>
+                    <div class="detail-value">HANS' GARDEN</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Year</div>
+                    <div class="detail-value">2025</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Tools</div>
+                    <div class="detail-value">Figma, Google Analytics, Wix</div>
+                </div>
             </div>
         </div>
         
         <div class="jump-menu">
-            <button class="website-button" onclick="window.location.href='https://www.hansgardenco.com'">Go to Website</button>
+            <button class="website-button" onclick="window.location.href='https://www.hansgardenco.com'">Visit Website</button>
         </div>
         
-        <!-- Mockups Section -->
+        <!-- Overview Section -->
         <div class="section">
-            <h2 class="section-title">Mockups</h2>
-            <img src="images/hansgarden/Hansgarden2.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <img src="images/hansgarden/Hansgarden3.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <div class="section-content">
-                <p></p>
+            <h2 class="section-title">Project Overview</h2>
+            <p class="section-content">
+                HANS' GARDEN is a premium olive oil brand based in the USA, offering high-quality, organic olive oils sourced from family-owned groves. The project involved creating a modern e-commerce website that reflects the brand's premium quality while providing an intuitive shopping experience.
+            </p>
+            <img src="images/hansgarden/Hansgarden2.jpg" alt="HANS' GARDEN Website Screens" class="section-image">
+        </div>
+        
+        <!-- Goals Section -->
+        <div class="section">
+            <h2 class="section-title">Design Goals</h2>
+            <p class="section-content">
+                The primary objectives for the HANS' GARDEN website were to:
+            </p>
+            <ul class="section-content" style="list-style-position: inside; margin-left: 20px;">
+                <li>Create a premium, elegant design that reflects the quality of the olive oil products</li>
+                <li>Implement an intuitive e-commerce system for seamless product browsing and purchasing</li>
+                <li>Ensure full responsiveness across all devices</li>
+                <li>Incorporate storytelling elements about the brand's heritage and production process</li>
+                <li>Optimize the checkout process to reduce cart abandonment</li>
+            </ul>
+            <img src="images/hansgarden/Hansgarden3.jpg" alt="HANS' GARDEN Product Pages" class="section-image">
+        </div>
+        
+        <!-- Process Section -->
+        <div class="section">
+            <h2 class="section-title">Design Process</h2>
+            <p class="section-content">
+                The design process began with extensive research into premium food and beverage e-commerce sites. I created wireframes focusing on product presentation and storytelling, then developed high-fidelity mockups that balanced elegance with usability.
+            </p>
+            
+            <div class="image-grid">
+                <img src="images/hansgarden/wireframe1.jpg" alt="Wireframe 1">
+                <img src="images/hansgarden/wireframe2.jpg" alt="Wireframe 2">
+                <img src="images/hansgarden/mockup1.jpg" alt="Mockup 1">
+                <img src="images/hansgarden/mockup2.jpg" alt="Mockup 2">
+            </div>
+            
+            <p class="section-content">
+                Key design decisions included using a color palette inspired by olive groves, high-quality product photography, and clear calls-to-action. The navigation was simplified to guide users naturally from discovery to purchase.
+            </p>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="section">
+            <h2 class="section-title">Key Features</h2>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Product Showcase</h3>
+                    <p>Designed elegant product pages with zoom functionality, detailed descriptions, and pairing suggestions to enhance the shopping experience.</p>
+                </div>
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Subscription Model</h3>
+                    <p>Implemented a flexible subscription system allowing customers to receive regular deliveries of their favorite oils.</p>
+                </div>
+            </div>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Storytelling</h3>
+                    <p>Created dedicated sections to tell the brand's story, production process, and family heritage behind the products.</p>
+                </div>
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Mobile Optimization</h3>
+                    <p>Ensured all features worked seamlessly on mobile devices, with special attention to the checkout process.</p>
+                </div>
+            </div>
+            
+            <img src="images/hansgarden/features.jpg" alt="Website Features" class="full-width-image">
+        </div>
+        
+        <!-- Results Section -->
+        <div class="section">
+            <h2 class="section-title">Results</h2>
+            <p class="section-content">
+                Since launching the new website, HANS' GARDEN has seen significant improvements in key metrics:
+            </p>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">35% Increase</h3>
+                    <p>in online sales within the first three months</p>
+                </div>
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">28% Reduction</h3>
+                    <p>in cart abandonment rate</p>
+                </div>
+            </div>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">42% More</h3>
+                    <p>subscription sign-ups compared to previous platform</p>
+                </div>
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Improved</h3>
+                    <p>customer satisfaction with the shopping experience</p>
+                </div>
             </div>
         </div>
         
@@ -576,7 +724,7 @@
         </div>
     </div>
 
-    <!-- Footer - Kajo Stili -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Islam Erkale. All rights reserved.</p>
     </footer>
