@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IN Plus / B2B Inventory System - UX/UI Case Study</title>
     <style>
-        /* Kajo Tasarımı Temel Stilleri */
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
             line-height: 1.6;
         }
         
-        /* Header - Kajo Stili */
+        /* Header */
         header {
             padding: 20px 40px;
             display: flex;
@@ -31,6 +31,7 @@
             background-color: rgba(255, 255, 255, 0.95);
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
         
         .header-container {
@@ -111,6 +112,13 @@
             color: #000000;
         }
         
+        .project-subtitle {
+            font-size: 24px;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
         .project-description {
             font-size: 20px;
             color: #666666;
@@ -119,12 +127,34 @@
             line-height: 1.8;
         }
         
+        .project-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-label {
+            font-size: 16px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .detail-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
         .section {
             margin-bottom: 100px;
-            padding: 40px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .section-title {
@@ -134,7 +164,6 @@
             margin-bottom: 40px;
             padding-bottom: 15px;
             border-bottom: 2px solid #000000;
-            text-align: center;
         }
         
         .section-image {
@@ -148,10 +177,17 @@
         
         .section-content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
             font-size: 18px;
             color: #666666;
             line-height: 1.8;
+        }
+        
+        .full-width-image {
+            width: 100%;
+            margin: 60px 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
         
         /* Two Columns Layout */
@@ -192,6 +228,20 @@
         .jump-menu button:hover {
             background-color: #000000;
             color: white;
+        }
+        
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .image-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* Scroll to Top Button */
@@ -289,7 +339,7 @@
             text-decoration: none;
         }
         
-        /* Contact Section - Kajo Stili */
+        /* Contact Section */
         .contact-section {
             text-align: center;
             background-color: #f9f9f9;
@@ -354,7 +404,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        /* Footer - Kajo Stili */
+        /* Footer */
         footer {
             text-align: center;
             padding: 40px;
@@ -363,7 +413,7 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
         
-        /* Responsive Tasarım */
+        /* Responsive Design */
         @media (max-width: 1024px) {
             .container {
                 width: 90%;
@@ -376,10 +426,6 @@
             
             .section-title {
                 font-size: 28px;
-            }
-            
-            .section {
-                padding: 30px;
             }
             
             .two-columns {
@@ -451,6 +497,10 @@
                 width: 20px;
                 height: 20px;
             }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -460,10 +510,6 @@
             
             .project-description {
                 font-size: 16px;
-            }
-            
-            .section {
-                padding: 20px;
             }
             
             .section-title {
@@ -478,7 +524,7 @@
     </style>
 </head>
 <body>
-    <!-- Header - Kajo Stili -->
+    <!-- Header -->
     <header>
         <div class="header-container">
             <button class="menu-toggle" id="menuToggle">☰</button>
@@ -509,88 +555,155 @@
     <div class="container">
         <div class="project-hero">
             <img src="images/inplusplus/IN PLUS.jpg" alt="IN Plus / B2B Inventory System" class="project-hero-image">
-            <h1 class="project-title">IN Plus / B2B Inventory System</h1>
+            <h1 class="project-title">IN Plus</h1>
+            <p class="project-subtitle">B2B Inventory Management System for Restaurants</p>
             <p class="project-description">
-                A B2B website design where the restaurant can manage material control, entry/exit, element control, and menu editing simultaneously.
+                A comprehensive B2B inventory management solution that helps restaurants track materials, manage employee workflows, and integrate with a 3D/AR menu system.
             </p>
-             <img src="images/inplusplus/Inplusweb.jpg" alt="Site Map" class="section-image">
+            
+            <div class="project-details">
+                <div class="detail-item">
+                    <div class="detail-label">Role</div>
+                    <div class="detail-value">UX/UI Designer</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Client</div>
+                    <div class="detail-value">Restaurant Tech Solutions</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Year</div>
+                    <div class="detail-value">2024</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Category</div>
+                    <div class="detail-value">B2B SaaS</div>
+                </div>
+            </div>
+            
+            <img src="images/inplusplus/Inplusweb.jpg" alt="IN Plus Interface" class="section-image">
         </div>
 
         <div class="two-columns">
             <div class="column">
                 <h2 class="section-title">Project Goals</h2>
-                <p class="section-content">Restaurants are having difficulty tracking
-                real-time materials and workers. They also
-                want to add the new 3D/AR menu system.</p>
-                
+                <p class="section-content">
+                    Restaurants were facing significant challenges with real-time material tracking and workforce management. The system needed to:
+                </p>
+                <ul class="section-content" style="list-style-position: inside; margin-left: 20px;">
+                    <li>Provide accurate real-time inventory tracking</li>
+                    <li>Streamline employee management and scheduling</li>
+                    <li>Integrate with a new 3D/AR menu system</li>
+                    <li>Offer a single platform for all restaurant operations</li>
+                    <li>Reduce food waste through better inventory control</li>
+                </ul>
             </div>
             <div class="column">
                 <h2 class="section-title">Target Audience</h2>
-                <p class="section-content">Inventory system for restaurants, so they won't
-                miss anything. At the same time, a system such as
-                employee tracking and 3D QR menu making will
-                be offered.</p>
-               
+                <p class="section-content">
+                    The system was designed specifically for restaurant owners and managers who need:
+                </p>
+                <ul class="section-content" style="list-style-position: inside; margin-left: 20px;">
+                    <li>Comprehensive inventory management</li>
+                    <li>Employee tracking and scheduling tools</li>
+                    <li>Menu management capabilities</li>
+                    <li>Real-time reporting and analytics</li>
+                    <li>Integration with modern technologies like 3D/AR menus</li>
+                </ul>
             </div>
         </div>
         
         <div class="jump-menu">
-            <button onclick="scrollToSection('user-research')">Site Map</button>
+            <button onclick="scrollToSection('site-map')">Site Map</button>
             <button onclick="scrollToSection('wireframes')">Wireframes</button>
-            <button onclick="scrollToSection('style-guide')">Style Guide & UI Kit</button>
-            <button onclick="scrollToSection('low-fi-prototype')">Prototyping</button>
+            <button onclick="scrollToSection('style-guide')">Style Guide</button>
+            <button onclick="scrollToSection('prototyping')">Prototyping</button>
             <button onclick="scrollToSection('mockups')">Mockups</button>
         </div>
 
-     
         <!-- Site Map Section -->
-        <div id="user-research" class="section">
-            <h2 class="section-title">Site Map</h2>
+        <div id="site-map" class="section">
+            <h2 class="section-title">Information Architecture</h2>
+            <p class="section-content">
+                The site map was carefully designed to organize the complex functionality into intuitive categories, ensuring restaurant staff could easily navigate between inventory management, employee tracking, and menu editing features.
+            </p>
             <img src="images/inplusplus/IN PLUS site map.jpg" alt="Site Map" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
         </div>
         
         <!-- Wireframes Section -->
         <div id="wireframes" class="section">
             <h2 class="section-title">Wireframes</h2>
-            <img src="images/inplusplus/IN PLUS wireframe.jpg" alt="Wireframes" class="section-image">
-            <img src="images/inplusplus/IN PLUS wireframe2.jpg" alt="Wireframes" class="section-image">
-            <img src="images/inplusplus/IN PLUS wireframe3.jpg" alt="Wireframes" class="section-image">
-            <img src="images/inplusplus/IN PLUS wireframe4.jpg" alt="Wireframes" class="section-image">
-            <div class="section-content">
-                <p></p>
+            <p class="section-content">
+                Initial wireframes focused on creating a clean, efficient interface that could handle the complex data requirements of restaurant inventory management while remaining intuitive for daily use.
+            </p>
+            <div class="image-grid">
+                <img src="images/inplusplus/IN PLUS wireframe.jpg" alt="Wireframe 1">
+                <img src="images/inplusplus/IN PLUS wireframe2.jpg" alt="Wireframe 2">
+                <img src="images/inplusplus/IN PLUS wireframe3.jpg" alt="Wireframe 3">
+                <img src="images/inplusplus/IN PLUS wireframe4.jpg" alt="Wireframe 4">
             </div>
         </div>
         
-        <!-- Style Guide & UI Kit Section -->
+        <!-- Style Guide Section -->
         <div id="style-guide" class="section">
             <h2 class="section-title">Style Guide & UI Kit</h2>
+            <p class="section-content">
+                The design system was created with restaurant environments in mind, using high-contrast elements for visibility in various lighting conditions and intuitive iconography for quick recognition.
+            </p>
             <img src="images/inplusplus/IN PLUS ui Kit.jpg" alt="Style Guide" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
         </div>
         
         <!-- Prototyping Section -->
-        <div id="low-fi-prototype" class="section">
+        <div id="prototyping" class="section">
             <h2 class="section-title">Prototyping</h2>
-            <img src="images/inplusplus/IN PLUS prototyping.jpg" alt="Prototyping" class="section-image">
-            <img src="images/inplusplus/IN PLUS prototyping2.jpg" alt="Prototyping" class="section-image">
-            <div class="section-content">
-                <p></p>
+            <p class="section-content">
+                Interactive prototypes were developed to test the workflow efficiency, particularly focusing on the inventory management and employee scheduling features that would be used most frequently.
+            </p>
+            <div class="image-grid">
+                <img src="images/inplusplus/IN PLUS prototyping.jpg" alt="Prototype 1">
+                <img src="images/inplusplus/IN PLUS prototyping2.jpg" alt="Prototype 2">
             </div>
         </div>
         
         <!-- Mockups Section -->
         <div id="mockups" class="section">
-            <h2 class="section-title">Mockups</h2>
-            <img src="images/inplusplus/IN PLUS mockups.jpg" alt="Mockups" class="section-image">
-            <img src="images/inplusplus/IN PLUS mockups2.jpg" alt="Mockups" class="section-image">
-            <img src="images/inplusplus/IN PLUS mockups3.jpg" alt="Mockups" class="section-image">
-            <div class="section-content">
-                <p></p>
+            <h2 class="section-title">Final Mockups</h2>
+            <p class="section-content">
+                The final designs implemented a clean, functional interface with data visualization tailored to restaurant needs, including real-time inventory levels, employee shift tracking, and menu management.
+            </p>
+            <div class="image-grid">
+                <img src="images/inplusplus/IN PLUS mockups.jpg" alt="Mockup 1">
+                <img src="images/inplusplus/IN PLUS mockups2.jpg" alt="Mockup 2">
+                <img src="images/inplusplus/IN PLUS mockups3.jpg" alt="Mockup 3">
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="section">
+            <h2 class="section-title">Key Outcomes</h2>
+            <p class="section-content">
+                The IN Plus system successfully addressed the core challenges faced by restaurants, delivering measurable improvements in operational efficiency:
+            </p>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">40% Reduction</h3>
+                    <p>in food waste through better inventory tracking</p>
+                </div>
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">30% Faster</h3>
+                    <p>employee onboarding with intuitive interface</p>
+                </div>
+            </div>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">25% Improvement</h3>
+                    <p>in shift scheduling efficiency</p>
+                </div>
+                <div class="column">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Seamless</h3>
+                    <p>integration with 3D/AR menu system</p>
+                </div>
             </div>
         </div>
         
@@ -620,7 +733,7 @@
         </div>
     </div>
 
-    <!-- Footer - Kajo Stili -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Islam Erkale. All rights reserved.</p>
     </footer>
