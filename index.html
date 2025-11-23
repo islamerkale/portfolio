@@ -4,1573 +4,1367 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Islam Erkale - Portfolio</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <style>
-        /* Inter font ailesi */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
             overflow-x: hidden;
-        }
-        
-        /* Custom styles */
-        .writing-mode-vertical-rl {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-        }
-        
-        .tab-active {
-            border-color: white;
-            color: white;
+            background: #ffffff;
+            color: #111827;
         }
 
-        .tab-inactive {
-            border-color: rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.6);
+        html {
+            scroll-behavior: smooth;
         }
 
-        .tab-inactive:hover {
-            border-color: rgba(255, 255, 255, 0.5);
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .menu-active {
-            color: white;
-        }
-
-        .menu-inactive {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .menu-inactive:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .social-icon:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .form-input {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
+        /* ===== ANIMATED BACKGROUND BLOBS ===== */
+        .blob-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .form-input:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.7;
+            animation: blob 15s infinite ease-in-out;
         }
 
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
         }
 
-        .form-textarea {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
-            width: 100%;
-            min-height: 120px;
-            resize: none;
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(180deg, #e9d5ff 0%, #d8b4fe 100%);
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
         }
 
-        .form-textarea:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 100%);
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 4s;
         }
 
-        .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+        .blob-4 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(180deg, #ddd6fe 0%, #c4b5fd 100%);
+            top: 60%;
+            right: 20%;
+            animation-delay: 6s;
         }
 
-        .submit-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 32px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
+        .blob-5 {
+            width: 380px;
+            height: 380px;
+            background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 3s;
         }
 
-        .submit-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Yeni eklenen stiller */
-        .uxui-text {
-            font-size: 1.5rem;
-            letter-spacing: 0.3em;
-            color: rgba(255, 255, 255, 0.4);
-            
-        }
-        
-        @media (max-width: 1023px) {
-            .uxui-text {
-                position: fixed;
-                top: 1.5rem;
-                left: 1.5rem;
-                transform: none;
-                writing-mode: horizontal-tb;
-                font-size: 1.2rem;
-                z-index: 60;
+        @keyframes blob {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -50px) scale(1.1) rotate(10deg);
+            }
+            50% {
+                transform: translate(-20px, 30px) scale(0.9) rotate(-10deg);
+            }
+            75% {
+                transform: translate(40px, 20px) scale(1.05) rotate(5deg);
             }
         }
-        
-        /* Side borders - Kısa çizgiler */
-        .side-border-left {
-            position: fixed;
-            left: 146px;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 180px;
-            width: 1px;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.3) 15%,
-                white 50%,
-                rgba(255, 255, 255, 0.3) 85%,
-                transparent 100%);
-            z-index: 5;
-        }
-        
-        .side-border-right {
-            position: fixed;
-            right: 110px;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 180px;
-            width: 1px;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.3) 15%,
-                white 50%,
-                rgba(255, 255, 255, 0.3) 85%,
-                transparent 100%);
-            z-index: 5;
-        }
-        
-        /* Marquee animation */
-        .marquee {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background: transparent;
-            padding: 15px 0;
-        }
-        
-        .marquee-content {
-            display: flex;
-            animation: marquee 30s linear infinite;
-            white-space: nowrap;
-        }
-        
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            margin: 0 40px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .marquee-item i {
-            margin-right: 10px; /* İkon ile yazı arasında boşluk */
-        }
-        
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            min-height: 100vh;
-            width: 100%;
-            padding-top: 100px;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 10;
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .section-content {
-            padding-top: 50px;
-            padding-bottom: 50px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .centered-container {
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 100px;
-            padding-bottom: 100px;
-            box-sizing: border-box;
-        }
-        
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        /* Tool logos */
-        .tool-logo {
-            height: 24px;
-            filter: brightness(0.7);
-        }
-        
-        /* Home page specific styles */
-        .home-hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-        
-        .home-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: 0.5rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .home-subtitle {
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.7);
-            
-        }
-        
-        .home-description {
-            text-align: center;
-            margin-left: auto;
-    margin-right: auto;
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .home-features {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
-}
 
-        
-        .home-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.7);
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .footer {
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .animate-slideUp {
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slideDown {
+            animation: slideDown 0.5s ease-out forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        /* ===== SECTION HIDDEN ===== */
+        .section-hidden {
+            display: none !important;
+        }
+
+        /* ===== HEADER ===== */
+        header {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            z-index: 10;
-            
-            padding:  0;
-        }
-        
-        /* Mobile için sosyal medya ikonlarının üstüne çizgi */
-        .mobile-social-divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 80px;
-        }
-        
-        @media (max-width: 768px) {
-            .home-title {
-                font-size: 2.5rem;
-            }
-            
-            .home-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .home-features {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            /* Mobile için boşluklar */
-            .mobile-content {
-                padding-top: 100px;
-                padding-bottom: 100px;
-            }
-        }
-        
-        /* Mobile menü düzeni */
-        .mobile-menu-button {
-            position: fixed;
-            top: 1.5rem;
-            right: 1.5rem;
             z-index: 50;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 8px;
-            padding: 0.5rem;
-            color: white;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+            justify-content: space-between;
         }
-        
+
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            opacity: 1;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-nav {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: #111827;
+            transform: scale(1.1);
+        }
+
+        .nav-link.active {
+            color: #111827;
+            transform: scale(1.1);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-btn {
+            display: block;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
         .mobile-menu {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 40;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 60;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             gap: 2rem;
         }
-        
-        /* UXUISLAM yazısı için sabit konum */
-        .fixed-uxui {
-            position: fixed;
-            z-index: 30;
-        }
-        
-        /* Tools grid düzeni */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .tool-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .tool-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .tool-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .tool-name {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-        }
-        
-        /* Vanta.js için z-index ayarı */
-        #vanta-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        /* Project card styles */
-        .project-card {
-            height: 180px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(238, 238, 238, 0.1);
-            cursor: pointer;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.2);
+
+        .mobile-menu.open {
+            transform: translateX(0);
         }
 
-        /* Projects grid düzenini 4 sütun yap */
-        #live-projects-content, #practice-projects-content, #e-commerce-projects-content, #b2b-projects-content {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-        }
-        
-        .project-content {
-            padding: 1rem;
-        }
-        
-        .project-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-        
-        .project-tag {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-        }
-
-        /* Daha küçük ekranlarda 3 sütuna düşür */
-        @media (max-width: 1280px) {
-            #live-projects-content, #practice-projects-content, #e-commerce-projects-content, #b2b-projects-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        /* Daha küçük ekranlarda 2 sütuna düşür */
-        @media (max-width: 1024px) {
-            #live-projects-content, #practice-projects-content, #e-commerce-projects-content, #b2b-projects-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Mobil cihazlarda 2 sütun yap */
-        @media (max-width: 640px) {
-            #live-projects-content, #practice-projects-content, #e-commerce-projects-content, #b2b-projects-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .project-card {
-                height: 160px;
-            }
-            
-            .project-image {
-                height: 90px;
-            }
-        }
-
-        /* Sol menüyü sabitleme */
-        nav.desktop-menu {
-            position: fixed;
-            height: 100vh;
-            width: auto;
-            left: 0;
-            top: 0;
-            display: flex;
-            align-items: center;
-            z-index: 20;
-        }
-
-        /* Sağ sosyal ikonları sabitleme */
-        .social-icons-container {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 20;
-        }
-        
-        /* İçerik ortalamak için */
-        .centered-content {
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-            max-width: 1200px;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        
-        /* Mobile menü düğmeleri için */
-        .mobile-menu-btn {
-            position: fixed;
+        .mobile-menu-close {
+            position: absolute;
             top: 1.5rem;
             right: 1.5rem;
-            z-index: 50;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
             padding: 0.5rem;
-            color: white;
-            display: none;
-            width: 40px;
-            height: 40px;
-            align-items: center;
-            justify-content: center;
         }
-        
-        @media (max-width: 1023px) {
-            .mobile-menu-btn {
-                display: flex;
-            }
-            
-            .desktop-menu {
-                display: none;
-            }
-            
-            .mobile-menu-items {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.95);
-                z-index: 40;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .mobile-menu-items.open {
-                transform: translateX(0);
-            }
-            
-            .mobile-menu-items button {
-                color: white;
-                font-size: 1.5rem;
-                background: none;
-                border: none;
-                cursor: pointer;
-                padding: 0.5rem 1rem;
-            }
-            
-            .close-menu {
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-                color: white;
-                font-size: 1.5rem;
-                background: none;
-                border: none;
-                cursor: pointer;
-            }
 
-            .social-icons-container {
+        .mobile-menu button,
+        .mobile-menu a {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #111827;
+            text-decoration: none;
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu {
                 display: none;
             }
         }
-        
-        /* Sertifikalar bölümü için */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
+
+        /* ===== CONTENT WRAPPER ===== */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
         }
-        
-        .certification-item {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            padding-top: 5rem;
         }
-        
-        .certification-item a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            display: block;
+
+        section {
+            min-height: 100vh;
+            padding: 3rem 1.5rem;
         }
-        
-        .certification-item a:hover {
-            color: white;
-        }
-        
-        /* Mobile için arka plan düzenlemeleri */
-        @media (max-width: 1023px) {
-            .mobile-menu-items {
-                background: rgba(0, 0, 0, 0.95);
-            }
-            
-            .footer {
-                
-            }
-        }
-        
-        /* Yeni düzen için stiller */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            width: 100%;
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
-        @media (max-width: 1023px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Eğitim ve sertifika bölümü için grid */
-        .education-cert-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .education-cert-grid {
-                grid-template-columns: 1fr;
-            }
+
+        /* ===== CARDS ===== */
+        .card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
         }
 
-        /* About section tab düzeni */
-        .about-tab-content {
-            display: none;
-        }
-        
-        .about-tab-content.active {
-            display: block;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
-        /* Ana içerik için düzenleme */
-        .main-sections {
+        /* ===== PROJECT IMAGE ===== */
+        .project-image {
             width: 100%;
-            margin-left: 120px;
-            padding-right: 80px;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        
-        @media (max-width: 1023px) {
-            .main-sections {
-                margin-left: 0;
-                padding-right: 0;
-                padding-top: 80px;
-                padding-bottom: 100px;
+
+        .card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            border: 2px solid #d1d5db;
+            background: white;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            font-size: 1rem;
+        }
+
+        .btn-tab:hover {
+            border-color: #111827;
+        }
+
+        .btn-tab.active {
+            background: #111827;
+            color: white;
+            border-color: #111827;
+        }
+
+        /* ===== TOOL TAGS ===== */
+        .tool-tag {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .tool-tag:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* ===== FORMS ===== */
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            transition: border-color 0.3s ease;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #111827;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #111827;
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        button[type="submit"]:hover {
+            background: #1f2937;
+            transform: scale(1.05);
+        }
+
+        /* ===== SOCIAL ICONS ===== */
+        .social-icons-desktop {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 40;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            .social-icons-desktop {
+                display: flex;
             }
         }
 
-        /* Projects tab düzeni */
-        .projects-tab-content {
-            display: none;
-        }
-        
-        .projects-tab-content.active {
-            display: grid;
-        }
-
-        /* Tools marquee section */
-        .tools-marquee {
+        .social-icons-mobile {
             position: fixed;
-            bottom: 10px;
+            bottom: 0;
             left: 0;
             right: 0;
-            background: transparent;
-            z-index: 5;
-            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 40;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
         }
-        
-        @media (max-width: 1023px) {
-            .tools-marquee {
+
+        @media (min-width: 1024px) {
+            .social-icons-mobile {
                 display: none;
             }
+        }
 
-            nav.desktop-menu {
-    display: none;
-}
-.home-description {
-    text-align: center;
-    
-    margin-left: auto;
-    margin-right: auto;
-}
-.home-features {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    .home-feature {
-        text-align: center;
-    }
-    .mobile-social-divider .social-icon {
-    margin-bottom: 2px; /* İkonların alt boşluğu */
-}
-.footer {
-        padding-bottom: 10px; /* Alt boşluğu azalt */
-    }
-    
-    .mobile-social-divider {
-        padding-bottom: 15px;
-        margin-bottom: 0;
-    }
-    
-    .marquee {
-        padding: 8px 0;
-        margin-bottom: 5px;
-    }
-    
-    /* Sosyal ikonların kendisi için de boşluk ayarı */
-    #live-projects-content, #practice-projects-content, #e-commerce-projects-content, #b2b-projects-content {
+        .social-icon {
+            width: 3rem;
+            height: 3rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #111827;
+        }
+
+        .social-icon:hover {
+            border-color: #111827;
+            transform: scale(1.1);
+        }
+
+        /* ===== GRID LAYOUTS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .grid-5 {
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
 
-        .home-title {
-            font-size: 20px;
+        @media (min-width: 768px) {
+            .grid-5 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
 
+        @media (min-width: 1024px) {
+            .grid-5 {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        /* ===== SPACING ===== */
+        .space-y-8 > * + * {
+            margin-top: 2rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem;
+        }
+
+        /* ===== TEXT STYLES ===== */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-gray-400 {
+            color: #9ca3af;
+        }
+
+        .text-gray-500 {
+            color: #6b7280;
+        }
+
+        .text-gray-600 {
+            color: #4b5563;
+        }
+
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        /* ===== FLEX UTILITIES ===== */
+        .flex {
+            display: flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        /* ===== CUSTOM SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1023px) {
+            section {
+                padding-bottom: 6rem;
+            }
+        }
+
+        /* ===== ASPECT RATIO ===== */
+        .aspect-video {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        /* ===== BADGE STYLES ===== */
+        .badge {
+            padding: 0.25rem 0.75rem;
+            background: #f3f4f6;
+            color: #4b5563;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            display: inline-block;
+        }
+
+        /* ===== EXPERIENCE/EDUCATION CARDS ===== */
+        .experience-card {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .experience-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            background: #111827;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== TOOL CARD ===== */
+        .tool-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            width: 3rem;
+            height: 3rem;
+            background: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-name {
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        /* ===== MAX WIDTH ===== */
+        .max-w-4xl {
+            max-width: 56rem;
+        }
+
+        .max-w-3xl {
+            max-width: 48rem;
+        }
+
+        .max-w-2xl {
+            max-width: 42rem;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
-<body class="min-h-screen bg-black relative overflow-x-hidden">
-    <!-- Vanta.js background -->
-    <div id="vanta-bg"></div>
-    
-    <!-- Side borders - Kısa çizgiler -->
-    <div class="side-border-left hidden lg:block"></div>
-    <div class="side-border-right hidden lg:block"></div>
-    
-    <!-- Desktop UXUISLAM - Sabit konumda -->
-    <div class="hidden lg:block fixed top-6 left-1/2 transform -translate-x-1/2 z-30 fixed-uxui">
-        <div class="uxui-text text-white/40 font-light">
-            UXUISLAM
-        </div>
+<body>
+    <!-- Animated Background Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
     </div>
-    
-    <!-- Mobile UXUISLAM - Sabit konumda -->
-    <div class="lg:hidden fixed top-1.5rem left-1.5rem z-30 fixed-uxui">
-        <div class="uxui-text">
-            UXUISLAM
-        </div>
-    </div>
-    
-    <!-- Mobile menü butonu -->
-    <button class="mobile-menu-btn lg:hidden" id="mobile-menu-button" onclick="toggleMobileMenu()">
-        <i class="fas fa-bars text-xl"></i>
-    </button>
-    
-    <!-- Mobile menü -->
-    <div id="mobile-menu" class="mobile-menu-items">
-        <button class="close-menu" onclick="toggleMobileMenu()">
-            <i class="fas fa-times text-2xl"></i>
-        </button>
-        <button onclick="showSection('home'); toggleMobileMenu();" class="text-2xl">HOME</button>
-        <button onclick="showSection('about'); toggleMobileMenu();" class="text-2xl">ABOUT</button>
-        <button onclick="showSection('projects'); toggleMobileMenu();" class="text-2xl">PROJECTS</button>
-        <button onclick="showSection('contact'); toggleMobileMenu();" class="text-2xl">CONTACT</button>
-    </div>
-    
-    <div class="relative z-10 flex min-h-screen">
-        <!-- Navigation -->
-        <nav class="desktop-menu hidden lg:block p-8">
-            <div class="flex flex-col justify-center min-h-screen">
-                <div class="space-y-6">
-                    <button onclick="showSection('home')" id="menu-home" class="block text-left w-full transition-colors duration-200 menu-active">
-                        HOME
-                    </button>
-                    <button onclick="showSection('about')" id="menu-about" class="block text-left w-full transition-colors duration-200 menu-inactive">
-                        ABOUT
-                    </button>
-                    <button onclick="showSection('projects')" id="menu-projects" class="block text-left w-full transition-colors duration-200 menu-inactive">
-                        PROJECTS
-                    </button>
-                    <button onclick="showSection('contact')" id="menu-contact" class="block text-left w-full transition-colors duration-200 menu-inactive">
-                        CONTACT
-                    </button>
-                    
-                    <!-- Resume Link -->
-                    <a href="Islam Erkale - Resume.pdf" download class="block text-left w-full transition-colors duration-200 menu-inactive">
-                        RESUME
-                    </a>
-                </div>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                <div class="logo">UXUISLAM</div>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
+                    <button onclick="showSection('home')" class="nav-link active" id="nav-home">Home</button>
+                    <button onclick="showSection('about')" class="nav-link" id="nav-about">About</button>
+                    <button onclick="showSection('projects')" class="nav-link" id="nav-projects">Projects</button>
+                    <button onclick="showSection('contact')" class="nav-link" id="nav-contact">Contact</button>
+                    <a href="#" class="nav-link">Resume</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="mobile-menu-btn" id="mobile-menu-btn">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
-        </nav>
-        
+        </header>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu" id="mobile-menu">
+            <button onclick="closeMobileMenu()" class="mobile-menu-close">
+                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <button onclick="showSection('home'); closeMobileMenu();">Home</button>
+            <button onclick="showSection('about'); closeMobileMenu();">About</button>
+            <button onclick="showSection('projects'); closeMobileMenu();">Projects</button>
+            <button onclick="showSection('contact'); closeMobileMenu();">Contact</button>
+            <a href="#">Resume</a>
+        </div>
+
         <!-- Main Content -->
-        <main class="main-sections flex-1 mobile-content">
+        <main>
             <!-- Home Section -->
-            <div id="home-section" class="home-hero section-content">
-                <div class="centered-content text-center">
-                    <h1 class="home-title">MINIMAL – DEEP SEARCH – SOLVE</h1>
-                    <h2 class="home-subtitle"></h2>
-                    <p class="home-description">
+            <section id="home-section" style="display: flex; align-items: center; justify-content: center;">
+                <div class="max-w-4xl text-center">
+                    <h1 style="font-size: 3rem; margin-bottom: 1.5rem; letter-spacing: 0.1em;" class="animate-slideUp">
+                        MINIMAL – DEEP SEARCH – SOLVE
+                    </h1>
+                    <p style="font-size: 1.25rem; color: #4b5563; margin-bottom: 3rem; max-width: 42rem; margin-left: auto; margin-right: auto;" class="animate-slideUp delay-200">
                         I create digital experiences where minimal design meets deep research and problem-solving.
                     </p>
                     
-                    <div class="home-features">
-                        <div class="home-feature">
-                            <i class="fas fa-plus"></i>
-                            <span>3 Years Experiences</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 4rem;" class="animate-slideUp delay-400">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%;"></div>
+                            <span style="color: #374151;">3 Years Experience</span>
                         </div>
-                        <div class="home-feature">
-                            <i class="fas fa-check"></i>
-                            <span>7 Completed Projects</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%;"></div>
+                            <span style="color: #374151;">7 Completed Projects</span>
                         </div>
                     </div>
+
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;" class="animate-slideUp delay-600">
+                        <div class="tool-tag">Figma</div>
+                        <div class="tool-tag delay-100">Framer</div>
+                        <div class="tool-tag delay-200">Sketch</div>
+                        <div class="tool-tag delay-300">Adobe Photoshop</div>
+                        <div class="tool-tag delay-400">WordPress</div>
+                        <div class="tool-tag delay-500">Webflow</div>
+                        <div class="tool-tag delay-600">HTML/CSS</div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <!-- About Section -->
-            <div id="about-section" class="p-6 lg:p-12 hidden section-content">
-                <div class="centered-content">
-                    <!-- Name and Description -->
-                    <div class="mb-12">
-                        <h1 class="text-white text-4xl lg:text-5xl mb-6">Islam Erkale</h1>
-                        <p class="text-white/80 text-base lg:text-lg leading-relaxed max-w-2xl">
-                            UX/UI Designer with nearly two years of experience specializing in user-centered and visually compelling experiences. Through my company Big Spark Media, I help brands establish their digital presence with impactful solutions.
-                        </p>
-                    </div>
+            <section id="about-section" class="section-hidden">
+                <div class="container">
+                    <h1 style="font-size: 3rem; margin-bottom: 2rem;">Islam Erkale</h1>
+                    <p style="font-size: 1.125rem; color: #4b5563; max-width: 48rem; margin-bottom: 3rem; line-height: 1.75;">
+                        UX/UI Designer with nearly two years of experience specializing in user-centered and visually compelling experiences. Through my company Big Spark Media, I help brands establish their digital presence with impactful solutions.
+                    </p>
 
                     <!-- Tab Navigation -->
-                    <div class="flex gap-4 mb-8 flex-wrap">
-                        <button onclick="showAboutTab('experiences')" id="tab-experiences" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-active">
-                            Experiences
-                        </button>
-                        <button onclick="showAboutTab('education')" id="tab-education" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            Education
-                        </button>
-                        <button onclick="showAboutTab('certifications')" id="tab-certifications" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            Certifications
-                        </button>
-                        <button onclick="showAboutTab('skills')" id="tab-skills" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            Skills
-                        </button>
-                        <button onclick="showAboutTab('tools')" id="tab-tools" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            Tools
-                        </button>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem;">
+                        <button onclick="showAboutTab('experiences')" class="btn-tab active" id="tab-experiences">Experiences</button>
+                        <button onclick="showAboutTab('education')" class="btn-tab" id="tab-education">Education</button>
+                        <button onclick="showAboutTab('certifications')" class="btn-tab" id="tab-certifications">Certifications</button>
+                        <button onclick="showAboutTab('skills')" class="btn-tab" id="tab-skills">Skills</button>
+                        <button onclick="showAboutTab('tools')" class="btn-tab" id="tab-tools">Tools</button>
                     </div>
 
-                    <!-- Content -->
-                    <div class="space-y-6">
-                        <!-- Experiences Content -->
-                        <div id="experiences-content" class="about-tab-content active">
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">UX/UI Designer - Founder</span>
-                                        <span class="text-white/60"> / Big Spark Media / CANADA</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2024 - Current)</div>
+                    <!-- Experiences Content -->
+                    <div id="experiences-content" class="space-y-8">
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">UX/UI Designer - Founder</span>
+                                    <span class="text-gray-500"> / Big Spark Media / CANADA</span>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">IT & Designer Website Coordinator</span>
-                                        <span class="text-white/60"> / Vancouver Fashion Week / CANADA</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2024)</div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Event, Website and Media Assistant</span>
-                                        <span class="text-white/60"> / Vancouver Fashion Week / CANADA</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2024)</div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Product Engineer</span>
-                                        <span class="text-white/60"> / Yesim Group / TURKEY</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2019-2021)</div>
-                                </div>
+                                <div class="text-gray-400">2024 - Current</div>
                             </div>
                         </div>
-
-                        <!-- Education Content -->
-                        <div id="education-content" class="about-tab-content hidden">
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Business Communication</span>
-                                        <span class="text-white/60"> / Greystone College</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2022)</div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">IT & Designer Website Coordinator</span>
+                                    <span class="text-gray-500"> / Vancouver Fashion Week / CANADA</span>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">English Language School</span>
-                                        <span class="text-white/60"> / ILSC</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2021)</div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Bachelor's Degree in Textile Engineer</span>
-                                        <span class="text-white/60"> / Suleyman Demirel University</span>
-                                    </div>
-                                    <div class="text-white/50 text-sm">(2017)</div>
-                                </div>
+                                <div class="text-gray-400">2024</div>
                             </div>
                         </div>
-
-                        <!-- Certifications Content -->
-                        <div id="certifications-content" class="about-tab-content hidden">
-                            <div class="certifications-grid">
-                                <div class="certification-item">
-                                    <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank">
-                                        Google UX Design 7 Courses Certificate (2024)
-                                    </a>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">Event, Website and Media Assistant</span>
+                                    <span class="text-gray-500"> / Vancouver Fashion Week / CANADA</span>
                                 </div>
-                                <div class="certification-item">
-                                    <a href="https://www.coursera.org/account/accomplishments/certificate/N3FCY9130DJI" target="_blank">
-                                        HTML, CSS, and Javascript for Web Developers / The Johns Hopkins University (2024)
-                                    </a>
-                                </div>
-                                <div class="certification-item">
-                                    <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank">
-                                        Introduction to Google SEO / University of California, Davis (2024)
-                                    </a>
-                                </div>
-                                <div class="certification-item">
-                                    <a href="https://www.coursera.org/account/accomplishments/verify/6C47WWE7IJGL" target="_blank">
-                                        Foundations of Data Science / Google (2024)
-                                    </a>
-                                </div>
+                                <div class="text-gray-400">2024</div>
                             </div>
                         </div>
-
-                        <!-- Skills Content -->
-                        <div id="skills-content" class="about-tab-content hidden">
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">UX Research & Testing</span>
-                                    </div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">Product Engineer</span>
+                                    <span class="text-gray-500"> / Yesim Group / TURKEY</span>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Wireframes & Prototypes</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">High-Fidelity Designs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Responsive & Adaptive Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">HTML, CSS, Basic JavaScript</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">CMS (WordPress, Webflow)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-white/80">
-                                    <div class="mb-1">
-                                        <span class="font-medium">Technical SEO</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Tools Section -->
-                        <div id="tools-content" class="about-tab-content hidden">
-                            <div class="tools-grid">
-                                <div class="tool-item">
-                                    <i class="fab fa-figma tool-icon"></i>
-                                    <span class="tool-name">Figma</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fas fa-fire tool-icon"></i>
-                                    <span class="tool-name">Framer</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fas fa-pencil-alt tool-icon"></i>
-                                    <span class="tool-name">Balsamiq</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fab fa-sketch tool-icon"></i>
-                                    <span class="tool-name">Sketch</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fab fa-adobe tool-icon"></i>
-                                    <span class="tool-name">Adobe Photoshop</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fas fa-chart-line tool-icon"></i>
-                                    <span class="tool-name">Google Analytics</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fas fa-search tool-icon"></i>
-                                    <span class="tool-name">SEMrush</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fab fa-wordpress tool-icon"></i>
-                                    <span class="tool-name">WordPress</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fas fa-globe tool-icon"></i>
-                                    <span class="tool-name">Webflow</span>
-                                </div>
-                                <div class="tool-item">
-                                    <i class="fab fa-html5 tool-icon"></i>
-                                    <span class="tool-name">HTML/CSS</span>
-                                </div>
+                                <div class="text-gray-400">2019-2021</div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Contact Section -->
-            <div id="contact-section" class="p-6 lg:p-12 hidden section-content">
-                <div class="centered-content">
-                    <h1 class="text-white text-3xl lg:text-4xl text-center mb-12">Contact with Me.</h1>
+                    <!-- Education Content -->
+                    <div id="education-content" class="section-hidden space-y-8">
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">Business Communication</span>
+                                    <span class="text-gray-500"> / Greystone College</span>
+                                </div>
+                                <div class="text-gray-400">2022</div>
+                            </div>
+                        </div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">English Language School</span>
+                                    <span class="text-gray-500"> / ILSC</span>
+                                </div>
+                                <div class="text-gray-400">2021</div>
+                            </div>
+                        </div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div>
+                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
+                                    <span style="font-weight: 500;">Bachelor's Degree in Textile Engineer</span>
+                                    <span class="text-gray-500"> / Suleyman Demirel University</span>
+                                </div>
+                                <div class="text-gray-400">2017</div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <form onsubmit="handleFormSubmit(event)" class="max-w-lg mx-auto">
-                        <div class="mb-6">
-                            <input type="text" id="name" name="name" placeholder="Your Name" class="form-input" required>
+                    <!-- Certifications Content -->
+                    <div id="certifications-content" class="section-hidden grid-2">
+                        <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
+                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Google UX Design 7 Courses Certificate</div>
+                            <div class="text-gray-400">(2024)</div>
+                        </a>
+                        <a href="https://www.coursera.org/account/accomplishments/certificate/N3FCY9130DJI" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
+                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">HTML, CSS, and Javascript for Web Developers</div>
+                            <div class="text-gray-500 mb-1">The Johns Hopkins University</div>
+                            <div class="text-gray-400">(2024)</div>
+                        </a>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
+                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Introduction to Google SEO</div>
+                            <div class="text-gray-500 mb-1">University of California, Davis</div>
+                            <div class="text-gray-400">(2024)</div>
+                        </a>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/6C47WWE7IJGL" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
+                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Foundations of Data Science</div>
+                            <div class="text-gray-500 mb-1">Google</div>
+                            <div class="text-gray-400">(2024)</div>
+                        </a>
+                    </div>
+
+                    <!-- Skills Content -->
+                    <div id="skills-content" class="section-hidden grid-2">
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">UX Research & Testing</span>
                         </div>
-                        <div class="mb-6">
-                            <input type="email" id="email" name="email" placeholder="Your Email" class="form-input" required>
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">Wireframes & Prototypes</span>
                         </div>
-                        <div class="mb-6">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" class="form-input" required>
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">High-Fidelity Designs</span>
                         </div>
-                        <div class="mb-8">
-                            <textarea id="message" name="message" placeholder="Your Message" class="form-textarea" required></textarea>
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">Responsive & Adaptive Design</span>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="submit-btn">
-                                SEND MESSAGE
-                            </button>
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">HTML, CSS, Basic JavaScript</span>
                         </div>
-                    </form>
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">CMS (WordPress, Webflow)</span>
+                        </div>
+                        <div class="experience-card" style="align-items: center;">
+                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
+                            <span style="font-size: 1.125rem;">Technical SEO</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools Content -->
+                    <div id="tools-content" class="section-hidden grid-5">
+                        <div class="tool-card">
+                            <div class="tool-icon">🎨</div>
+                            <div class="tool-name">Figma</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🔥</div>
+                            <div class="tool-name">Framer</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">✏️</div>
+                            <div class="tool-name">Balsamiq</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">💎</div>
+                            <div class="tool-name">Sketch</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🎭</div>
+                            <div class="tool-name">Adobe Photoshop</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📊</div>
+                            <div class="tool-name">Google Analytics</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🔍</div>
+                            <div class="tool-name">SEMrush</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📝</div>
+                            <div class="tool-name">WordPress</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🌐</div>
+                            <div class="tool-name">Webflow</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">💻</div>
+                            <div class="tool-name">HTML/CSS</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <!-- Projects Section -->
-            <div id="projects-section" class="p-6 lg:p-12 hidden section-content">
-                <div class="centered-content">
-                    <h1 class="text-white text-3xl lg:text-4xl mb-12">Projects</h1>
+            <section id="projects-section" class="section-hidden">
+                <div class="container">
+                    <h1 style="font-size: 3rem; margin-bottom: 3rem;">Projects</h1>
 
-                    <!-- Projects Tab Navigation -->
-                    <div class="flex gap-4 mb-8 flex-wrap">
-                        <button onclick="showProjectsTab('live')" id="projects-tab-live" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-active">
-                            Live Projects
-                        </button>
-                        <button onclick="showProjectsTab('practice')" id="projects-tab-practice" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            Practice Projects
-                        </button>
-                        <button onclick="showProjectsTab('e-commerce')" id="projects-tab-e-commerce" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            E-Commerce
-                        </button>
-                        <button onclick="showProjectsTab('b2b')" id="projects-tab-b2b" class="px-6 py-2 rounded-full border transition-colors duration-200 tab-inactive">
-                            B2B
-                        </button>
+                    <!-- Tab Navigation -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem;">
+                        <button onclick="showProjectTab('live')" class="btn-tab active" id="project-tab-live">Live Projects</button>
+                        <button onclick="showProjectTab('practice')" class="btn-tab" id="project-tab-practice">Practice Projects</button>
+                        <button onclick="showProjectTab('ecommerce')" class="btn-tab" id="project-tab-ecommerce">E-Commerce</button>
+                        <button onclick="showProjectTab('b2b')" class="btn-tab" id="project-tab-b2b">B2B</button>
                     </div>
 
-                    <!-- Projects Content -->
-                    <div class="space-y-6">
-                        <!-- Live Projects Content -->
-                        <div id="live-projects-content" class="projects-tab-content active grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- Jumper Zhang Project -->
-                            <div class="project-card" onclick="window.location.href='jumperzhang.html'">
+                    <!-- Live Projects -->
+                    <div id="live-projects" class="grid-3">
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/jumperzhang.jpg" alt="Jumper Zhang" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">Jumper Zhang</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">E-Commerce</span>
-                                        <span class="project-tag">Live</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Jumper Zhang</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">E-Commerce</span>
+                                    <span class="badge">Live</span>
                                 </div>
                             </div>
-                            
-                            <!-- HANS' GARDEN Project -->
-                            <div class="project-card" onclick="window.location.href='hansgarden.html'">
+                        </div>
+
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/hansgarden/51.jpg" alt="HANS' GARDEN" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">HANS' GARDEN</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">E-Commerce</span>
-                                        <span class="project-tag">Live</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">HANS' GARDEN</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">E-Commerce</span>
+                                    <span class="badge">Live</span>
                                 </div>
                             </div>
-                            
-                            <!-- Private Plates Project -->
-                            <div class="project-card" onclick="window.open('https://www.privateplates.ca', '_blank')">
+                        </div>
+
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/privateplates/privateplates.jpeg" alt="Private Plates" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">Private Plates</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">Corporate</span>
-                                        <span class="project-tag">Live</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Private Plates</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">Corporate</span>
+                                    <span class="badge">Live</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Practice Projects Content -->
-                        <div id="practice-projects-content" class="projects-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- DC TICKET Project -->
-                            <div class="project-card" onclick="window.location.href='dcticket.html'">
+                    <!-- Practice Projects -->
+                    <div id="practice-projects" class="section-hidden grid-3">
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/dc.jpg" alt="DC TICKET" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">DC TICKET</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Mobile App</span>
-                                        <span class="project-tag">UX Design</span>
-                                        <span class="project-tag">Practice</span>
-                                    </div>
-                                </div>
                             </div>
-                            
-                            <!-- OAK Project -->
-                            <div class="project-card" onclick="window.open('privateplates.ca', '_blank')">
-                                <img src="https://islamerkale.github.io/portfolio/images/oak.jpg" alt="OAK" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">OAK</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">E-Commerce</span>
-                                        <span class="project-tag">Practice</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- IN Plus Project -->
-                            <div class="project-card" onclick="window.location.href='https://www.inplusone.com'">
-                                <img src="https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg" alt="IN Plus" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">In Plus One</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">B2B</span>
-                                        <span class="project-tag">Practice</span>
-                                    </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">DC TICKET</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Mobile App</span>
+                                    <span class="badge">UX Design</span>
+                                    <span class="badge">Practice</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- E-Commerce Projects Content -->
-                        <div id="e-commerce-projects-content" class="projects-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- HANS' GARDEN Project -->
-                            <div class="project-card" onclick="window.location.href='hansgarden.html'">
+                        <div class="card">
+                            <div class="aspect-video">
+                                <img src="https://islamerkale.github.io/portfolio/images/oak.jpg" alt="OAK" class="project-image">
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">OAK</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">E-Commerce</span>
+                                    <span class="badge">Practice</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="aspect-video">
+                                <img src="https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg" alt="In Plus One" class="project-image">
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">In Plus One</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">B2B</span>
+                                    <span class="badge">Practice</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E-Commerce Projects -->
+                    <div id="ecommerce-projects" class="section-hidden grid-3">
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/hansgarden/51.jpg" alt="HANS' GARDEN" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">HANS' GARDEN</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">E-Commerce</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">HANS' GARDEN</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">E-Commerce</span>
                                 </div>
                             </div>
-                            
-                            <!-- Jumper Zhang Project -->
-                            <div class="project-card" onclick="window.location.href='jumperzhang.html'">
+                        </div>
+
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/jumperzhang.jpg" alt="Jumper Zhang" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">Jumper Zhang</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">E-Commerce</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Jumper Zhang</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">E-Commerce</span>
                                 </div>
                             </div>
-                            
-                            <!-- OAK Project -->
-                            <div class="project-card" onclick="window.open('privateplates.ca', '_blank')">
+                        </div>
+
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/oak.jpg" alt="OAK" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">OAK</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">E-Commerce</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">OAK</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">E-Commerce</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- B2B Projects Content -->
-                        <div id="b2b-projects-content" class="projects-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- IN Plus Project -->
-                            <div class="project-card" onclick="window.location.href='https://www.inplusone.com'">
+                    <!-- B2B Projects -->
+                    <div id="b2b-projects" class="section-hidden grid-3">
+                        <div class="card">
+                            <div class="aspect-video">
                                 <img src="https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg" alt="IN Plus" class="project-image">
-                                <div class="project-content">
-                                    <h3 class="project-title">IN Plus</h3>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Web Design</span>
-                                        <span class="project-tag">B2B</span>
-                                    </div>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">IN Plus</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="badge">Web Design</span>
+                                    <span class="badge">B2B</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-        
-        <!-- Right Social Icons -->
-        <div class="social-icons-container hidden lg:flex">
-            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.behance.net/islamerkale?fbclid=PAZXh0bgNhZW0CMTEAAaf6mwZnussWvbRtqsVcEwB9yk91dNVwDuxVP9pYUYDHr1GQOWKuX4SwpM318w_aem__NoOS3AauWCrxgNiSxVm3Q" class="social-icon">
-                <i class="fab fa-behance"></i>
-            </a>
-           
-            <a href="https://www.instagram.com/bigsparkmedia/" class="social-icon">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
-    </div>
+            </section>
 
-    <!-- Tools Marquee Section -->
-    <div class="tools-marquee hidden lg:block">
-        <div class="marquee">
-            <div class="marquee-content">
-                <div class="marquee-item">
-                    <i class="fab fa-figma"></i>
-                    <span>Figma</span>
+            <!-- Contact Section -->
+            <section id="contact-section" class="section-hidden" style="display: flex; align-items: center; justify-content: center;">
+                <div class="max-w-2xl" style="width: 100%;">
+                    <h1 style="font-size: 3rem; text-align: center; margin-bottom: 3rem;">Contact with Me.</h1>
+
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <input type="text" id="subject" placeholder="Subject" required>
+                        <textarea id="message" placeholder="Your Message" rows="6" required></textarea>
+                        <button type="submit">SEND MESSAGE</button>
+                    </form>
                 </div>
-                <div class="marquee-item">
-                    <i class="fas fa-fire"></i>
-                    <span>Framer</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fas fa-pencil-alt"></i>
-                    <span>Balsamiq</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fab fa-sketch"></i>
-                    <span>Sketch</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fab fa-adobe"></i>
-                    <span>Adobe Photoshop</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Google Analytics</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fas fa-search"></i>
-                    <span>SEMrush</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fab fa-wordpress"></i>
-                    <span>WordPress</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fas fa-globe"></i>
-                    <span>Webflow</span>
-                </div>
-                <div class="marquee-item">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML/CSS</span>
-                </div>
-            </div>
+            </section>
+        </main>
+
+        <!-- Desktop Social Icons -->
+        <div class="social-icons-desktop">
+            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" class="social-icon">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+            <a href="https://www.behance.net/islamerkale" target="_blank" class="social-icon">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/bigsparkmedia/" target="_blank" class="social-icon">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Mobile Social Icons -->
+        <div class="social-icons-mobile">
+            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" class="social-icon">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+            <a href="https://www.behance.net/islamerkale" target="_blank" class="social-icon">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/bigsparkmedia/" target="_blank" class="social-icon">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
         </div>
     </div>
-    
-    <!-- Footer -->
-    <footer class="footer p-0 text-center">
-        <div class="flex flex-col lg:flex-row justify-between items-center">
-            
-            <!-- Mobile Tools Marquee -->
-            <div class="lg:hidden w-full mt-4">
-                <div class="marquee">
-                    <div class="marquee-content">
-                        <div class="marquee-item">
-                            <i class="fab fa-figma"></i>
-                            <span>Figma</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fas fa-fire"></i>
-                            <span>Framer</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fas fa-pencil-alt"></i>
-                            <span>Balsamiq</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fab fa-sketch"></i>
-                            <span>Sketch</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fab fa-adobe"></i>
-                            <span>Adobe Photoshop</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Google Analytics</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fas fa-search"></i>
-                            <span>SEMrush</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fab fa-wordpress"></i>
-                            <span>WordPress</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fas fa-globe"></i>
-                            <span>Webflow</span>
-                        </div>
-                        <div class="marquee-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML/CSS</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <!-- Mobile Social Icons -->
-             <div class="lg:hidden w-full mobile-social-divider pt-4">
-                <div class="flex justify-center gap-4">
-                    <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" class="social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.behance.net/islamerkale?fbclid=PAZXh0bgNhZW0CMTEAAaf6mwZnussWvbRtqsVcEwB9yk91dNVwDuxVP9pYUYDHr1GQOWKuX4SwpM318w_aem__NoOS3AauWCrxgNiSxVm3Q" class="social-icon">
-                        <i class="fab fa-behance"></i>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/bigsparkmedia/" class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-            
-        </div>
-    </footer>
 
     <script>
-        // Vanta.js background initialization
-        VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  color: 0x2d160b,
-  backgroundColor: 0x0,
-  maxDistance: 32.00,
-  spacing: 10.00,
-  showDots: false
-        });
-        
-        // Section navigation
+        // ========== SECTION NAVIGATION ==========
         function showSection(sectionName) {
             // Hide all sections
-            document.getElementById('home-section').classList.add('hidden');
-            document.getElementById('about-section').classList.add('hidden');
-            document.getElementById('projects-section').classList.add('hidden');
-            document.getElementById('contact-section').classList.add('hidden');
-            
-            // Show selected section
-            document.getElementById(`${sectionName}-section`).classList.remove('hidden');
-            
-            // Scroll to top of the page
-            window.scrollTo(0, 0);
-            
-            // Update menu active states
-            const menuItems = ['home', 'about', 'projects', 'contact'];
-            menuItems.forEach(item => {
-                const menuElement = document.getElementById(`menu-${item}`);
-                if (menuElement) {
-                    if (item === sectionName) {
-                        menuElement.classList.remove('menu-inactive');
-                        menuElement.classList.add('menu-active');
-                    } else {
-                        menuElement.classList.remove('menu-active');
-                        menuElement.classList.add('menu-inactive');
-                    }
-                }
+            const sections = document.querySelectorAll('main > section');
+            sections.forEach(function(section) {
+                section.classList.add('section-hidden');
             });
+
+            // Show selected section
+            const activeSection = document.getElementById(sectionName + '-section');
+            activeSection.classList.remove('section-hidden');
+
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            document.getElementById('nav-' + sectionName).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Close mobile menu if open
+            closeMobileMenu();
         }
-        
-        // About tab navigation
+
+        // ========== ABOUT TAB NAVIGATION ==========
         function showAboutTab(tabName) {
             // Hide all tab contents
-            document.getElementById('experiences-content').classList.remove('active');
-            document.getElementById('education-content').classList.remove('active');
-            document.getElementById('certifications-content').classList.remove('active');
-            document.getElementById('skills-content').classList.remove('active');
-            document.getElementById('tools-content').classList.remove('active');
-            
+            document.getElementById('experiences-content').classList.add('section-hidden');
+            document.getElementById('education-content').classList.add('section-hidden');
+            document.getElementById('certifications-content').classList.add('section-hidden');
+            document.getElementById('skills-content').classList.add('section-hidden');
+            document.getElementById('tools-content').classList.add('section-hidden');
+
             // Show selected tab content
-            document.getElementById(`${tabName}-content`).classList.add('active');
-            
-            // Update tab active states
-            const tabs = ['experiences', 'education', 'certifications', 'skills', 'tools'];
-            tabs.forEach(tab => {
-                const tabElement = document.getElementById(`tab-${tab}`);
-                if (tabElement) {
-                    if (tab === tabName) {
-                        tabElement.classList.remove('tab-inactive');
-                        tabElement.classList.add('tab-active');
-                    } else {
-                        tabElement.classList.remove('tab-active');
-                        tabElement.classList.add('tab-inactive');
-                    }
-                }
+            document.getElementById(tabName + '-content').classList.remove('section-hidden');
+
+            // Update tab active state
+            const tabs = document.querySelectorAll('#about-section .btn-tab');
+            tabs.forEach(function(tab) {
+                tab.classList.remove('active');
             });
+            document.getElementById('tab-' + tabName).classList.add('active');
         }
-        
-        // Projects tab navigation
-        function showProjectsTab(tabName) {
-            // Hide all tab contents
-            document.getElementById('live-projects-content').classList.remove('active');
-            document.getElementById('practice-projects-content').classList.remove('active');
-            document.getElementById('e-commerce-projects-content').classList.remove('active');
-            document.getElementById('b2b-projects-content').classList.remove('active');
-            
-            // Show selected tab content
-            document.getElementById(`${tabName}-projects-content`).classList.add('active');
-            
-            // Update tab active states
-            const tabs = ['live', 'practice', 'e-commerce', 'b2b'];
-            tabs.forEach(tab => {
-                const tabElement = document.getElementById(`projects-tab-${tab}`);
-                if (tabElement) {
-                    if (tab === tabName) {
-                        tabElement.classList.remove('tab-inactive');
-                        tabElement.classList.add('tab-active');
-                    } else {
-                        tabElement.classList.remove('tab-active');
-                        tabElement.classList.add('tab-inactive');
-                    }
-                }
+
+        // ========== PROJECT TAB NAVIGATION ==========
+        function showProjectTab(tabName) {
+            // Hide all project tabs
+            document.getElementById('live-projects').classList.add('section-hidden');
+            document.getElementById('practice-projects').classList.add('section-hidden');
+            document.getElementById('ecommerce-projects').classList.add('section-hidden');
+            document.getElementById('b2b-projects').classList.add('section-hidden');
+
+            // Show selected tab
+            document.getElementById(tabName + '-projects').classList.remove('section-hidden');
+
+            // Update tab active state
+            const tabs = document.querySelectorAll('#projects-section .btn-tab');
+            tabs.forEach(function(tab) {
+                tab.classList.remove('active');
             });
+            document.getElementById('project-tab-' + tabName).classList.add('active');
         }
-        
-        // Mobile menu toggle
+
+        // ========== MOBILE MENU ==========
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
-            const menuButton = document.getElementById('mobile-menu-button');
-            
             mobileMenu.classList.toggle('open');
-            
-            // Change icon based on menu state
-            if (mobileMenu.classList.contains('open')) {
-                menuButton.innerHTML = '<i class="fas fa-times text-xl"></i>';
-            } else {
-                menuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
-            }
         }
-        
-        // Form submission handler
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.remove('open');
+        }
+
+        // ========== FORM SUBMIT ==========
         function handleFormSubmit(event) {
             event.preventDefault();
             
-            // Get form data
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
+
+            alert('Thank you for your message, ' + name + '! I will get back to you soon.');
             
-            // Here you would typically send the form data to a server
-            // For now, we'll just show an alert
-            alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
-            
-            // Reset form
             event.target.reset();
         }
-        
-        // Initialize page with home section visible
-        document.addEventListener('DOMContentLoaded', function() {
+
+        // ========== INITIALIZE ==========
+        window.addEventListener('DOMContentLoaded', function() {
             showSection('home');
         });
     </script>
