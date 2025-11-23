@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IN+ Advanced Inventory System - Case Study | Islam Erkale</title>
+    <title>IN PLUS ONE - Advanced Inventory System - Case Study | Islam Erkale</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
@@ -384,6 +384,43 @@
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
         }
+        
+        /* ===== PROBLEM-SOLUTION SECTION ===== */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .problem-solution {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+        
+        .problem-image, .solution-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-content, .solution-content {
+            padding: 1.5rem;
+        }
+        
+        .problem-title {
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-title {
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -415,9 +452,9 @@
                     <span class="badge animate-slideUp delay-100">Inventory Management</span>
                     <span class="badge animate-slideUp delay-200">UX/UI Design</span>
                     
-                    <h1 class="mb-6 animate-slideUp delay-300">IN+ Advanced Inventory System</h1>
+                    <h1 class="mb-6 animate-slideUp delay-300">IN PLUS ONE - Advanced Inventory System</h1>
                     <p class="text-xl text-gray-600 mb-8 animate-slideUp delay-400 max-w-2xl mx-auto">
-                        Revolutionizing restaurant inventory management with AI-powered insights, reducing food waste by 50% and increasing profits by 40%.
+                        Revolutionizing restaurant inventory management with smart insights, reducing food waste by 50% and increasing profits by 50%.
                     </p>
                     
                     <div class="flex flex-wrap justify-center gap-4 animate-slideUp delay-500">
@@ -440,7 +477,7 @@
                     <div class="animate-slideUp">
                         <h2>Project Overview</h2>
                         <p class="text-gray-600 mb-6">
-                            IN+ Advanced Inventory System addresses the critical challenge restaurants face: 4-10% waste loss due to inefficient inventory management. The platform combines smart analytics with intuitive design to transform how restaurants manage their inventory.
+                            IN PLUS ONE - Advanced Inventory System addresses the critical challenge restaurants face: 4-10% waste loss due to inefficient inventory management. The platform combines smart analytics with intuitive design to transform how restaurants manage their inventory.
                         </p>
                         
                         <div class="space-y-4">
@@ -460,7 +497,7 @@
                     </div>
                     
                     <div class="animate-slideUp delay-200">
-                        <img src="images/inplusplus/IN PLUS LOGO BLUE.jpg" 
+                        <img src="images/inplusplus/inplusone-8.jpg" 
                              alt="IN+ Dashboard Preview" 
                              class="project-image">
                     </div>
@@ -493,24 +530,146 @@
                     </div>
                 </div>
 
-                <div class="max-w-3xl mx-auto mt-12">
-                    <h3 class="text-center mb-6">Key Pain Points</h3>
-                    <div class="grid-2">
-                        <div class="card animate-slideUp">
-                            <h4>Food Waste</h4>
-                            <p class="text-gray-600 text-sm">Spoiled ingredients and poor portion control</p>
+                <div class="max-w-4xl mx-auto mt-12">
+                    <h3 class="text-center mb-8">Key Pain Points & Solutions</h3>
+                    
+                    <!-- Food Waste Problem & Solution -->
+                    <div class="problem-solution animate-slideUp">
+                        <div class="problem-content">
+                            <h4 class="problem-title">Food Waste</h4>
+                            <p class="text-gray-600 mb-4">
+                                Restaurants struggle with significant food waste due to spoiled ingredients and poor portion control. Without proper tracking systems, perishable items often expire before use, and inconsistent portion sizes lead to unnecessary overuse of ingredients.
+                            </p>
+                            <p class="text-gray-600">
+                                This results in thousands of dollars lost monthly and contributes to environmental concerns in the food industry.
+                            </p>
                         </div>
-                        <div class="card animate-slideUp delay-100">
-                            <h4>Cost Management</h4>
-                            <p class="text-gray-600 text-sm">Lack of real-time inventory tracking</p>
+                        <div>
+                            <img src="images/inplusplus/inplusone-22.jpg" 
+                                 alt="Food waste problem - spoiled ingredients" 
+                                 class="problem-image">
                         </div>
-                        <div class="card animate-slideUp delay-200">
-                            <h4>Multi-Platform Chaos</h4>
-                            <p class="text-gray-600 text-sm">Inability to centralize data from delivery apps</p>
+                    </div>
+                    
+                    <div class="problem-solution animate-slideUp delay-100">
+                        <div>
+                            <img src="images/inplusplus/inplusone-8.jpg" 
+                                 alt="IN+ food waste solution" 
+                                 class="solution-image">
                         </div>
-                        <div class="card animate-slideUp delay-300">
-                            <h4>Inefficient Ordering</h4>
-                            <p class="text-gray-600 text-sm">Overstocking and frequent stockouts</p>
+                        <div class="solution-content">
+                            <h4 class="solution-title">IN+ Solution</h4>
+                            <p class="text-gray-600 mb-4">
+                                IN+ implements smart expiration tracking and automated portion control recommendations. The system alerts staff when ingredients are approaching expiration and suggests menu items to prioritize.
+                            </p>
+                            <p class="text-gray-600">
+                                Visual recipe management ensures consistent portion sizes, reducing ingredient overuse while maintaining quality standards.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cost Management Problem & Solution -->
+                    <div class="problem-solution animate-slideUp delay-200">
+                        <div class="problem-content">
+                            <h4 class="problem-title">Cost Management</h4>
+                            <p class="text-gray-600 mb-4">
+                                Restaurant managers lack real-time visibility into inventory costs and fluctuations. Without accurate tracking, they can't identify cost-saving opportunities or detect unusual spending patterns.
+                            </p>
+                            <p class="text-gray-600">
+                                This leads to budget overruns, inability to optimize menu pricing, and missed opportunities for bulk purchasing discounts.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="images/inplusplus/inplusone-23.jpg" 
+                                 alt="Cost management problem - manual tracking" 
+                                 class="problem-image">
+                        </div>
+                    </div>
+                    
+                    <div class="problem-solution animate-slideUp delay-300">
+                        <div>
+                            <img src="images/inplusplus/recipe-costing.jpg" 
+                                 alt="IN+ cost management solution" 
+                                 class="solution-image">
+                        </div>
+                        <div class="solution-content">
+                            <h4 class="solution-title">IN+ Solution</h4>
+                            <p class="text-gray-600 mb-4">
+                                Real-time cost tracking and predictive analytics provide immediate insights into spending patterns. The system automatically calculates ingredient costs per menu item and suggests optimal pricing strategies.
+                            </p>
+                            <p class="text-gray-600">
+                                Automated supplier price comparison ensures restaurants always get the best deals on ingredients.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Multi-Platform Chaos Problem & Solution -->
+                    <div class="problem-solution animate-slideUp delay-400">
+                        <div class="problem-content">
+                            <h4 class="problem-title">Multi-Platform Chaos</h4>
+                            <p class="text-gray-600 mb-4">
+                                Modern restaurants operate across multiple delivery platforms (Uber Eats, DoorDash, Deliveroo), but lack a centralized system to manage inventory across all channels. This leads to overselling, stockouts, and manual reconciliation errors.
+                            </p>
+                            <p class="text-gray-600">
+                                Staff waste hours each day manually updating inventory counts across different platforms.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="images/inplusplus/inplusone-25.jpg" 
+                                 alt="Multi-platform chaos problem" 
+                                 class="problem-image">
+                        </div>
+                    </div>
+                    
+                    <div class="problem-solution animate-slideUp delay-500">
+                        <div>
+                            <img src="images/inplusplus/sales-integration.jpg" 
+                                 alt="IN+ multi-platform solution" 
+                                 class="solution-image">
+                        </div>
+                        <div class="solution-content">
+                            <h4 class="solution-title">IN+ Solution</h4>
+                            <p class="text-gray-600 mb-4">
+                                Seamless integration with all major delivery platforms automatically syncs inventory in real-time. When an item sells out on one platform, it's automatically updated across all channels.
+                            </p>
+                            <p class="text-gray-600">
+                                The centralized dashboard provides a unified view of sales performance and inventory levels across all platforms, eliminating manual work and preventing overselling.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Inefficient Ordering Problem & Solution -->
+                    <div class="problem-solution animate-slideUp">
+                        <div class="problem-content">
+                            <h4 class="problem-title">Inefficient Ordering</h4>
+                            <p class="text-gray-600 mb-4">
+                                Restaurants struggle with inventory ordering - either overstocking (leading to waste) or understocking (leading to stockouts). Without data-driven insights, ordering decisions are based on guesswork rather than actual demand patterns.
+                            </p>
+                            <p class="text-gray-600">
+                                This results in emergency orders with premium pricing and lost sales during peak hours.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="images/inplusplus/inplusone-24.jpg" 
+                                 alt="Inefficient ordering problem" 
+                                 class="problem-image">
+                        </div>
+                    </div>
+                    
+                    <div class="problem-solution animate-slideUp delay-100">
+                        <div>
+                            <img src="images/inplusplus/smart-ordering.jpg" 
+                                 alt="IN+ smart ordering solution" 
+                                 class="solution-image">
+                        </div>
+                        <div class="solution-content">
+                            <h4 class="solution-title">IN+ Solution</h4>
+                            <p class="text-gray-600 mb-4">
+                                AI-driven predictive ordering analyzes historical sales data, seasonal trends, and local events to generate optimal purchase suggestions. The system accounts for lead times and minimum order quantities from suppliers.
+                            </p>
+                            <p class="text-gray-600">
+                                Automated reorder points ensure restaurants never run out of critical ingredients while minimizing excess inventory.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -560,20 +719,50 @@
                     </div>
                     
                     <!-- Wireframing & Prototyping -->
-                    <div class="process-step animate-slideUp delay-200">
-                        <div class="step-number">3</div>
-                        <div>
-                            <h3>Wireframing & Prototyping</h3>
-                            <p class="text-gray-600">
-                                Developed low-fidelity wireframes to establish layout and user flow. Progressed to high-fidelity prototypes with interactive elements for usability testing and stakeholder feedback.
-                            </p>
-                            <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                                <p class="text-sm text-gray-600 italic">
-                                    "The prototyping phase helped us identify critical usability issues early, saving development time and ensuring a smoother user experience."
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                  <!-- Wireframing & Prototyping -->
+<div class="process-step animate-slideUp delay-200">
+    <div class="step-number">3</div>
+    <div>
+        <h3>Wireframing & Prototyping</h3>
+        <p class="text-gray-600">
+            Developed low-fidelity wireframes to establish layout and user flow. Progressed to high-fidelity prototypes with interactive elements for usability testing and stakeholder feedback.
+        </p>
+        
+        <div class="mt-6">
+            <div class="grid-2 gap-4">
+                <div>
+                    <img src="images/inplusplus/IN PLUS wireframe.jpg" 
+                         alt="IN+ Wireframe - Dashboard Layout" 
+                         class="process-image">
+                </div>
+                <div>
+                    <img src="images/inplusplus/IN PLUS wireframe2.jpg" 
+                         alt="IN+ Wireframe - Inventory Management" 
+                         class="process-image">
+                </div>
+            </div>
+            
+            <div class="grid-2 gap-4 mt-6">
+                <div>
+                    <img src="images/inplusplus/IN PLUS wireframe3.jpg" 
+                         alt="IN+ Wireframe - Recipe Management" 
+                         class="process-image">
+                </div>
+                <div>
+                    <img src="images/inplusplus/IN PLUS wireframe4.jpg" 
+                         alt="IN+ Wireframe - Analytics Dashboard" 
+                         class="process-image">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-600 italic">
+                "The wireframing phase helped us identify critical usability issues early, saving development time and ensuring a smoother user experience."
+            </p>
+        </div>
+    </div>
+</div>
                     
                     <!-- Visual Design & Testing -->
                     <div class="process-step animate-slideUp delay-300">
@@ -800,7 +989,7 @@
                             <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
                         </svg>
                     </a>
-                    <a href="mailto:islam@bigsparkmedia.ca" 
+                    <a href="mailto:islamerkale@gmail.com" 
                        class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
