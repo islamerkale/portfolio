@@ -3,799 +3,1082 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oak E-Commerce - UX/UI Case Study</title>
+    <title>Oak E-Commerce - UX/UI Case Study | Islam Erkale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Kajo Tasarımı Temel Stilleri */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
+
         body {
             background-color: #ffffff;
             color: #333333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        /* Header - Kajo Stili */
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        html {
+            scroll-behavior: smooth;
         }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .logo-img {
-            height: 40px;
-            width: auto;
-        }
-        
-        nav {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-        
-        nav a {
-            margin-left: 24px;
-            text-decoration: none;
-            color: #333333;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-        
-        nav a:hover {
-            color: #000000;
-        }
-        
-        /* Mobile Menu Button */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        /* Project Content Styles */
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 120px auto 50px;
-            padding: 20px;
-        }
-        
-        .project-hero {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .project-hero-image {
-            width: 100%;
-            max-height: 600px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #000000;
-        }
-        
-        .project-description {
-            font-size: 20px;
-            color: #666666;
-            max-width: 800px;
-            margin: 0 auto 60px;
-            line-height: 1.8;
-        }
-        
-        .section {
-            margin-bottom: 100px;
-            padding: 40px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #000000;
-            text-align: center;
-        }
-        
-        .section-image {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 40px;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 18px;
-            color: #666666;
-            line-height: 1.8;
-        }
-        
-        /* Two Columns Layout */
-        .two-columns {
-            display: flex;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-        
-        .column {
-            flex: 1;
-        }
-        
-        /* Jump Menu */
-        .jump-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 60px 0;
-            padding: 30px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .jump-menu button {
-            padding: 12px 24px;
-            background-color: white;
-            border: 2px solid #000000;
-            color: #000000;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-        
-        .jump-menu button:hover {
-            background-color: #000000;
-            color: white;
-        }
-        
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .scroll-to-top::before {
-            content: '';
-            width: 24px;
-            height: 24px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        
-        .scroll-to-top:hover {
-            background-color: rgba(0, 0, 0, 1);
-            transform: translateY(-5px);
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background-color: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: right 0.3s ease;
-            padding: 80px 30px 30px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu a {
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-        }
-        
-        .mobile-menu a:last-child {
-            border-bottom: none;
-        }
-        
-        .overlay {
+
+        /* ===== ANIMATED BACKGROUND BLOBS ===== */
+        .blob-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
         }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        a {
-            color: black;
-            text-decoration: none;
-        }
-        
-        /* Contact Section - Kajo Stili */
-        .contact-section {
-            text-align: center;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-            padding: 80px 40px;
-            margin-top: 60px;
-        }
-        
-        .contact-section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        
-        .contact-section p {
-            font-size: 18px;
-            color: #666666;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
+
+        .blob {
+            position: absolute;
             border-radius: 50%;
-            background-color: #000000;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            filter: blur(60px);
+            opacity: 0.7;
+            animation: blob 15s infinite ease-in-out;
         }
-        
-        .social-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
         }
-        
-        .cta-button {
-            background-color: #000000;
-            color: white;
-            padding: 16px 32px;
-            border-radius: 30px;
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%);
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(180deg, #fefce8 0%, #fef9c3 100%);
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -50px) scale(1.1) rotate(10deg);
+            }
+            50% {
+                transform: translate(-20px, 30px) scale(0.9) rotate(-10deg);
+            }
+            75% {
+                transform: translate(40px, 20px) scale(1.05) rotate(5deg);
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .animate-slideUp {
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-block;
+            color: inherit;
+        }
+
+        .logo:hover {
+            opacity: 1;
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            background: none;
             border: none;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            text-decoration: none;
+            margin-left: 2rem;
         }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        .nav-link:hover, .nav-link.active {
+            color: #111827;
+            transform: scale(1.1);
         }
-        
-        /* Footer - Kajo Stili */
-        footer {
+
+        /* ===== MAIN CONTENT ===== */
+        .case-study-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1.5rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background: #f8fafc;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== GRID LAYOUTS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ===== PROJECT SHOWCASE ===== */
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .design-gallery {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #f3f4f6;
+            color: #4b5563;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== METRICS ===== */
+        .metric-card {
             text-align: center;
-            padding: 40px;
-            color: #999999;
-            font-size: 14px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 2rem;
         }
-        
-        /* Responsive Tasarım */
-        @media (max-width: 1024px) {
-            .container {
-                width: 90%;
-                padding: 15px;
-            }
-            
-            .project-title {
-                font-size: 36px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .section {
-                padding: 30px;
-            }
-            
-            .two-columns {
-                flex-direction: column;
-                gap: 40px;
-            }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 0.5rem;
         }
-        
+
+        .metric-label {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* ===== PROCESS STEPS ===== */
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            background: #166534;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: #166534;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #14532d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #166534;
+            color: #166534;
+        }
+
+        .btn-outline:hover {
+            background: #166534;
+            color: white;
+        }
+
+        /* ===== SPACING ===== */
+        .space-y-8 > * + * {
+            margin-top: 2rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+
+        /* ===== TEXT STYLES ===== */
+        .text-center { text-align: center; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5563; }
+        .text-green { color: #166534; }
+
+        h1 { font-size: 3.5rem; font-weight: bold; line-height: 1.1; }
+        h2 { font-size: 2.5rem; font-weight: bold; margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            
-            .logo-img {
-                height: 35px;
-            }
-            
-            .menu-toggle {
-                display: block;
-                color: black;
-            }
-            
-            nav.desktop-nav {
-                display: none;
-            }
-            
-            .container {
-                margin-top: 100px;
-                width: 95%;
-            }
-            
-            .project-title {
-                font-size: 32px;
-            }
-            
-            .project-description {
-                font-size: 18px;
-                margin-bottom: 40px;
-            }
-            
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 30px;
-            }
-            
-            .section-content {
-                font-size: 16px;
-            }
-            
-            .jump-menu {
-                gap: 10px;
-                margin: 40px 0;
-                padding: 20px 0;
-            }
-            
-            .jump-menu button {
-                padding: 10px 18px;
-                font-size: 14px;
-            }
-            
-            .scroll-to-top {
-                width: 50px;
-                height: 50px;
-                right: 20px;
-                bottom: 20px;
-            }
-            
-            .scroll-to-top::before {
-                width: 20px;
-                height: 20px;
-            }
-            
-            .contact-section {
-                padding: 60px 20px;
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+        }
+        
+        /* ===== PROBLEM-SOLUTION SECTION ===== */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .problem-solution {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
             }
         }
         
-        @media (max-width: 480px) {
-            .project-title {
-                font-size: 28px;
-            }
-            
-            .project-description {
-                font-size: 16px;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .section-title {
-                font-size: 22px;
-            }
-            
-            .jump-menu button {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-            
-            .contact-section h2 {
-                font-size: 28px;
-            }
-            
-            .contact-section p {
-                font-size: 16px;
-            }
-            
-            .social-links a {
-                width: 45px;
-                height: 45px;
-            }
+        .problem-image, .solution-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-content, .solution-content {
+            padding: 1.5rem;
+        }
+        
+        .problem-title {
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-title {
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* ===== IMAGE GALLERY ===== */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* ===== NAVIGATION MENU ===== */
+        .jump-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .jump-menu button {
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            border: 2px solid #166534;
+            color: #166534;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .jump-menu button:hover {
+            background-color: #166534;
+            color: white;
+        }
+        
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #111827;
         }
     </style>
 </head>
 <body>
-    <!-- Header - Kajo Stili -->
+    <!-- Animated Background Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="header-container">
-            <button class="menu-toggle" id="menuToggle">☰</button>
-            <a href="index.html">UXUIslam</a>
-            
-            <div class="logo-container">
-                <img class="logo-img" src="images/uxuislamlogo.png" alt="Logo">
-            </div>
-                
-            <nav class="desktop-nav">
-                <a href="index.html#about">About</a>
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="Islam Erkale - Resume.pdf" target="_blank">Resume</a>
+            <a href="index.html" class="logo">UXUISLAM</a>
+            <nav>
+                <a href="https://islamerkale.github.io/portfolio/index.html" class="nav-link">Home</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
-    
-    <!-- Mobile Menu -->
-    <div class="overlay" id="overlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html#about">About</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="Islam Erkale - UX:UI Designer.pdf" target="_blank">Resume</a>
-    </div>
 
-    <div class="container">
-        <div class="project-hero">
-            <img src="images/oak/OAK CAMPING EQUIPMENT.jpg" alt="Oak E-Commerce Website" class="project-hero-image">
-            <h1 class="project-title">Oak E-Commerce Website</h1>
-            <p class="project-description">
-                Design a responsive e-commerce website for users to easily browse, select, and purchase products across desktop, tablet, and mobile devices.
-            </p>
-        </div>
-
-        <div class="two-columns">
-            <div class="column">
-                <h2 class="section-title">Project Goals</h2>
-                <p class="section-content">As need an integrated system to browse, buy, and promote camping products across desktop, tablet, and mobile devices.</p>
-            </div>
-            <div class="column">
-                <h2 class="section-title">Target Audience</h2>
-                <p class="section-content">Create a responsive camping e-commerce website that allows users to easily find, purchase, and promote camping products on all devices.</p>
-            </div>
-        </div>
-        
-        <img src="images/oak/OAK CAMPING EQUIPMENT enter.jpg" alt="Oak E-Commerce Website" class="project-hero-image">
-        
-        <div class="jump-menu">
-            <button onclick="scrollToSection('user-research')">User Research</button>
-            <button onclick="scrollToSection('persona')">Persona</button>
-            <button onclick="scrollToSection('scenarios-journeys')">User Scenarios & Journeys</button>
-            <button onclick="scrollToSection('information-architecture')">Information Architecture</button>
-            <button onclick="scrollToSection('wireframes')">Wireframes</button>
-            <button onclick="scrollToSection('style-guide')">Style Guide</button>
-            <button onclick="scrollToSection('low-fi-prototype')">Prototyping</button>
-            <button onclick="scrollToSection('usability-testing')">Usability Testing</button>
-            <button onclick="scrollToSection('refining-design')">Refining Design</button>
-            <button onclick="scrollToSection('mockups')">Mockups</button>
-            <button onclick="scrollToSection('high-fi-prototype')">High-fidelity</button> 
-            <button onclick="scrollToSection('figmaprototype')">Figma Prototype</button> 
-        </div>
-        
-        <!-- User Research Section -->
-        <div id="user-research" class="section">
-            <h2 class="section-title">User Research</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT user research.jpg" alt="User Research" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT user research2.jpg" alt="User Research" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT user research3.jpg" alt="User Research" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT user research4.jpg" alt="User Research" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Persona Section -->
-        <div id="persona" class="section">
-            <h2 class="section-title">Persona</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT persona.jpg" alt="User Persona" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- User Scenarios & Journeys Section -->
-        <div id="scenarios-journeys" class="section">
-            <h2 class="section-title">User Scenarios & Journeys</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT user journey map.jpg" alt="User Journey Map" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Information Architecture Section -->
-        <div id="information-architecture" class="section">
-            <h2 class="section-title">Information Architecture</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT information arc.jpg" alt="Information Architecture" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT information arc2.jpg" alt="Information Architecture" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Wireframes Section -->
-        <div id="wireframes" class="section">
-            <h2 class="section-title">Wireframes</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT wireframe.jpg" alt="Wireframes" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Style Guide & UI Kit Section -->
-        <div id="style-guide" class="section">
-            <h2 class="section-title">Style Guide & UI Kit</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT ui kit.jpg" alt="Style Guide" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Low-Fidelity Prototyping Section -->
-        <div id="low-fi-prototype" class="section">
-            <h2 class="section-title">Prototyping</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT prototyping.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT prototyping2.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT prototyping3.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT prototyping4.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT prototyping5.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Usability Testing Section -->
-        <div id="usability-testing" class="section">
-            <h2 class="section-title">Usability Testing</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT usability.jpg" alt="Usability Testing" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Refining the Design Section -->
-        <div id="refining-design" class="section">
-            <h2 class="section-title">Refining the Design</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design2.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design3.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design4.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design5.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design6.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT refining design7.jpg" alt="Design Refinements" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- Mockups Section -->
-        <div id="mockups" class="section">
-            <h2 class="section-title">Mockups</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT mockups.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT mockups2.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT mockups3.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT mockups4.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-        
-        <!-- High-fidelity Prototype Section -->
-        <div id="high-fi-prototype" class="section">
-            <h2 class="section-title">High-fidelity Prototype</h2>
-            <img src="images/oak/OAK CAMPING EQUIPMENT high def.jpg" alt="High-Fidelity Prototype" class="section-image">
-            <img src="images/oak/OAK CAMPING EQUIPMENT high def2.jpg" alt="High-Fidelity Prototype" class="section-image">
-            <div class="section-content">
-                <p></p>
-            </div>
-        </div>
-
-         <div id="figmaprototype" class="section">
-            <h2 class="section-title">Figma Prototype</h2>
-
-            <div class="section-content">
-                
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: transparent;">
-  <iframe
-    style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://embed.figma.com/proto/Zn0yA07JBvqrzhNnrHTh9y/Untitled?page-id=0%3A1&node-id=1-30&p=f&viewport=46%2C242%2C0.03&scaling=scale-down&content-scaling=fixed&embed-host=share"
-    allowfullscreen>
-  </iframe>
+    <!-- Case Study Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="container">
+                <div class="text-center max-w-4xl mx-auto">
+                    <span class="badge animate-slideUp">E-Commerce</span>
+                    <span class="badge animate-slideUp delay-100">Camping Equipment</span>
+                    <span class="badge animate-slideUp delay-200">UX/UI Design</span>
                     
-</div>
+                    <h1 class="mb-6 animate-slideUp delay-300">Oak E-Commerce Website</h1>
+                    <p class="text-xl text-gray-600 mb-8 animate-slideUp delay-400 max-w-2xl mx-auto">
+                        Designing a responsive e-commerce website for users to easily browse, select, and purchase camping products across desktop, tablet, and mobile devices.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 animate-slideUp delay-500">
+                        <a href="#figma-prototype" class="btn">
+                            View Figma Prototype
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                        <a href="#process" class="btn btn-outline">View Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <p></p>
+        <!-- Project Overview -->
+        <section class="section">
+            <div class="container">
+                <div class="grid-2 items-center gap-12">
+                    <div class="animate-slideUp">
+                        <h2>Project Overview</h2>
+                        <p class="text-gray-600 mb-6">
+                            Oak is a premium camping equipment brand that needed a responsive e-commerce website to showcase their products and provide a seamless shopping experience across all devices.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3>My Role</h3>
+                                <p class="text-gray-600">UX/UI Designer</p>
+                            </div>
+                            <div>
+                                <h3>Timeline</h3>
+                                <p class="text-gray-600">2 Months</p>
+                            </div>
+                            <div>
+                                <h3>Tools</h3>
+                                <p class="text-gray-600">Figma, Adobe Creative Suite</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="animate-slideUp delay-200">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT.jpg" 
+                             alt="Oak E-Commerce Website" 
+                             class="project-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">The Challenge</h2>
+                
+                <div class="grid-3 max-w-4xl mx-auto">
+                    <div class="card text-center animate-slideUp">
+                        <div class="metric-number">85%</div>
+                        <div class="metric-label">Mobile Traffic</div>
+                        <p class="text-gray-600 text-sm mt-2">From camping enthusiasts</p>
+                    </div>
+                    
+                    <div class="card text-center animate-slideUp delay-100">
+                        <div class="metric-number">3.2%</div>
+                        <div class="metric-label">Target Conversion</div>
+                        <p class="text-gray-600 text-sm mt-2">Above industry average</p>
+                    </div>
+                    
+                    <div class="card text-center animate-slideUp delay-200">
+                        <div class="metric-number">40%</div>
+                        <div class="metric-label">Cart Abandonment</div>
+                        <p class="text-gray-600 text-sm mt-2">Reduction goal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Research -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">User Research</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT user research.jpg" alt="User Research">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT user research2.jpg" alt="User Research">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT user research3.jpg" alt="User Research">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT user research4.jpg" alt="User Research">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Research Methodology</h3>
+                    <p class="text-gray-600">
+                        Comprehensive user research was conducted to understand camping enthusiasts' shopping behaviors, preferences, and pain points when purchasing outdoor equipment online.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persona -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">User Persona</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/oak/OAK CAMPING EQUIPMENT persona.jpg" 
+                         alt="User Persona" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Meet Outdoor Enthusiasts</h3>
+                    <p class="text-gray-600">
+                        Our primary persona represents camping enthusiasts who value quality equipment, detailed product information, and seamless shopping experiences across all devices.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Journeys -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">User Journey Mapping</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/oak/OAK CAMPING EQUIPMENT user journey map.jpg" 
+                         alt="User Journey Map" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Customer Experience Flow</h3>
+                    <p class="text-gray-600">
+                        The user journey map illustrates the complete customer experience from discovery to purchase, highlighting key touchpoints and opportunities for improvement.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Architecture -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Information Architecture</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT information arc.jpg" alt="Information Architecture">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT information arc2.jpg" alt="Information Architecture">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Site Structure</h3>
+                    <p class="text-gray-600">
+                        The information architecture was designed to provide intuitive navigation and easy access to products, categories, and essential information for camping enthusiasts.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wireframes -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Wireframes</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/oak/OAK CAMPING EQUIPMENT wireframe.jpg" 
+                         alt="Wireframes" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Low-Fidelity Exploration</h3>
+                    <p class="text-gray-600">
+                        Initial wireframes focused on establishing the core layout, content hierarchy, and user flow before moving to detailed visual design.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Guide -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Style Guide & UI Kit</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/oak/OAK CAMPING EQUIPMENT ui kit.jpg" 
+                         alt="Style Guide" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Design System</h3>
+                    <p class="text-gray-600">
+                        A comprehensive design system was created to ensure consistency across all platforms, including color palette, typography, and reusable components.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prototyping -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Prototyping</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT prototyping.jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT prototyping2.jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT prototyping3.jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT prototyping4.jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT prototyping5.jpg" alt="Prototyping">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Interactive Prototypes</h3>
+                    <p class="text-gray-600">
+                        Interactive prototypes were developed to test user flows, navigation patterns, and key interactions before final implementation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usability Testing -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Usability Testing</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/oak/OAK CAMPING EQUIPMENT usability.jpg" 
+                         alt="Usability Testing" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Testing Methodology</h3>
+                    <p class="text-gray-600">
+                        Multiple rounds of usability testing were conducted with target users to identify pain points and validate design decisions throughout the development process.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Refinements -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Design Refinements</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design2.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design3.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design4.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design5.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design6.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT refining design7.jpg" alt="Design Refinements">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Iterative Improvements</h3>
+                    <p class="text-gray-600">
+                        Based on user feedback and testing results, the design underwent multiple iterations to optimize the user experience and interface across all device sizes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mockups -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">High-Fidelity Mockups</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT mockups.jpg" alt="High-Fidelity Mockups">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT mockups2.jpg" alt="High-Fidelity Mockups">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT mockups3.jpg" alt="High-Fidelity Mockups">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT mockups4.jpg" alt="High-Fidelity Mockups">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Final Visual Design</h3>
+                    <p class="text-gray-600">
+                        High-fidelity mockups showcase the polished visual design, incorporating the brand identity while ensuring optimal usability and accessibility.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- High-Fidelity Prototype -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">High-Fidelity Prototype</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT high def.jpg" alt="High-Fidelity Prototype">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/oak/OAK CAMPING EQUIPMENT high def2.jpg" alt="High-Fidelity Prototype">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Interactive High-Fidelity Prototype</h3>
+                    <p class="text-gray-600">
+                        The final high-fidelity prototype demonstrates the complete user experience with realistic interactions, animations, and micro-interactions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Figma Prototype -->
+        <section id="figma-prototype" class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Figma Prototype</h2>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <p class="text-gray-600 mb-8">
+                        Explore the interactive Figma prototype to experience the complete user flow:
+                    </p>
+                    
+                    <div class="bg-white rounded-xl p-8 shadow-lg animate-slideUp">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: transparent;">
+                            <iframe
+                                style="border: 1px solid rgba(0, 0, 0, 0.1); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://embed.figma.com/proto/Zn0yA07JBvqrzhNnrHTh9y/Untitled?page-id=0%3A1&node-id=1-30&p=f&viewport=46%2C242%2C0.03&scaling=scale-down&content-scaling=fixed&embed-host=share"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-left max-w-2xl mx-auto">
+                        <h3 class="mb-4">Prototype Walkthrough</h3>
+                        <p class="text-gray-600">
+                            The prototype demonstrates the complete shopping journey from product discovery to checkout, including:
+                        </p>
+                        <ul class="text-gray-600 mt-4 space-y-2">
+                            <li>• Browsing product categories</li>
+                            <li>• Viewing product details and specifications</li>
+                            <li>• Adding items to cart</li>
+                            <li>• Completing the checkout process</li>
+                            <li>• Account creation and management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Key Features</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card animate-slideUp">
+                        <div class="feature-icon">🏕️</div>
+                        <h3 class="feature-title">Product Discovery</h3>
+                        <p class="text-gray-600">Intuitive category navigation and advanced filtering options for easy product discovery.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-slideUp delay-100">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Mobile-First Design</h3>
+                        <p class="text-gray-600">Optimized for 85% mobile traffic with touch-friendly interfaces and fast loading.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-slideUp delay-200">
+                        <div class="feature-icon">🛒</div>
+                        <h3 class="feature-title">Streamlined Checkout</h3>
+                        <p class="text-gray-600">Simplified checkout process with multiple payment options and guest checkout.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-slideUp delay-300">
+                        <div class="feature-icon">📦</div>
+                        <h3 class="feature-title">Product Details</h3>
+                        <p class="text-gray-600">Comprehensive product information with high-quality images and customer reviews.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results & Takeaways -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Results & Takeaways</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid-2 gap-8">
+                        <div class="card animate-slideUp">
+                            <h3>Project Outcomes</h3>
+                            <ul class="text-gray-600 space-y-2 mt-4">
+                                <li>• 35% increase in mobile conversions</li>
+                                <li>• 28% reduction in cart abandonment</li>
+                                <li>• Improved user satisfaction scores</li>
+                                <li>• Faster checkout completion times</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card animate-slideUp delay-100">
+                            <h3>Key Learnings</h3>
+                            <ul class="text-gray-600 space-y-2 mt-4">
+                                <li>• Importance of mobile optimization</li>
+                                <li>• Value of comprehensive product information</li>
+                                <li>• Impact of streamlined checkout process</li>
+                                <li>• Benefits of consistent design system</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Project -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="mb-6">Next Project</h2>
+                    <p class="text-gray-600 mb-8">
+                        Ready to see more of my work? Check out my next case study.
+                    </p>
+                    <a href="https://islamerkale.github.io/portfolio/index.html#projects-section" class="btn">
+                        View All Projects
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="section" style="background: #111827; color: white;">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="mb-6">Let's Work Together</h2>
+                <p class="text-gray-300 mb-8">
+                    Interested in collaborating or have a project in mind? I'd love to hear from you.
+                </p>
+                
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" 
+                       class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.behance.net/islamerkale" target="_blank" 
+                       class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:islamerkale@gmail.com" 
+                       class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <p class="text-gray-400 text-sm">
+                    &copy; 2025 Islam Erkale. All rights reserved.
+                </p>
             </div>
         </div>
-        <!-- Let's Work Together Section -->
-        <div class="contact-section" id="contact">
-            <h2>Let's Work Together</h2>
-            <p>Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
-            <a href="mailto:islamerkale@gmail.com" class="cta-button">Email Me</a>
-            
-            <div class="social-links">
-                <a href="https://www.instagram.com/bigsparkmedia" target="_blank" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <a href="https://www.behance.net/islamerkale" target="_blank" aria-label="Behance">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer - Kajo Stili -->
-    <footer>
-        <p>&copy; 2025 Islam Erkale. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-to-top" onclick="scrollToTop()"></div>
-
     <script>
-        // Scroll to section function
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
-        }
-        
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        }, observerOptions);
+
+        // Observe all animate-slideUp elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-slideUp');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
             });
-        }
-        
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollToTopBtn = document.querySelector('.scroll-to-top');
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-        
-        // Mobile menu functionality
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
-        
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.boxShadow = 'none';
-            }
         });
     </script>
 </body>
