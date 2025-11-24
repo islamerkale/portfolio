@@ -4,1206 +4,1069 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DC Ticket App - UX/UI Case Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Kajo Tasarımı Temel Stilleri */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
+
         body {
             background-color: #ffffff;
             color: #333333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        /* Header - Kajo Stili */
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        html {
+            scroll-behavior: smooth;
         }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .logo-img {
-            height: 40px;
-            width: auto;
-        }
-        
-        nav {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-        
-        nav a {
-            margin-left: 24px;
-            text-decoration: none;
-            color: #333333;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-        
-        nav a:hover {
-            color: #000000;
-        }
-        
-        /* Mobile Menu Button */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        /* Project Content Styles */
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 120px auto 50px;
-            padding: 20px;
-        }
-        
-        .project-hero {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .project-hero-image {
-            width: 100%;
-            max-height: 600px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #000000;
-        }
-        
-        .project-meta {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 16px;
-            color: #666;
-        }
-        
-        .meta-icon {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .project-description {
-            font-size: 20px;
-            color: #666666;
-            max-width: 800px;
-            margin: 0 auto 60px;
-            line-height: 1.8;
-        }
-        
-        .section {
-            margin-bottom: 100px;
-            padding: 40px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #000000;
-            text-align: center;
-            position: relative;
-        }
-        
-       
-        
-        .section-image {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 40px;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 18px;
-            color: #666666;
-            line-height: 1.8;
-        }
-        
-        .section-content p {
-            margin-bottom: 20px;
-        }
-        
-        .section-content ul, 
-        .section-content ol {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-        
-        /* Two Columns Layout */
-        .two-columns {
-            display: flex;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-        
-        .column {
-            flex: 1;
-        }
-        
-        /* Jump Menu */
-        .jump-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 60px 0;
-            padding: 30px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .jump-menu button {
-            padding: 12px 24px;
-            background-color: white;
-            border: 2px solid #000000;
-            color: #000000;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-        
-        .jump-menu button:hover {
-            background-color: #000000;
-            color: white;
-        }
-        
-        /* Key Features Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #000000;
-        }
-        
-        .feature-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #000000;
-        }
-        
-        /* Process Timeline */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 40px auto;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: #000000;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-content {
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline-date {
-            font-weight: 600;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-        
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .scroll-to-top::before {
-            content: '';
-            width: 24px;
-            height: 24px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        
-        .scroll-to-top:hover {
-            background-color: rgba(0, 0, 0, 1);
-            transform: translateY(-5px);
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background-color: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: right 0.3s ease;
-            padding: 80px 30px 30px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu a {
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-menu a:hover {
-            color: #000000;
-        }
-        
-        .mobile-menu a:last-child {
-            border-bottom: none;
-        }
-        
-        .overlay {
+
+        /* ===== ANIMATED BACKGROUND BLOBS ===== */
+        .blob-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
         }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        a {
-            color: black;
-            text-decoration: none;
-        }
-        
-        /* Contact Section - Kajo Stili */
-        .contact-section {
-            text-align: center;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-            padding: 80px 40px;
-            margin-top: 60px;
-        }
-        
-        .contact-section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        
-        .contact-section p {
-            font-size: 18px;
-            color: #666666;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
+
+        .blob {
+            position: absolute;
             border-radius: 50%;
-            background-color: #000000;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            filter: blur(60px);
+            opacity: 0.7;
+            animation: blob 15s infinite ease-in-out;
         }
-        
-        .social-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background-color: #333;
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
         }
-        
-        .cta-button {
-            background-color: #000000;
-            color: white;
-            padding: 16px 32px;
-            border-radius: 30px;
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(180deg, #e9d5ff 0%, #d8b4fe 100%);
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 100%);
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -50px) scale(1.1) rotate(10deg);
+            }
+            50% {
+                transform: translate(-20px, 30px) scale(0.9) rotate(-10deg);
+            }
+            75% {
+                transform: translate(40px, 20px) scale(1.05) rotate(5deg);
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .animate-slideUp {
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-block;
+            color: inherit;
+        }
+
+        .logo:hover {
+            opacity: 1;
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            background: none;
             border: none;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            text-decoration: none;
+            margin-left: 2rem;
         }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background-color: #333;
+
+        .nav-link:hover, .nav-link.active {
+            color: #111827;
+            transform: scale(1.1);
         }
-        
-        /* Footer - Kajo Stili */
-        footer {
+
+        /* ===== MAIN CONTENT ===== */
+        .case-study-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1.5rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background: #f8fafc;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== GRID LAYOUTS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ===== PROJECT SHOWCASE ===== */
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .design-gallery {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #f3f4f6;
+            color: #4b5563;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== METRICS ===== */
+        .metric-card {
             text-align: center;
-            padding: 40px;
-            color: #999999;
-            font-size: 14px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 2rem;
         }
-        
-        /* Responsive Tasarım */
-        @media (max-width: 1024px) {
-            .container {
-                width: 90%;
-                padding: 15px;
-            }
-            
-            .project-title {
-                font-size: 36px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .section {
-                padding: 30px;
-            }
-            
-            .two-columns {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .timeline::before {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #263788;
+            margin-bottom: 0.5rem;
         }
-        
+
+        .metric-label {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* ===== PROCESS STEPS ===== */
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            background: #263788;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: #263788;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #1e2f6d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #263788;
+            color: #263788;
+        }
+
+        .btn-outline:hover {
+            background: #263788;
+            color: white;
+        }
+
+        /* ===== SPACING ===== */
+        .space-y-8 > * + * {
+            margin-top: 2rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+
+        /* ===== TEXT STYLES ===== */
+        .text-center { text-align: center; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5563; }
+        .text-blue { color: #263788; }
+
+        h1 { font-size: 3.5rem; font-weight: bold; line-height: 1.1; }
+        h2 { font-size: 2.5rem; font-weight: bold; margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            
-            .logo-img {
-                height: 35px;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            nav.desktop-nav {
-                display: none;
-            }
-            
-            .container {
-                margin-top: 100px;
-                width: 95%;
-            }
-            
-            .project-title {
-                font-size: 32px;
-            }
-            
-            .project-description {
-                font-size: 18px;
-                margin-bottom: 40px;
-            }
-            
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 30px;
-            }
-            
-            .section-content {
-                font-size: 16px;
-            }
-            
-            .jump-menu {
-                gap: 10px;
-                margin: 40px 0;
-                padding: 20px 0;
-            }
-            
-            .jump-menu button {
-                padding: 10px 18px;
-                font-size: 14px;
-            }
-            
-            .scroll-to-top {
-                width: 50px;
-                height: 50px;
-                right: 20px;
-                bottom: 20px;
-            }
-            
-            .scroll-to-top::before {
-                width: 20px;
-                height: 20px;
-            }
-            
-            .contact-section {
-                padding: 60px 20px;
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+        }
+        
+        /* ===== PROBLEM-SOLUTION SECTION ===== */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .problem-solution {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
             }
         }
         
-        @media (max-width: 480px) {
-            .project-title {
-                font-size: 28px;
-            }
-            
-            .project-description {
-                font-size: 16px;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .section-title {
-                font-size: 22px;
-            }
-            
-            .jump-menu button {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-            
-            .contact-section h2 {
-                font-size: 28px;
-            }
-            
-            .contact-section p {
-                font-size: 16px;
-            }
-            
-            .social-links a {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        .problem-image, .solution-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-content, .solution-content {
+            padding: 1.5rem;
+        }
+        
+        .problem-title {
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-title {
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* ===== IMAGE GALLERY ===== */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* ===== NAVIGATION MENU ===== */
+        .jump-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .jump-menu button {
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            border: 2px solid #263788;
+            color: #263788;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .jump-menu button:hover {
+            background-color: #263788;
+            color: white;
+        }
+        
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #111827;
         }
     </style>
 </head>
 <body>
-    <!-- Header - Kajo Stili -->
-    <header id="mainHeader">
+    <!-- Animated Background Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
         <div class="header-container">
-            <button class="menu-toggle" id="menuToggle">☰</button>
-            <a href="index.html">UXUIslam</a>
-            
-            <div class="logo-container">
-                <img class="logo-img" src="images/uxuislamlogo.png" alt="Islam Erkale Logo">
-            </div>
-                
-            <nav class="desktop-nav">
-                <a href="index.html#about">About</a>
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="Islam Erkale - UX:UI Designer.pdf" target="_blank">Resume</a>
+            <a href="index.html" class="logo">UXUISLAM</a>
+            <nav>
+                <a href="https://islamerkale.github.io/portfolio/index.html" class="nav-link">Home</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
-    
-    <!-- Mobile Menu -->
-    <div class="overlay" id="overlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html#about">About</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="Islam Erkale - Resume.pdf" target="_blank">Resume</a>
-    </div>
 
-    <div class="container">
-        <div class="project-hero">
-            <img src="images/dc.jpg" alt="DC Ticket App" class="project-hero-image">
-            <h1 class="project-title">DC Ticket App</h1>
-            
-            <div class="project-meta">
-                <div class="meta-item">
-                    <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
-                        <path d="M13 7h-2v6h6v-2h-4z"/>
-                    </svg>
-                    <span>2 Months</span>
-                </div>
-                <div class="meta-item">
-                    <svg class="meta-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="currentColor" d="M192,7.10542736e-15 L384,110.851252 L384,332.553755 L192,443.405007 L1.42108547e-14,332.553755 L1.42108547e-14,110.851252 L192,7.10542736e-15 Z M42.666,157.654 L42.6666667,307.920144 L170.666,381.82 L170.666,231.555 L42.666,157.654 Z M341.333,157.655 L213.333,231.555 L213.333,381.82 L341.333333,307.920144 L341.333,157.655 Z M192,49.267223 L66.1333333,121.936377 L192,194.605531 L317.866667,121.936377 L192,49.267223 Z"/>
-                    </svg>
-                    <span>UX/UI Design</span>
-                </div>
-                <div class="meta-item">
-                    <svg class="meta-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="currentColor" d="M20,20.854c0-1.136,0.642-2.175,1.658-2.683L24,17L17,3h-2L8,17l2.342,1.171
-                        C11.358,18.679,12,19.718,12,20.854V21h-2v8h12v-8h-2V20.854z M11.236,16.382l-0.553-0.276L15,7.472V15h2V7.472l4.317,8.633
-                        l-0.553,0.276C19.059,17.234,18,18.948,18,20.854V21h-4v-0.146C14,18.948,12.941,17.234,11.236,16.382z M20,27h-8v-4h8V27z"/>
-                    </svg>
-                    <span>Figma, Google Analysis</span>
+    <!-- Case Study Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="container">
+                <div class="text-center max-w-4xl mx-auto">
+                    <span class="badge animate-slideUp">Mobile App</span>
+                    <span class="badge animate-slideUp delay-100">Government Services</span>
+                    <span class="badge animate-slideUp delay-200">UX/UI Design</span>
+                    
+                    <h1 class="mb-6 animate-slideUp delay-300">DC Ticket App</h1>
+                    <p class="text-xl text-gray-600 mb-8 animate-slideUp delay-400 max-w-2xl mx-auto">
+                        A mobile application designed to simplify the process of finding, contesting, and paying parking tickets in Washington DC.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 animate-slideUp delay-500">
+                        <a href="#figma-prototype" class="btn">
+                            View Figma Prototype
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                        <a href="#process" class="btn btn-outline">View Case Study</a>
+                    </div>
                 </div>
             </div>
-            
-            <p class="project-description">
-                DC Ticket is a mobile application designed to simplify the process of finding, contesting, and paying parking tickets in Washington DC. The app provides a user-friendly interface that helps citizens manage their parking violations efficiently.
-            </p>
-        </div>
+        </section>
 
-        <div class="two-columns">
-            <div class="column">
-                <h2 class="section-title">Project Overview</h2>
-                <div class="section-content">
-                    <p>The DC Ticket app was created to address the frustrations citizens face when dealing with parking tickets in Washington DC. The current system is fragmented, confusing, and time-consuming.</p>
-                    <p>My role as the sole UX/UI designer involved conducting user research, creating wireframes and prototypes, and testing the solution with real users to validate the design decisions.</p>
-                </div>
-            </div>
-            <div class="column">
-                <h2 class="section-title">The Challenge</h2>
-                <div class="section-content">
-                    <p>Design a mobile application that allows users to:</p>
-                    <ul>
-                        <li>Easily find and view their parking tickets</li>
-                        <li>Contest tickets with minimal effort</li>
-                        <li>Make secure payments directly through the app</li>
-                        <li>Receive notifications about ticket status</li>
-                    </ul>
-                    <p>The solution needed to be accessible to all demographics, including non-tech-savvy users.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Key Features Section -->
-        <div class="section">
-            <h2 class="section-title">Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Ticket Management</h3>
-                    <p>View all parking tickets in one place with clear status indicators and important details.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✍️</div>
-                    <h3 class="feature-title">Easy Contesting</h3>
-                    <p>Step-by-step process to contest tickets with guided form filling and evidence upload.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💳</div>
-                    <h3 class="feature-title">Secure Payments</h3>
-                    <p>Multiple payment options with encryption and confirmation receipts.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3 class="feature-title">Notifications</h3>
-                    <p>Real-time updates about ticket status, payment reminders, and contest outcomes.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Design Process Timeline -->
-        <div class="section">
-            <h2 class="section-title">Design Process</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Phase 1</div>
-                        <h3>Research & Discovery</h3>
-                        <p>Conducted user interviews, analyzed competitors, and identified pain points in the current system.</p>
+        <!-- Project Overview -->
+        <section class="section">
+            <div class="container">
+                <div class="grid-2 items-center gap-12">
+                    <div class="animate-slideUp">
+                        <h2>Project Overview</h2>
+                        <p class="text-gray-600 mb-6">
+                            DC Ticket is a mobile application designed to simplify the process of finding, contesting, and paying parking tickets in Washington DC. The app provides a user-friendly interface that helps citizens manage their parking violations efficiently.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3>My Role</h3>
+                                <p class="text-gray-600">UX/UI Designer</p>
+                            </div>
+                            <div>
+                                <h3>Timeline</h3>
+                                <p class="text-gray-600">2 Months</p>
+                            </div>
+                            <div>
+                                <h3>Tools</h3>
+                                <p class="text-gray-600">Figma, Google Analytics</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Phase 2</div>
-                        <h3>Information Architecture</h3>
-                        <p>Created user flows and sitemaps to structure the app's navigation and content hierarchy.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Phase 3</div>
-                        <h3>Wireframing & Prototyping</h3>
-                        <p>Developed low-fidelity wireframes and interactive prototypes for user testing.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Phase 4</div>
-                        <h3>UI Design & Testing</h3>
-                        <p>Designed high-fidelity mockups and conducted usability tests with target users.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Phase 5</div>
-                        <h3>Refinement & Handoff</h3>
-                        <p>Iterated based on feedback and prepared final assets for development.</p>
+                    
+                    <div class="animate-slideUp delay-200">
+                        <img src="images/dc.jpg" 
+                             alt="DC Ticket App" 
+                             class="project-image">
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="jump-menu">
-            <button onclick="scrollToSection('user-research')">User Research</button>
-            <button onclick="scrollToSection('persona')">Persona</button>
-            <button onclick="scrollToSection('scenarios-journeys')">User Journeys</button>
-            <button onclick="scrollToSection('information-architecture')">Information Architecture</button>
-            <button onclick="scrollToSection('wireframes')">Wireframes</button>
-            <button onclick="scrollToSection('style-guide')">Style Guide</button>
-            <button onclick="scrollToSection('low-fi-prototype')">Prototyping</button>
-            <button onclick="scrollToSection('usability-testing')">Usability Testing</button>
-            <button onclick="scrollToSection('refining-design')">Refining Design</button>
-            <button onclick="scrollToSection('mockups')">Mockups</button>
-            <button onclick="scrollToSection('high-fi-prototype')">High-fidelity</button>
-            <button onclick="scrollToSection('figmaprototype')">Figma Prototype</button>
-        </div>
-        
-        <!-- User Research Section -->
-        <div id="user-research" class="section">
-            <h2 class="section-title">User Research</h2>
-            <img src="images/dcticket/DC TICKET user research.jpg" alt="User Research" class="section-image">
-            <img src="images/dcticket/DC TICKET user research (2).jpg" alt="User Research" class="section-image">
-            <img src="images/dcticket/DC TICKET user research (2) (2).jpg" alt="User Research" class="section-image">
-            <img src="images/dcticket/DC TICKET user research (3).jpg" alt="User Research" class="section-image">
-            <div class="section-content">
-                <h3>Research Methodology</h3>
-                <p>To understand the pain points and needs of users dealing with parking tickets, I conducted:</p>
-                <ul>
-                    <li><strong>15 user interviews</strong> with DC residents who had received parking tickets</li>
-                    <li><strong>Survey of 100+ respondents</strong> to quantify common issues</li>
-                    <li><strong>Competitive analysis</strong> of existing ticket payment solutions</li>
-                    <li><strong>Contextual inquiry</strong> observing people using current systems</li>
-                </ul>
-                <h3>Key Findings</h3>
-                <p>The research revealed several critical pain points:</p>
-                <ul>
-                    <li>Difficulty finding ticket information online</li>
-                    <li>Confusing contestation process with unclear requirements</li>
-                    <li>No centralized system to track multiple tickets</li>
-                    <li>Lack of reminders leading to late fees</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Persona Section -->
-        <div id="persona" class="section">
-            <h2 class="section-title">Persona</h2>
-            <img src="images/dcticket/DC TICKET -persona.jpg" alt="User Persona" class="section-image">
-            <div class="section-content">
-                <h3>Meet Sarah Johnson</h3>
-                <p>Based on our research, we developed Sarah as our primary persona:</p>
-                <p><strong>Age:</strong> 32<br>
-                <strong>Occupation:</strong> Marketing Manager<br>
-                <strong>Tech Savviness:</strong> Comfortable with technology but prefers simple interfaces<br>
-                <strong>Frustrations:</strong> Wastes hours dealing with parking tickets, misses deadlines, finds current system confusing</p>
-                <p>Sarah represents our target user - busy professionals who value their time and want a straightforward way to handle parking violations.</p>
-            </div>
-        </div>
-        
-        <!-- User Scenarios & Journeys Section -->
-        <div id="scenarios-journeys" class="section">
-            <h2 class="section-title">User Scenarios & Journeys</h2>
-            <img src="images/dcticket/DC TICKET- user journey map.jpg" alt="User Journey Map" class="section-image">
-            <div class="section-content">
-                <h3>Current vs. Improved Journey</h3>
-                <p>The user journey map compares the frustrating current experience with our proposed solution:</p>
-                <p><strong>Current Pain Points:</strong><br>
-                - Discovers ticket on windshield with no digital notification<br>
-                - Struggles to find correct website to pay/contest<br>
-                - Gets confused by complex forms and requirements<br>
-                - Forgets about ticket and incurs late fees</p>
-                <p><strong>Improved Experience:</strong><br>
-                - Receives immediate notification when ticket is issued<br>
-                - Clear options to pay or contest with one tap<br>
-                - Guided process with progress indicators<br>
-                - Automatic reminders about deadlines</p>
-            </div>
-        </div>
-        
-        <!-- Information Architecture Section -->
-        <div id="information-architecture" class="section">
-            <h2 class="section-title">Information Architecture</h2>
-            <img src="images/dcticket/DC TICKET informationarc.jpg" alt="Information Architecture" class="section-image">
-            <img src="images/dcticket/DC TICKET information arc (2).jpg" alt="Information Architecture" class="section-image">
-            <div class="section-content">
-                <h3>App Structure</h3>
-                <p>The information architecture was designed to prioritize the most common user tasks while making all features accessible within 2-3 taps.</p>
-                <p>Key decisions included:</p>
-                <ul>
-                    <li>Dashboard showing all tickets at a glance</li>
-                    <li>Separate flows for paying vs. contesting tickets</li>
-                    <li>Dedicated section for ticket history and receipts</li>
-                    <li>Profile settings accessible from multiple points</li>
-                </ul>
-                <h3>User Flows</h3>
-                <p>We mapped out primary user flows including:</p>
-                <ul>
-                    <li>New user onboarding</li>
-                    <li>Adding a vehicle</li>
-                    <li>Paying a ticket</li>
-                    <li>Contesting a ticket</li>
-                    <li>Checking contest status</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Wireframes Section -->
-        <div id="wireframes" class="section">
-            <h2 class="section-title">Wireframes</h2>
-            <img src="images/dcticket/DC TICKET - wireframe.jpg" alt="Wireframes" class="section-image">
-            <img src="images/dcticket/DC TICKET wireframe (2).jpg" alt="Wireframes" class="section-image">
-            <div class="section-content">
-                <h3>Low-Fidelity Exploration</h3>
-                <p>The wireframing phase focused on establishing the core layout and interaction patterns before committing to visual design elements.</p>
-                <p>Key considerations included:</p>
-                <ul>
-                    <li>Prioritizing ticket information hierarchy</li>
-                    <li>Creating clear CTAs for primary actions</li>
-                    <li>Ensuring form fields followed mobile best practices</li>
-                    <li>Designing for one-handed use with thumb zones</li>
-                </ul>
-                <p>We created multiple variations for each screen and tested them with users to identify the most intuitive layouts.</p>
-            </div>
-        </div>
-        
-        <!-- Style Guide & UI Kit Section -->
-        <div id="style-guide" class="section">
-            <h2 class="section-title">Style Guide & UI Kit</h2>
-            <img src="images/dcticket/DC TICKET - ui kit.jpg" alt="Style Guide" class="section-image">
-            <div class="section-content">
-                <h3>Design System</h3>
-                <p>The UI style guide was created to ensure consistency across all screens and future iterations.</p>
-                <p><strong>Color Palette:</strong><br>
-                Primary blue (#2A5CAA) was chosen for its association with trust and government, with secondary colors for status indicators (green for success, red for warnings).</p>
-                <p><strong>Typography:</strong><br>
-                Inter was selected as the primary typeface for its excellent readability on mobile screens at various sizes.</p>
-                <p><strong>Components:</strong><br>
-                The UI kit included reusable components like buttons, form fields, cards, and navigation elements to speed up development and maintain consistency.</p>
-            </div>
-        </div>
-        
-        <!-- Low-Fidelity Prototyping Section -->
-        <div id="low-fi-prototype" class="section">
-            <h2 class="section-title">Prototyping</h2>
-            <img src="images/dcticket/DC TICKET - prototayping.jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dcticket/DC TICKET prototayping (2).jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dcticket/DC TICKET prototayping(3).jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dcticket/DC TICKET prototyping(4).jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <img src="images/dcticket/DC TICKET prototayping (5).jpg" alt="Low-Fidelity Prototype" class="section-image">
-            <div class="section-content">
-                <h3>Interactive Prototypes</h3>
-                <p>Using Figma, we created interactive prototypes to test key user flows before investing in high-fidelity designs.</p>
-                <p>The prototype covered:</p>
-                <ul>
-                    <li>Onboarding and account creation</li>
-                    <li>Adding a vehicle to the profile</li>
-                    <li>Viewing ticket details</li>
-                    <li>Initiating payment or contest</li>
-                    <li>Uploading evidence for contestation</li>
-                </ul>
-                <p>This allowed us to validate navigation patterns and identify usability issues early in the process.</p>
-            </div>
-        </div>
-        
-        <!-- Usability Testing Section -->
-        <div id="usability-testing" class="section">
-            <h2 class="section-title">Usability Testing</h2>
-            <img src="images/dcticket/DC TICKET - usability testing.jpg" alt="Usability Testing" class="section-image">
-            <img src="images/dcticket/DC TICKET usability testing (2).jpg" alt="Usability Testing" class="section-image">
-            <div class="section-content">
-                <h3>Testing Methodology</h3>
-                <p>We conducted moderated usability tests with 12 participants representing our target demographics.</p>
-                <p>Participants were asked to complete key tasks while we observed:</p>
-                <ul>
-                    <li>Finding a specific ticket</li>
-                    <li>Paying a ticket</li>
-                    <li>Starting a contestation</li>
-                    <li>Checking contest status</li>
-                </ul>
-                <h3>Key Findings</h3>
-                <p>The tests revealed several areas for improvement:</p>
-                <ul>
-                    <li>Some users missed the contestation option initially</li>
-                    <li>The evidence upload flow needed simplification</li>
-                    <li>Payment confirmation wasn't prominent enough</li>
-                    <li>Terminology needed to be more user-friendly</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Refining the Design Section -->
-        <div id="refining-design" class="section">
-            <h2 class="section-title">Refining the Design</h2>
-            <img src="images/dcticket/DC TICKET refine design.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dcticket/DC TICKET refine design2.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dcticket/DC TICKET refine design3.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dcticket/DC TICKET refine design4.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dcticket/DC TICKET refine design5.jpg" alt="Design Refinements" class="section-image">
-            <img src="images/dcticket/DC TICKET refine design6.jpg" alt="Design Refinements" class="section-image">
-            <div class="section-content">
-                <h3>Iterations Based on Feedback</h3>
-                <p>Based on usability testing results, we made several key improvements:</p>
-                <p><strong>1. Enhanced Visibility of Contest Option</strong><br>
-                - Added a prominent "Contest This Ticket" button alongside the payment option<br>
-                - Included explanatory text about the contestation process</p>
-                <p><strong>2. Simplified Evidence Upload</strong><br>
-                - Created a guided step-by-step process<br>
-                - Added example photos showing good evidence<br>
-                - Implemented progress indicators</p>
-                <p><strong>3. Improved Payment Confirmation</strong><br>
-                - Designed a full-screen success state with clear next steps<br>
-                - Added option to email or text the receipt immediately</p>
-                <p><strong>4. Terminology Updates</strong><br>
-                - Replaced bureaucratic language with plain English<br>
-                - Added tooltips explaining legal terms when necessary</p>
-            </div>
-        </div>
-        
-        <!-- Mockups Section -->
-        <div id="mockups" class="section">
-            <h2 class="section-title">Mockups</h2>
-            <img src="images/dcticket/DC TICKET - mockups.jpg" alt="High-Fidelity Mockups" class="section-image">
-            <img src="images/dcticket/DC TICKET mockups2.jpg" alt="Design Refinements" class="section-image">
-            <div class="section-content">
-                <h3>Final Visual Design</h3>
-                <p>The high-fidelity mockups incorporated the DC government's visual identity while maintaining a user-friendly, modern aesthetic.</p>
-                <p>Key design elements included:</p>
-                <ul>
-                    <li><strong>Clean, uncluttered interface:</strong> Ample white space and clear hierarchy</li>
-                    <li><strong>Visual indicators:</strong> Color-coded status badges for quick scanning</li>
-                    <li><strong>Accessible design:</strong> AA color contrast standards met throughout</li>
-                    <li><strong>Mobile-first approach:</strong> Touch targets sized for fingers, not cursors</li>
-                </ul>
-                <p>The design system ensured consistency across all screens while allowing for necessary variations in different contexts.</p>
-            </div>
-        </div>
-        
-        <!-- High-fidelity Prototype Section -->
-        <div id="high-fi-prototype" class="section">
-            <h2 class="section-title">High-fidelity Prototype</h2>
-            <img src="images/dcticket/DC TICKET - hig fidelity.jpg" alt="High-Fidelity Prototype" class="section-image">
-            <div class="section-content">
-                <h3>Interactive High-Fidelity Prototype</h3>
-                <p>The final high-fidelity prototype included all key user flows with realistic interactions and microanimations.</p>
-                <p>Notable interactions included:</p>
-                <ul>
-                    <li>Smooth transitions between screens</li>
-                    <li>Form validation with helpful error messages</li>
-                    <li>Loading states for network requests</li>
-                    <li>Success/failure states for key actions</li>
-                </ul>
-                <p>This prototype was used for final user validation and stakeholder presentations.</p>
-            </div>
-        </div>
+        </section>
 
-        <div id="figmaprototype" class="section">
-            <h2 class="section-title">Figma Prototype</h2>
-            <div class="section-content">
-                <p>Explore the interactive Figma prototype to experience the full user flow:</p>
-                <div style="display: flex; justify-content: center; margin: 40px 0;">
-                    <iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 12px;" width="800" height="450" src="https://embed.figma.com/proto/hQZ87ifd1RITPL55Z9VbiB/Untitled?page-id=0%3A1&node-id=1732-5709&viewport=1037%2C-757%2C0.09&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1732%3A108&show-proto-sidebar=1&embed-host=share" allowfullscreen></iframe>
+        <!-- The Challenge -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">The Challenge</h2>
+                
+                <div class="grid-3 max-w-4xl mx-auto">
+                    <div class="card text-center animate-slideUp">
+                        <div class="metric-number">65%</div>
+                        <div class="metric-label">Time Reduction</div>
+                        <p class="text-gray-600 text-sm mt-2">In ticket handling process</p>
+                    </div>
+                    
+                    <div class="card text-center animate-slideUp delay-100">
+                        <div class="metric-number">92%</div>
+                        <div class="metric-label">User Preference</div>
+                        <p class="text-gray-600 text-sm mt-2">Over current options</p>
+                    </div>
+                    
+                    <div class="card text-center animate-slideUp delay-200">
+                        <div class="metric-number">15+</div>
+                        <div class="metric-label">User Interviews</div>
+                        <p class="text-gray-600 text-sm mt-2">Conducted</p>
+                    </div>
                 </div>
-                <h3>Prototype Walkthrough</h3>
-                <p>The prototype demonstrates the complete user journey from ticket notification to resolution, including:</p>
-                <ol>
-                    <li>Receiving a ticket notification</li>
-                    <li>Viewing ticket details</li>
-                    <li>Choosing to pay or contest</li>
-                    <li>Completing the selected action</li>
-                    <li>Receiving confirmation</li>
-                </ol>
             </div>
-        </div>
-        
-        <!-- Results & Takeaways Section -->
-        <div class="section">
-            <h2 class="section-title">Results & Takeaways</h2>
-            <div class="section-content">
-                <h3>Project Outcomes</h3>
-                <p>The DC Ticket app design successfully addressed the key pain points identified during research:</p>
-                <ul>
-                    <li><strong>Reduced time</strong> to handle tickets by 65% in usability tests</li>
-                    <li><strong>Increased contestation rate</strong> by making the process more accessible</li>
-                    <li><strong>Improved satisfaction</strong> with 92% of testers preferring it over current options</li>
-                </ul>
-                <h3>Key Learnings</h3>
-                <p>This project reinforced several important UX principles:</p>
-                <ul>
-                    <li>The value of early and frequent user testing</li>
-                    <li>How small UI changes can significantly impact completion rates</li>
-                    <li>The importance of designing for emotional states (frustration when getting a ticket)</li>
-                    <li>Balancing government requirements with user-friendly design</li>
-                </ul>
-                <h3>Next Steps</h3>
-                <p>Future enhancements could include:</p>
-                <ul>
-                    <li>Integration with DC's parking meter system for real-time alerts</li>
-                    <li>Expansion to other types of municipal violations</li>
-                    <li>Personalized recommendations based on parking habits</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Let's Work Together Section -->
-        <div class="contact-section" id="contact">
-            <h2>Let's Work Together</h2>
-            <p>Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
-            <a href="mailto:islamerkale@gmail.com" class="cta-button">Email Me</a>
-            
-            <div class="social-links">
-                <a href="https://www.instagram.com/bigsparkmedia" target="_blank" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <a href="https://www.behance.net/islamerkale" target="_blank" aria-label="Behance">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Footer - Kajo Stili -->
-    <footer>
-        <p>&copy; 2025 Islam Erkale. All rights reserved.</p>
+        <!-- User Research -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">User Research</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET user research.jpg" alt="User Research">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET user research (2).jpg" alt="User Research">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/dcticket/DC TICKET user research (2) (2).jpg" alt="User Research">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/dcticket/DC TICKET user research (3).jpg" alt="User Research">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Research Methodology</h3>
+                    <p class="text-gray-600">
+                        To understand the pain points and needs of users dealing with parking tickets, I conducted 15 user interviews with DC residents, surveyed 100+ respondents, and analyzed existing ticket payment solutions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persona -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">User Persona</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/dcticket/DC TICKET -persona.jpg" 
+                         alt="User Persona" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Meet Sarah Johnson</h3>
+                    <p class="text-gray-600">
+                        Sarah represents our target user - busy professionals who value their time and want a straightforward way to handle parking violations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Journeys -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">User Journey Mapping</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/dcticket/DC TICKET- user journey map.jpg" 
+                         alt="User Journey Map" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Current vs. Improved Journey</h3>
+                    <p class="text-gray-600">
+                        The user journey map compares the frustrating current experience with our proposed solution, highlighting key pain points and improvement opportunities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Architecture -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Information Architecture</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET informationarc.jpg" alt="Information Architecture">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET information arc (2).jpg" alt="Information Architecture">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">App Structure</h3>
+                    <p class="text-gray-600">
+                        The information architecture was designed to prioritize the most common user tasks while making all features accessible within 2-3 taps.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wireframes -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Wireframes</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET - wireframe.jpg" alt="Wireframes">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET wireframe (2).jpg" alt="Wireframes">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Low-Fidelity Exploration</h3>
+                    <p class="text-gray-600">
+                        The wireframing phase focused on establishing the core layout and interaction patterns before committing to visual design elements.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Guide -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Style Guide & UI Kit</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/dcticket/DC TICKET - ui kit.jpg" 
+                         alt="Style Guide" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Design System</h3>
+                    <p class="text-gray-600">
+                        The UI style guide was created to ensure consistency across all screens and future iterations, including color palette, typography, and reusable components.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prototyping -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Prototyping</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET - prototayping.jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET prototayping (2).jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/dcticket/DC TICKET prototayping(3).jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/dcticket/DC TICKET prototyping(4).jpg" alt="Prototyping">
+                    </div>
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET prototayping (5).jpg" alt="Prototyping">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Interactive Prototypes</h3>
+                    <p class="text-gray-600">
+                        Using Figma, we created interactive prototypes to test key user flows before investing in high-fidelity designs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usability Testing -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Usability Testing</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET - usability testing.jpg" alt="Usability Testing">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET usability testing (2).jpg" alt="Usability Testing">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Testing Methodology</h3>
+                    <p class="text-gray-600">
+                        We conducted moderated usability tests with 12 participants representing our target demographics to identify areas for improvement.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Refinements -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Design Refinements</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET refine design.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET refine design2.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-200">
+                        <img src="images/dcticket/DC TICKET refine design3.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-300">
+                        <img src="images/dcticket/DC TICKET refine design4.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET refine design5.jpg" alt="Design Refinements">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET refine design6.jpg" alt="Design Refinements">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Iterations Based on Feedback</h3>
+                    <p class="text-gray-600">
+                        Based on usability testing results, we made several key improvements including enhanced visibility of contest options, simplified evidence upload, and improved payment confirmation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mockups -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">High-Fidelity Mockups</h2>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item animate-slideUp">
+                        <img src="images/dcticket/DC TICKET - mockups.jpg" alt="High-Fidelity Mockups">
+                    </div>
+                    <div class="gallery-item animate-slideUp delay-100">
+                        <img src="images/dcticket/DC TICKET mockups2.jpg" alt="High-Fidelity Mockups">
+                    </div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="mb-4">Final Visual Design</h3>
+                    <p class="text-gray-600">
+                        The high-fidelity mockups incorporated the DC government's visual identity while maintaining a user-friendly, modern aesthetic.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- High-Fidelity Prototype -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">High-Fidelity Prototype</h2>
+                
+                <div class="max-w-4xl mx-auto animate-slideUp">
+                    <img src="images/dcticket/DC TICKET - hig fidelity.jpg" 
+                         alt="High-Fidelity Prototype" 
+                         class="design-gallery">
+                </div>
+                
+                <div class="max-w-4xl mx-auto text-center mt-8">
+                    <h3 class="mb-4">Interactive High-Fidelity Prototype</h3>
+                    <p class="text-gray-600">
+                        The final high-fidelity prototype included all key user flows with realistic interactions and microanimations for final user validation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Figma Prototype -->
+        <section id="figma-prototype" class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Figma Prototype</h2>
+                
+                <div class="max-w-4xl mx-auto text-center">
+                    <p class="text-gray-600 mb-8">
+                        Explore the interactive Figma prototype to experience the full user flow:
+                    </p>
+                    
+                    <div class="bg-white rounded-xl p-8 shadow-lg animate-slideUp">
+                        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 12px;" width="100%" height="450" src="https://embed.figma.com/proto/hQZ87ifd1RITPL55Z9VbiB/Untitled?page-id=0%3A1&node-id=1732-5709&viewport=1037%2C-757%2C0.09&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1732%3A108&show-proto-sidebar=1&embed-host=share" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="mt-8 text-left max-w-2xl mx-auto">
+                        <h3 class="mb-4">Prototype Walkthrough</h3>
+                        <p class="text-gray-600">
+                            The prototype demonstrates the complete user journey from ticket notification to resolution, including:
+                        </p>
+                        <ul class="text-gray-600 mt-4 space-y-2">
+                            <li>• Receiving a ticket notification</li>
+                            <li>• Viewing ticket details</li>
+                            <li>• Choosing to pay or contest</li>
+                            <li>• Completing the selected action</li>
+                            <li>• Receiving confirmation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-12">Key Features</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card animate-slideUp">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Ticket Management</h3>
+                        <p class="text-gray-600">View all parking tickets in one place with clear status indicators and important details.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-slideUp delay-100">
+                        <div class="feature-icon">✍️</div>
+                        <h3 class="feature-title">Easy Contesting</h3>
+                        <p class="text-gray-600">Step-by-step process to contest tickets with guided form filling and evidence upload.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-slideUp delay-200">
+                        <div class="feature-icon">💳</div>
+                        <h3 class="feature-title">Secure Payments</h3>
+                        <p class="text-gray-600">Multiple payment options with encryption and confirmation receipts.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-slideUp delay-300">
+                        <div class="feature-icon">🔔</div>
+                        <h3 class="feature-title">Notifications</h3>
+                        <p class="text-gray-600">Real-time updates about ticket status, payment reminders, and contest outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results & Takeaways -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="text-center mb-12">Results & Takeaways</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid-2 gap-8">
+                        <div class="card animate-slideUp">
+                            <h3>Project Outcomes</h3>
+                            <ul class="text-gray-600 space-y-2 mt-4">
+                                <li>• Reduced time to handle tickets by 65%</li>
+                                <li>• Increased contestation rate significantly</li>
+                                <li>• 92% of testers preferred it over current options</li>
+                                <li>• Improved user satisfaction scores</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card animate-slideUp delay-100">
+                            <h3>Key Learnings</h3>
+                            <ul class="text-gray-600 space-y-2 mt-4">
+                                <li>• Value of early and frequent user testing</li>
+                                <li>• Small UI changes impact completion rates</li>
+                                <li>• Importance of designing for emotional states</li>
+                                <li>• Balancing government requirements with UX</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Project -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="mb-6">Next Project</h2>
+                    <p class="text-gray-600 mb-8">
+                        Ready to see more of my work? Check out my next case study.
+                    </p>
+                    <a href="https://islamerkale.github.io/portfolio/index.html#projects-section" class="btn">
+                        View All Projects
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="section" style="background: #111827; color: white;">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="mb-6">Let's Work Together</h2>
+                <p class="text-gray-300 mb-8">
+                    Interested in collaborating or have a project in mind? I'd love to hear from you.
+                </p>
+                
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" 
+                       class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.behance.net/islamerkale" target="_blank" 
+                       class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:islamerkale@gmail.com" 
+                       class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <p class="text-gray-400 text-sm">
+                    &copy; 2025 Islam Erkale. All rights reserved.
+                </p>
+            </div>
+        </div>
     </footer>
 
-    <div class="scroll-to-top" onclick="scrollToTop()"></div>
-
     <script>
-        // Scroll to section function
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-        
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollToTopBtn = document.querySelector('.scroll-to-top');
-            const header = document.getElementById('mainHeader');
-            
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-                header.classList.add('scrolled');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Mobile menu functionality
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-        });
-        
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Animation on scroll
+        // Simple animation on scroll
         const observerOptions = {
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
-        
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
+
+        // Observe all animate-slideUp elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-slideUp');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
         });
     </script>
 </body>
