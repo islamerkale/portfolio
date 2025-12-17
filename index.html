@@ -706,9 +706,7 @@
     <main>
         <!-- SOL PANEL -->
         <aside class="sidebar">
-            
             <button onclick="showSection('home')" class="nav-item">HOME</button>
-           
         </aside>
 
         <!-- ORTA ALAN -->
@@ -1164,7 +1162,7 @@
     </footer>
 
     <script>
-        // Projects Data
+        // Projects Data - TARGET="_BLANK" KALDIRILDI
         const projectsData = {
             all: [
                 {
@@ -1191,7 +1189,7 @@
                 {
                     name: 'In Plus One',
                     image: 'https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg',
-                    link: 'inplus.html',
+                    link: 'inplusone.html', // Burayı düzeltim: inplus.html yerine inplusone.html
                     tags: ['Web Design', 'B2B', 'Live'],
                     category: 'b2b'
                 },
@@ -1268,7 +1266,7 @@
             event.target.classList.add('active');
         }
 
-        // Filter Projects
+        // Filter Projects - TARGET="_BLANK" KALDIRILDI
         function filterProjects(category) {
             const projects = projectsData[category] || projectsData.all;
             const container = document.getElementById('projects-container');
@@ -1279,9 +1277,9 @@
             });
             event.target.classList.add('active');
             
-            // Render projects
+            // Render projects - target="_blank" KALDIRILDI
             container.innerHTML = projects.map(project => `
-                <a href="${project.link}" target="_blank" class="project-card">
+                <a href="${project.link}" class="project-card">
                     <img src="${project.image}" alt="${project.name}" class="project-image">
                     <div class="project-info">
                         <h3>${project.name}</h3>
@@ -1309,9 +1307,40 @@
             event.target.reset();
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
+        // HASH URL HANDLING - PORTFOLIO SAYFASINDAN GELEN LİNKLER İÇİN
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there's a hash in the URL
+            const hash = window.location.hash;
+            
+            if (hash) {
+                const sectionId = hash.substring(1).replace('-section', '');
+                
+                // Wait a bit for page to load
+                setTimeout(() => {
+                    if (sectionId) {
+                        showSection(sectionId);
+                    }
+                }, 100);
+            }
+            
+            // Initialize home section as default
             showSection('home');
+            
+            // Load projects initially
+            filterProjects('all');
+        });
+
+        // Hash change handler for browser back/forward buttons
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash;
+            
+            if (hash) {
+                const sectionId = hash.substring(1).replace('-section', '');
+                
+                if (sectionId) {
+                    showSection(sectionId);
+                }
+            }
         });
     </script>
 </body>
