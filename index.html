@@ -3,1414 +3,1314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islam Erkale - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>UXUISLAM | Portfolio</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8e8ee 100%);
+            color: #000;
+            min-height: 100vh;
             overflow-x: hidden;
-            background: #ffffff;
-            color: #111827;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Sabit Çizgi Yapısı */
+        .b-bottom { border-bottom: 1px solid #000; }
+        .b-top { border-top: 1px solid #000; }
+        .b-left { border-left: 1px solid #000; }
+        .b-right { border-right: 1px solid #000; }
 
-        /* ===== ANIMATED BACKGROUND BLOBS ===== */
-        .blob-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.7;
-            animation: blob 15s infinite ease-in-out;
-        }
-
-        .blob-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(180deg, #e9d5ff 0%, #d8b4fe 100%);
-            top: 20%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .blob-3 {
-            width: 450px;
-            height: 450px;
-            background: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 100%);
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation-delay: 4s;
-        }
-
-        .blob-4 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(180deg, #ddd6fe 0%, #c4b5fd 100%);
-            top: 60%;
-            right: 20%;
-            animation-delay: 6s;
-        }
-
-        .blob-5 {
-            width: 380px;
-            height: 380px;
-            background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
-            bottom: 20%;
-            left: 15%;
-            animation-delay: 3s;
-        }
-
-        @keyframes blob {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            25% {
-                transform: translate(30px, -50px) scale(1.1) rotate(10deg);
-            }
-            50% {
-                transform: translate(-20px, 30px) scale(0.9) rotate(-10deg);
-            }
-            75% {
-                transform: translate(40px, 20px) scale(1.05) rotate(5deg);
-            }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fadeIn {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .animate-slideUp {
-            animation: slideUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-slideDown {
-            animation: slideDown 0.5s ease-out forwards;
-        }
-
-        .delay-100 {
-            animation-delay: 0.1s;
-        }
-
-        .delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .delay-500 {
-            animation-delay: 0.5s;
-        }
-
-        .delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        /* ===== SECTION HIDDEN ===== */
-        .section-hidden {
-            display: none !important;
-        }
-
-        /* ===== HEADER ===== */
+        /* HEADER */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.8);
+            height: 80px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr 180px;
+            height: 100%;
+            position: relative;
+        }
+
+        .nav-item, .logo-text {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            letter-spacing: 0.3em;
-            opacity: 0.4;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-        }
-
-        .logo:hover {
-            opacity: 1;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .desktop-nav {
-            display: none;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .desktop-nav {
-                display: flex;
-            }
-        }
-
-        .nav-link {
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.875rem;
+            justify-content: center;
+            height: 100%;
+            transition: all 0.3s;
             text-decoration: none;
-        }
-
-        .nav-link:hover {
-            color: #111827;
-            transform: scale(1.1);
-        }
-
-        .nav-link.active {
-            color: #111827;
-            transform: scale(1.1);
-        }
-
-        /* ===== MOBILE MENU ===== */
-        .mobile-menu-btn {
-            display: block;
-            padding: 0.5rem;
+            color: #000;
+            cursor: pointer;
             background: none;
             border: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .logo-text {
+            font-size: clamp(24px, 3vw, 42px);
+            letter-spacing: 12px;
+            font-weight: 300;
+            position: relative;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            margin: 0 -1px;
+        }
+
+        .nav-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+            letter-spacing: 2px;
+        }
+
+        .nav-item.active {
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* ANA İÇERİK */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+            display: grid;
+            grid-template-columns: 180px 1fr 180px;
+        }
+
+        /* SOL PANEL */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            position: relative;
+            border-right: 1px solid #000;
+        }
+
+        .side-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            margin: 20px 0;
+        }
+
+        /* SAĞ PANEL */
+        .social-sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            position: relative;
+            border-left: 1px solid #000;
+        }
+
+        .social-link {
+            color: #000;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.2);
+        }
+
+        /* ORTA ALAN */
+        .content-area {
+            padding: 60px 40px;
+            overflow-y: auto;
+            max-height: calc(100vh - 160px);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* BÖLÜM STİLLERİ */
+        .section {
+            display: none;
+            min-height: calc(100vh - 240px);
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HOME BÖLÜMÜ */
+        .home-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .home-title {
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 300;
+            letter-spacing: 15px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .home-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: #333;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .home-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .stat-dot {
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .home-tools {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 600px;
+        }
+
+        .tool-tag {
+            padding: 8px 16px;
+            border: 1px solid #000;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .tool-tag:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ABOUT BÖLÜMÜ */
+        .about-header {
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        .about-header h1 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .about-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .about-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: 1px solid #000;
+            background: none;
+            border-radius: 25px;
             cursor: pointer;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
         }
 
-        .mobile-menu-btn:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+        .tab-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
 
-        @media (min-width: 1024px) {
-            .mobile-menu-btn {
-                display: none;
-            }
+        .tab-btn.active {
+            background: #000;
+            color: #fff;
         }
 
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 60;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* EXPERIENCE/EDUCATION CARDS */
+        .experience-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .experience-card {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .experience-card:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(5px);
+        }
+
+        .experience-dot {
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .experience-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .experience-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .experience-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* TOOLS GRID */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 2rem;
         }
 
-        .mobile-menu.open {
-            transform: translateX(0);
+        .tool-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        .mobile-menu-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
+        .tool-name {
+            font-size: 14px;
+            text-align: center;
         }
 
-        .mobile-menu button,
-        .mobile-menu a {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #111827;
-            text-decoration: none;
+        /* PROJECTS BÖLÜMÜ */
+        .projects-header {
+            margin-bottom: 40px;
+            padding-top: 20px;
         }
 
-        @media (min-width: 1024px) {
-            .mobile-menu {
-                display: none;
-            }
+        .projects-header h1 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 0 40px;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            line-height: 1.2;
         }
 
-        /* ===== CONTENT WRAPPER ===== */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        /* ===== MAIN CONTENT ===== */
-        main {
-            padding-top: 5rem;
-        }
-
-        section {
-            min-height: 100vh;
-            padding: 3rem 1.5rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ===== CARDS ===== */
-        .card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 1rem;
+        .project-card {
+            border: 1px solid #000;
+            border-radius: 10px;
             overflow: hidden;
+            transition: all 0.3s;
             text-decoration: none;
             color: inherit;
             display: block;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* ===== PROJECT IMAGE ===== */
         .project-image {
             width: 100%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            border-bottom: 1px solid #000;
         }
 
-        .card:hover .project-image {
-            transform: scale(1.1);
+        .project-info {
+            padding: 20px;
         }
 
-        /* ===== BUTTONS ===== */
-        .btn-tab {
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            border: 2px solid #d1d5db;
-            background: white;
-            color: #6b7280;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: capitalize;
-            font-size: 1rem;
+        .project-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 400;
         }
 
-        .btn-tab:hover {
-            border-color: #111827;
-        }
-
-        .btn-tab.active {
-            background: #111827;
-            color: white;
-            border-color: #111827;
-        }
-
-        /* ===== TOOL TAGS ===== */
-        .tool-tag {
-            padding: 0.75rem 1.5rem;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 9999px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .tool-tag:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transform: scale(1.05);
-        }
-
-        /* ===== FORMS ===== */
-        input,
-        textarea {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            transition: border-color 0.3s ease;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #111827;
-        }
-
-        textarea {
-            resize: none;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: #111827;
-            color: white;
-            border: none;
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-        }
-
-        button[type="submit"]:hover {
-            background: #1f2937;
-            transform: scale(1.05);
-        }
-
-        /* ===== SOCIAL ICONS ===== */
-        .social-icons-desktop {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            z-index: 40;
-            display: none;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        @media (min-width: 1024px) {
-            .social-icons-desktop {
-                display: flex;
-            }
-        }
-
-        .social-icons-mobile {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            z-index: 40;
+        .project-tags {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 1024px) {
-            .social-icons-mobile {
-                display: none;
-            }
-        }
-
-        .social-icon {
-            width: 3rem;
-            height: 3rem;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #111827;
-        }
-
-        .social-icon:hover {
-            border-color: #111827;
-            transform: scale(1.1);
-        }
-
-        /* ===== GRID LAYOUTS ===== */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid-3 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .grid-5 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid-5 {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .grid-5 {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        /* ===== SPACING ===== */
-        .space-y-8 > * + * {
-            margin-top: 2rem;
-        }
-
-        .space-y-6 > * + * {
-            margin-top: 1.5rem;
-        }
-
-        .mb-12 {
-            margin-bottom: 3rem;
-        }
-
-        .mb-8 {
-            margin-bottom: 2rem;
-        }
-
-        .mb-6 {
-            margin-bottom: 1.5rem;
-        }
-
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-
-        .mb-3 {
-            margin-bottom: 0.75rem;
-        }
-
-        .mb-2 {
-            margin-bottom: 0.5rem;
-        }
-
-        .mb-1 {
-            margin-bottom: 0.25rem;
-        }
-
-        /* ===== TEXT STYLES ===== */
-        .text-center {
-            text-align: center;
-        }
-
-        .text-gray-400 {
-            color: #9ca3af;
-        }
-
-        .text-gray-500 {
-            color: #6b7280;
-        }
-
-        .text-gray-600 {
-            color: #4b5563;
-        }
-
-        .text-gray-700 {
-            color: #374151;
-        }
-
-        /* ===== FLEX UTILITIES ===== */
-        .flex {
-            display: flex;
-        }
-
-        .flex-wrap {
+            gap: 8px;
             flex-wrap: wrap;
         }
 
-        .flex-col {
-            flex-direction: column;
+        .project-tag {
+            padding: 4px 8px;
+            background: #000;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .items-center {
-            align-items: center;
+        /* CONTACT BÖLÜMÜ */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .justify-center {
-            justify-content: center;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .gap-8 {
-            gap: 2rem;
-        }
-
-        .gap-6 {
-            gap: 1.5rem;
-        }
-
-        .gap-4 {
-            gap: 1rem;
-        }
-
-        .gap-3 {
-            gap: 0.75rem;
-        }
-
-        .gap-2 {
-            gap: 0.5rem;
-        }
-
-        /* ===== CUSTOM SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #000;
+            background: none;
             border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(0, 0, 0, 0.05);
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1023px) {
-            section {
-                padding-bottom: 6rem;
-            }
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
         }
 
-        /* ===== ASPECT RATIO ===== */
-        .aspect-video {
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            background: #f3f4f6;
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        /* ===== BADGE STYLES ===== */
-        .badge {
-            padding: 0.25rem 0.75rem;
-            background: #f3f4f6;
-            color: #4b5563;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            display: inline-block;
+        .submit-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
         }
 
-        /* ===== EXPERIENCE/EDUCATION CARDS ===== */
-        .experience-card {
+        /* SKILLS BÖLÜMÜ */
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-category h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .skill-items {
             display: flex;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 0.75rem;
-            border: 1px solid #e5e7eb;
-            transition: box-shadow 0.3s ease;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .experience-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
 
-        .experience-dot {
-            width: 0.75rem;
-            height: 0.75rem;
-            background: #111827;
+        .skill-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(5px);
+        }
+
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            background: #000;
             border-radius: 50%;
-            margin-top: 0.5rem;
             flex-shrink: 0;
         }
 
-        /* ===== TOOL CARD ===== */
-        .tool-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 0.75rem;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .skill-name {
+            font-size: 16px;
         }
 
-        .tool-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
+        /* FOOTER */
+        footer {
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: relative;
+            border-top: 1px solid #000;
         }
 
-        .tool-icon {
-            width: 3rem;
-            height: 3rem;
-            background: #f3f4f6;
-            border-radius: 50%;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr 180px;
+            height: 100%;
+            position: relative;
+        }
+
+        .footer-item {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+            height: 100%;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            position: relative;
         }
 
-        .tool-name {
-            text-align: center;
-            font-size: 0.875rem;
+        .footer-item:hover {
+            background: rgba(0, 0, 0, 0.05);
         }
 
-        /* ===== MAX WIDTH ===== */
-        .max-w-4xl {
-            max-width: 56rem;
+        .footer-middle {
+            font-size: clamp(18px, 2vw, 32px);
+            letter-spacing: 10px;
+            font-weight: 300;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            margin: 0 -1px;
         }
 
-        .max-w-3xl {
-            max-width: 48rem;
+        /* Çizgi hizalama düzeltmeleri */
+        .nav-grid .b-right {
+            border-right: 1px solid #000;
         }
 
-        .max-w-2xl {
-            max-width: 42rem;
+        .nav-grid .b-left {
+            border-left: 1px solid #000;
         }
 
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
+        .footer-grid .b-right {
+            border-right: 1px solid #000;
+        }
+
+        .footer-grid .b-left {
+            border-left: 1px solid #000;
+        }
+
+        /* MOBİL DÜZEN */
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-grid, .footer-grid {
+                grid-template-columns: 80px 1fr 80px;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .social-sidebar {
+                position: fixed;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50px;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                border: 1px solid #000;
+                border-right: none;
+                padding: 20px 0;
+                border-radius: 10px 0 0 10px;
+                z-index: 1000;
+            }
+            
+            .content-area {
+                padding: 40px 20px;
+            }
+            
+            .logo-text {
+                letter-spacing: 8px;
+                font-size: 20px;
+            }
+            
+            .footer-middle {
+                letter-spacing: 5px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-title {
+                letter-spacing: 8px;
+                font-size: 28px;
+            }
+            
+            .home-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background Blobs -->
-    <div class="blob-container">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="blob blob-4"></div>
-        <div class="blob blob-5"></div>
-    </div>
-
-    <!-- Content Wrapper -->
-    <div class="content-wrapper">
-        <!-- Header -->
-        <header>
-            <div class="header-container">
-                <div class="logo">UXUISLAM</div>
-
-                <!-- Desktop Navigation -->
-                <nav class="desktop-nav">
-                    <button onclick="showSection('home')" class="nav-link active" id="nav-home">Home</button>
-                    <button onclick="showSection('about')" class="nav-link" id="nav-about">About</button>
-                    <button onclick="showSection('projects')" class="nav-link" id="nav-projects">Projects</button>
-                    <button onclick="showSection('contact')" class="nav-link" id="nav-contact">Contact</button>
-                    <a href="Resume Islam Erkale -UxUi.pdf" class="nav-link">Resume</a>
-                </nav>
-
-                <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="mobile-menu-btn" id="mobile-menu-btn">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </header>
-
-        <!-- Mobile Navigation -->
-        <div class="mobile-menu" id="mobile-menu">
-            <button onclick="closeMobileMenu()" class="mobile-menu-close">
-                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <button onclick="showSection('home'); closeMobileMenu();">Home</button>
-            <button onclick="showSection('about'); closeMobileMenu();">About</button>
-            <button onclick="showSection('projects'); closeMobileMenu();">Projects</button>
-            <button onclick="showSection('contact'); closeMobileMenu();">Contact</button>
-            <a href="Resume Islam Erkale -UxUi.pdf">Resume</a>
+    <!-- HEADER -->
+    <header class="b-bottom">
+        <div class="nav-grid">
+            <button onclick="showSection('about')" class="nav-item b-right">ABOUT</button>
+            <div class="logo-text">UXUISLAM</div>
+            <button onclick="showSection('contact')" class="nav-item b-left">CONTACT</button>
         </div>
+    </header>
 
-        <!-- Main Content -->
-        <main>
-            <!-- Home Section -->
-            <section id="home-section" style="display: flex; align-items: center; justify-content: center;">
-                <div class="max-w-4xl text-center">
-                    <h1 style="font-size: 3rem; margin-bottom: 1.5rem; letter-spacing: 0.1em;" class="animate-slideUp">
-                        MINIMAL – DEEP SEARCH – SOLVE
-                    </h1>
-                    <p style="font-size: 1.25rem; color: #4b5563; margin-bottom: 3rem; max-width: 42rem; margin-left: auto; margin-right: auto;" class="animate-slideUp delay-200">
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SOL PANEL -->
+        <aside class="sidebar">
+            
+            <button onclick="showSection('home')" class="nav-item">HOME</button>
+           
+        </aside>
+
+        <!-- ORTA ALAN -->
+        <section class="content-area">
+            <!-- HOME SECTION -->
+            <div id="home-section" class="section active">
+                <div class="home-content">
+                    <h1 class="home-title">MINIMAL – DEEP SEARCH – SOLVE</h1>
+                    <p class="home-subtitle">
                         I create digital experiences where minimal design meets deep research and problem-solving.
                     </p>
                     
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 4rem;" class="animate-slideUp delay-400">
-                        <div style="display: flex; align-items: center; gap: 0.75rem;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%;"></div>
-                            <span style="color: #374151;">3 Years Experience</span>
+                    <div class="home-stats">
+                        <div class="stat-item">
+                            <div class="stat-dot"></div>
+                            <span>3 Years Experience</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%;"></div>
-                            <span style="color: #374151;">7 Completed Projects</span>
+                        <div class="stat-item">
+                            <div class="stat-dot"></div>
+                            <span>7 Completed Projects</span>
                         </div>
                     </div>
 
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;" class="animate-slideUp delay-600">
+                    <div class="home-tools">
                         <div class="tool-tag">Figma</div>
-                        <div class="tool-tag delay-100">Framer</div>
-                        <div class="tool-tag delay-200">Sketch</div>
-                        <div class="tool-tag delay-300">Adobe Photoshop</div>
-                        <div class="tool-tag delay-400">WordPress</div>
-                        <div class="tool-tag delay-500">Webflow</div>
-                        <div class="tool-tag delay-600">HTML/CSS</div>
+                        <div class="tool-tag">Framer</div>
+                        <div class="tool-tag">Sketch</div>
+                        <div class="tool-tag">Adobe Photoshop</div>
+                        <div class="tool-tag">WordPress</div>
+                        <div class="tool-tag">Webflow</div>
+                        <div class="tool-tag">HTML/CSS</div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- About Section -->
-            <section id="about-section" class="section-hidden">
-                <div class="container">
-                    <h1 style="font-size: 3rem; margin-bottom: 2rem;">Islam Erkale</h1>
-                    <p style="font-size: 1.125rem; color: #4b5563; max-width: 48rem; margin-bottom: 3rem; line-height: 1.75;">
-                        UX/UI Designer with 3 years of experience specializing in user-centered and visually compelling experiences. Through my company Big Spark Media, I help brands establish their digital presence with impactful solutions.
+            <!-- ABOUT SECTION -->
+            <div id="about-section" class="section">
+                <div class="about-header">
+                    <h1>Islam Erkale</h1>
+                    <p class="about-description">
+                        UX/UI Designer with 3 years of experience specializing in user-centered and visually compelling experiences. 
+                        Through my company Big Spark Media, I help brands establish their digital presence with impactful solutions.
                     </p>
-                    <p style="font-size: 1.125rem; color: #4b5563; max-width: 48rem; margin-bottom: 3rem; line-height: 1.75;">
+                    <p class="about-description">
                         SaaS UX/UI Designer | Front-End Developer | Digital Experience Strategist | Former Production Engineer
                     </p>
-                    <!-- Tab Navigation -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem;">
-                        <button onclick="showAboutTab('experiences')" class="btn-tab active" id="tab-experiences">Experiences</button>
-                        <button onclick="showAboutTab('education')" class="btn-tab" id="tab-education">Education</button>
-                        <button onclick="showAboutTab('certifications')" class="btn-tab" id="tab-certifications">Certifications</button>
-                        <button onclick="showAboutTab('skills')" class="btn-tab" id="tab-skills">Skills</button>
-                        <button onclick="showAboutTab('tools')" class="btn-tab" id="tab-tools">Tools</button>
-                    </div>
+                </div>
 
-                    <!-- Experiences Content -->
-                    <div id="experiences-content" class="space-y-8">
-                        <div class="experience-card">
-                            <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">UX/UI Designer - Founder</span>
-                                    <span class="text-gray-500"> / Big Spark Media / CANADA</span>
-                                </div>
-                                <div class="text-gray-400">2024 - Current</div>
-                            </div>
-                        </div>
-                        <div class="experience-card">
-                            <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">IT & Designer Website Coordinator</span>
-                                    <span class="text-gray-500"> / Vancouver Fashion Week / CANADA</span>
-                                </div>
-                                <div class="text-gray-400">2024</div>
-                            </div>
-                        </div>
-                        <div class="experience-card">
-                            <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">Event, Website and Media Assistant</span>
-                                    <span class="text-gray-500"> / Vancouver Fashion Week / CANADA</span>
-                                </div>
-                                <div class="text-gray-400">2024</div>
-                            </div>
-                        </div>
-                        <div class="experience-card">
-                            <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">Product Engineer</span>
-                                    <span class="text-gray-500"> / Yesim Group / TURKEY</span>
-                                </div>
-                                <div class="text-gray-400">2019-2021</div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- TAB NAVIGATION -->
+                <div class="about-tabs">
+                    <button onclick="showTab('experiences')" class="tab-btn active">ExperIences</button>
+                    <button onclick="showTab('education')" class="tab-btn">EducatIon</button>
+                    <button onclick="showTab('certifications')" class="tab-btn">CertIfIcatIons</button>
+                    <button onclick="showTab('skills')" class="tab-btn">SkIlls</button>
+                    <button onclick="showTab('tools')" class="tab-btn">Tools</button>
+                </div>
 
-                    <!-- Education Content -->
-                    <div id="education-content" class="section-hidden space-y-8">
+                <!-- TAB CONTENTS -->
+                <div id="experiences" class="tab-content active">
+                    <div class="experience-grid">
                         <div class="experience-card">
                             <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">Business Communication</span>
-                                    <span class="text-gray-500"> / Greystone College</span>
-                                </div>
-                                <div class="text-gray-400">2022</div>
+                            <div class="experience-content">
+                                <h3>UX/UI Designer - Founder</h3>
+                                <div class="experience-meta">Big Spark Media / CANADA</div>
+                                <div class="experience-date">2024 - Current</div>
                             </div>
                         </div>
                         <div class="experience-card">
                             <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">English Language School</span>
-                                    <span class="text-gray-500"> / ILSC</span>
-                                </div>
-                                <div class="text-gray-400">2021</div>
+                            <div class="experience-content">
+                                <h3>IT & Designer Website Coordinator</h3>
+                                <div class="experience-meta">Vancouver Fashion Week / CANADA</div>
+                                <div class="experience-date">2024</div>
                             </div>
                         </div>
                         <div class="experience-card">
                             <div class="experience-dot"></div>
-                            <div>
-                                <div style="font-size: 1.125rem; margin-bottom: 0.25rem;">
-                                    <span style="font-weight: 500;">Bachelor's Degree in Textile Engineer</span>
-                                    <span class="text-gray-500"> / Suleyman Demirel University</span>
-                                </div>
-                                <div class="text-gray-400">2017</div>
+                            <div class="experience-content">
+                                <h3>Event, Website and Media Assistant</h3>
+                                <div class="experience-meta">Vancouver Fashion Week / CANADA</div>
+                                <div class="experience-date">2024</div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Certifications Content -->
-                    <div id="certifications-content" class="section-hidden grid-2">
-                        <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
-                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Google UX Design 7 Courses Certificate</div>
-                            <div class="text-gray-400">(2024)</div>
-                        </a>
-                        <a href="https://www.coursera.org/account/accomplishments/certificate/N3FCY9130DJI" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
-                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">HTML, CSS, and Javascript for Web Developers</div>
-                            <div class="text-gray-500 mb-1">The Johns Hopkins University</div>
-                            <div class="text-gray-400">(2024)</div>
-                        </a>
-                        <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
-                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Introduction to Google SEO</div>
-                            <div class="text-gray-500 mb-1">University of California, Davis</div>
-                            <div class="text-gray-400">(2024)</div>
-                        </a>
-                        <a href="https://www.coursera.org/account/accomplishments/verify/6C47WWE7IJGL" target="_blank" class="card" style="padding: 1.5rem; text-decoration: none; color: inherit;">
-                            <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Foundations of Data Science</div>
-                            <div class="text-gray-500 mb-1">Google</div>
-                            <div class="text-gray-400">(2024)</div>
-                        </a>
-                    </div>
-
-                    <!-- Skills Content -->
-                    <div id="skills-content" class="section-hidden grid-2">
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">UX Research & Testing</span>
-                        </div>
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">Wireframes & Prototypes</span>
-                        </div>
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">High-Fidelity Designs</span>
-                        </div>
-                         <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">SaaS Designer</span>
-                        </div>
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">Responsive & Adaptive Design</span>
-                        </div>
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">HTML, CSS, Basic JavaScript</span>
-                        </div>
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">CMS (WordPress, Webflow)</span>
-                        </div>
-                        <div class="experience-card" style="align-items: center;">
-                            <div style="width: 0.5rem; height: 0.5rem; background: #111827; border-radius: 50%; flex-shrink: 0;"></div>
-                            <span style="font-size: 1.125rem;">Technical SEO</span>
-                        </div>
-                    </div>
-
-                    <!-- Tools Content -->
-                    <div id="tools-content" class="section-hidden grid-5">
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/figma.png" alt="Figma Icon" />
-                           </div>
-                           <div class="images.logos/tool-name">Figma</div>
-                        </div>
-                       <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/framer.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">Framer</div>
-                        </div>
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/balsamiq.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">Balmsamiq</div>
-                        </div>
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/sketch.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">Sketch</div>
-                        </div>
-                        
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/ps.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">Adobe Photoshop</div>
-                        </div>
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/google.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">Google Analytics</div>
-                        </div>
-                    <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/html.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">HMTL</div>
-                        </div>
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/css.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">CSS</div>
-                        </div>
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/js.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">JS</div>
-                        </div>
-                       
-                        
-                        <div class="tool-card">
-                          <div class="tool-icon">
-                           <img src="images/logos/github.png" alt="Figma Icon" />
-                           </div>
-                           <div class="tool-name">github</div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>Product Engineer</h3>
+                                <div class="experience-meta">Yesim Group / TURKEY</div>
+                                <div class="experience-date">2019-2021</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Projects Section -->
-            <section id="projects-section" class="section-hidden">
-                <div class="container">
-                    <h1 style="font-size: 3rem; margin-bottom: 3rem;">Projects</h1>
-
-                    <!-- Tab Navigation -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem;">
-                        <button onclick="showProjectTab('live')" class="btn-tab active" id="project-tab-live">Live Projects</button>
-                        <button onclick="showProjectTab('practice')" class="btn-tab" id="project-tab-practice">Practice Projects</button>
-                        <button onclick="showProjectTab('ecommerce')" class="btn-tab" id="project-tab-ecommerce">E-Commerce</button>
-                        <button onclick="showProjectTab('b2b')" class="btn-tab" id="project-tab-b2b">B2B</button>
+                <div id="education" class="tab-content">
+                    <div class="experience-grid">
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>Business Communication</h3>
+                                <div class="experience-meta">Greystone College</div>
+                                <div class="experience-date">2022</div>
+                            </div>
+                        </div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>English Language School</h3>
+                                <div class="experience-meta">ILSC</div>
+                                <div class="experience-date">2021</div>
+                            </div>
+                        </div>
+                        <div class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>Bachelor's Degree in Textile Engineer</h3>
+                                <div class="experience-meta">Suleyman Demirel University</div>
+                                <div class="experience-date">2017</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Live Projects -->
-                    <div id="live-projects" class="grid-3">
-                        <a href="jumperzhang.html" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/jumperzhang.jpg" alt="Jumper Zhang" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Jumper Zhang</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                    <span class="badge">Live</span>
-                                </div>
+                <div id="certifications" class="tab-content">
+                    <div class="experience-grid">
+                        <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank" class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>Google UX Design 7 Courses Certificate</h3>
+                                <div class="experience-date">2024</div>
                             </div>
                         </a>
-
-                        <a href="hansgarden.html" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/hansgarden/51.jpg" alt="HANS' GARDEN" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">HANS' GARDEN</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                    <span class="badge">Live</span>
-                                </div>
+                        <a href="https://www.coursera.org/account/accomplishments/certificate/N3FCY9130DJI" target="_blank" class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>HTML, CSS, and Javascript for Web Developers</h3>
+                                <div class="experience-meta">The Johns Hopkins University</div>
+                                <div class="experience-date">2024</div>
                             </div>
                         </a>
-
-                        <a href="privateplates.html" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/privateplates/mockup-desktop.jpg" alt="Private Plates" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Private Plates</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">Corporate</span>
-                                    <span class="badge">Live</span>
-                                </div>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/2302TWVDOFEK" target="_blank" class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>Introduction to Google SEO</h3>
+                                <div class="experience-meta">University of California, Davis</div>
+                                <div class="experience-date">2024</div>
                             </div>
                         </a>
-
-                        <a href="inplus.html" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg" alt="In Plus One" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">In Plus One</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">B2B</span>
-                                    <span class="badge">Live</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="livolab.html" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/livolab.jpg" alt="Livolab" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">livolab</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                    <span class="badge">Live</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Practice Projects -->
-                    <div id="practice-projects" class="section-hidden grid-3">
-                        <a href="dcticket.html" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/dc.jpg" alt="DC TICKET" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">DC TICKET</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Mobile App</span>
-                                    <span class="badge">UX Design</span>
-                                    <span class="badge">Practice</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="oak.html" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/oak.jpg" alt="OAK" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">OAK</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                    <span class="badge">Practice</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- E-Commerce Projects -->
-                    <div id="ecommerce-projects" class="section-hidden grid-3">
-                        <a href="https://www.hansgardenco.com" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/hansgarden/51.jpg" alt="HANS' GARDEN" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">HANS' GARDEN</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://www.jumperzhang.ca" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/jumperzhang.jpg" alt="Jumper Zhang" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Jumper Zhang</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://www.livolab.co" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/livolab.jpg" alt="Livolab" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">livolab</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">E-Commerce</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- B2B Projects -->
-                    <div id="b2b-projects" class="section-hidden grid-3">
-                        <a href="https://www.inplusone.com" target="_blank" class="card">
-                            <div class="aspect-video">
-                                <img src="https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg" alt="IN Plus" class="project-image">
-                            </div>
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">IN Plus</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span class="badge">Web Design</span>
-                                    <span class="badge">B2B</span>
-                                </div>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/6C47WWE7IJGL" target="_blank" class="experience-card">
+                            <div class="experience-dot"></div>
+                            <div class="experience-content">
+                                <h3>Foundations of Data Science</h3>
+                                <div class="experience-meta">Google</div>
+                                <div class="experience-date">2024</div>
                             </div>
                         </a>
                     </div>
                 </div>
-            </section>
 
-            <!-- Contact Section -->
-            <section id="contact-section" class="section-hidden" style="display: flex; align-items: center; justify-content: center;">
-                <div class="max-w-2xl" style="width: 100%;">
-                    <h1 style="font-size: 3rem; text-align: center; margin-bottom: 3rem;">Contact with Me.</h1>
+                <div id="skills" class="tab-content">
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-name">UX Research & Testing</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">Wireframes & Prototypes</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">High-Fidelity Designs</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">SaaS Designer</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">Responsive & Adaptive Design</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">HTML, CSS, Basic JavaScript</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">CMS (WordPress, Webflow)</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-name">Technical SEO</div>
+                        </div>
+                    </div>
+                </div>
 
-                    <form onsubmit="handleFormSubmit(event)" class="space-y-6">
-                        <input type="text" id="name" placeholder="Your Name" required>
-                        <input type="email" id="email" placeholder="Your Email" required>
-                        <input type="text" id="subject" placeholder="Subject" required>
-                        <textarea id="message" placeholder="Your Message" rows="6" required></textarea>
-                        <button type="submit">SEND MESSAGE</button>
+                <div id="tools" class="tab-content">
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/figma.png" alt="Figma">
+                            </div>
+                            <div class="tool-name">Figma</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/framer.png" alt="Framer">
+                            </div>
+                            <div class="tool-name">Framer</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/balsamiq.png" alt="Balsamiq">
+                            </div>
+                            <div class="tool-name">Balsamiq</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/sketch.png" alt="Sketch">
+                            </div>
+                            <div class="tool-name">Sketch</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/ps.png" alt="Adobe Photoshop">
+                            </div>
+                            <div class="tool-name">Adobe Photoshop</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/google.png" alt="Google Analytics">
+                            </div>
+                            <div class="tool-name">Google Analytics</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/html.png" alt="HTML">
+                            </div>
+                            <div class="tool-name">HTML</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/css.png" alt="CSS">
+                            </div>
+                            <div class="tool-name">CSS</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/js.png" alt="JavaScript">
+                            </div>
+                            <div class="tool-name">JS</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <img src="images/logos/github.png" alt="GitHub">
+                            </div>
+                            <div class="tool-name">GitHub</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECTS SECTION -->
+            <div id="projects-section" class="section">
+                <div class="projects-header">
+                    <h1>PROJECTS</h1>
+                </div>
+
+                <div class="about-tabs">
+                    <button onclick="filterProjects('all')" class="tab-btn active">LIve Projects</button>
+                    <button onclick="filterProjects('practice')" class="tab-btn">PractIce Projects</button>
+                    <button onclick="filterProjects('ecommerce')" class="tab-btn">E-Commerce</button>
+                    <button onclick="filterProjects('b2b')" class="tab-btn">B2B</button>
+                </div>
+
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+
+            <!-- SKILLS SECTION -->
+            <div id="skills-section" class="section">
+                <div class="about-header">
+                    <h1>Skills</h1>
+                    <p class="about-description">
+                        A comprehensive overview of my skills and expertise in UX/UI design, development, and digital strategy.
+                    </p>
+                </div>
+
+                <div class="skills-categories">
+                    <div class="skill-category">
+                        <h3>UX/UI Design</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">UX Research & Testing</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Wireframes & Prototypes</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">High-Fidelity Designs</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Responsive & Adaptive Design</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">SaaS Design</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Visual Design Systems</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Development</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">HTML5 & CSS3</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Basic JavaScript</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Responsive Web Design</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">CMS (WordPress, Webflow)</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Figma to Code</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Research & Analysis</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">User Research</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Usability Testing</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Data Analysis</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Technical SEO</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Google Analytics</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">A/B Testing</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Problem Solving</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Communication</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Project Management</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Team Collaboration</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Critical Thinking</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-dot"></div>
+                                <div class="skill-name">Time Management</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT SECTION -->
+            <div id="contact-section" class="section">
+                <div class="home-content">
+                    <h1 class="home-title">CONTACT WITH ME</h1>
+                    
+                    <form onsubmit="handleContact(event)" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="contact-name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contact-subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contact-message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">SEND MESSAGE</button>
                     </form>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
 
-        <!-- Desktop Social Icons -->
-        <div class="social-icons-desktop">
-            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" class="social-icon">
+        <!-- SAĞ PANEL -->
+        <aside class="social-sidebar">
+            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" class="social-link">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
             </a>
-            <a href="https://www.behance.net/islamerkale" target="_blank" class="social-icon">
+            <a href="https://www.behance.net/islamerkale" target="_blank" class="social-link">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
                 </svg>
             </a>
-            <a href="https://www.instagram.com/bigsparkmedia/" target="_blank" class="social-icon">
+            <a href="https://www.instagram.com/bigsparkmedia/" target="_blank" class="social-link">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
             </a>
-        </div>
+        </aside>
+    </main>
 
-        <!-- Mobile Social Icons -->
-        <div class="social-icons-mobile">
-            <a href="https://www.linkedin.com/in/islam-erkale-14630b143/" target="_blank" class="social-icon">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-            </a>
-            <a href="https://www.behance.net/islamerkale" target="_blank" class="social-icon">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-                </svg>
-            </a>
-            <a href="https://www.instagram.com/bigsparkmedia/" target="_blank" class="social-icon">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
+    <!-- FOOTER -->
+    <footer class="b-top">
+        <div class="footer-grid">
+            <a href="Resume Islam Erkale -UxUi.pdf" class="footer-item b-right">RESUME</a>
+            <button onclick="showSection('projects')" class="footer-item footer-middle">PROJECTS</button>
+            <button onclick="showSection('skills')" class="footer-item b-left">SKILLS</button>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // ========== SECTION NAVIGATION ==========
-        function showSection(sectionName) {
+        // Projects Data
+        const projectsData = {
+            all: [
+                {
+                    name: 'Jumper Zhang',
+                    image: 'https://islamerkale.github.io/portfolio/images/jumperzhang.jpg',
+                    link: 'jumperzhang.html',
+                    tags: ['Web Design', 'E-Commerce', 'Live'],
+                    category: 'ecommerce'
+                },
+                {
+                    name: "HANS' GARDEN",
+                    image: 'https://islamerkale.github.io/portfolio/images/hansgarden/51.jpg',
+                    link: 'hansgarden.html',
+                    tags: ['Web Design', 'E-Commerce', 'Live'],
+                    category: 'ecommerce'
+                },
+                {
+                    name: 'Private Plates',
+                    image: 'https://islamerkale.github.io/portfolio/images/privateplates/mockup-desktop.jpg',
+                    link: 'privateplates.html',
+                    tags: ['Web Design', 'Corporate', 'Live'],
+                    category: 'b2b'
+                },
+                {
+                    name: 'In Plus One',
+                    image: 'https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg',
+                    link: 'inplus.html',
+                    tags: ['Web Design', 'B2B', 'Live'],
+                    category: 'b2b'
+                },
+                {
+                    name: 'Livolab',
+                    image: 'https://islamerkale.github.io/portfolio/images/livolab.jpg',
+                    link: 'livolab.html',
+                    tags: ['Web Design', 'E-Commerce', 'Live'],
+                    category: 'ecommerce'
+                },
+                {
+                    name: 'DC TICKET',
+                    image: 'https://islamerkale.github.io/portfolio/images/dc.jpg',
+                    link: 'dcticket.html',
+                    tags: ['Mobile App', 'UX Design', 'Practice'],
+                    category: 'practice'
+                },
+                {
+                    name: 'OAK',
+                    image: 'https://islamerkale.github.io/portfolio/images/oak.jpg',
+                    link: 'oak.html',
+                    tags: ['Web Design', 'E-Commerce', 'Practice'],
+                    category: 'practice'
+                }
+            ],
+            practice: [],
+            ecommerce: [],
+            b2b: []
+        };
+
+        // Initialize filtered arrays
+        projectsData.practice = projectsData.all.filter(p => p.category === 'practice');
+        projectsData.ecommerce = projectsData.all.filter(p => p.category === 'ecommerce');
+        projectsData.b2b = projectsData.all.filter(p => p.category === 'b2b');
+
+        // Navigation Functions
+        function showSection(sectionId) {
             // Hide all sections
-            const sections = document.querySelectorAll('main > section');
-            sections.forEach(function(section) {
-                section.classList.add('section-hidden');
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
             });
-
+            
             // Show selected section
-            const activeSection = document.getElementById(sectionName + '-section');
-            activeSection.classList.remove('section-hidden');
-
-            // Update navigation active state
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(function(link) {
-                link.classList.remove('active');
+            document.getElementById(`${sectionId}-section`).classList.add('active');
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
             });
-            document.getElementById('nav-' + sectionName).classList.add('active');
-
+            
+            // Load projects if showing projects section
+            if (sectionId === 'projects') {
+                filterProjects('all');
+            }
+            
             // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Close mobile menu if open
-            closeMobileMenu();
+            window.scrollTo(0, 0);
         }
 
-        // ========== ABOUT TAB NAVIGATION ==========
-        function showAboutTab(tabName) {
+        // Tab Navigation for About Section
+        function showTab(tabId) {
             // Hide all tab contents
-            document.getElementById('experiences-content').classList.add('section-hidden');
-            document.getElementById('education-content').classList.add('section-hidden');
-            document.getElementById('certifications-content').classList.add('section-hidden');
-            document.getElementById('skills-content').classList.add('section-hidden');
-            document.getElementById('tools-content').classList.add('section-hidden');
-
-            // Show selected tab content
-            document.getElementById(tabName + '-content').classList.remove('section-hidden');
-
-            // Update tab active state
-            const tabs = document.querySelectorAll('#about-section .btn-tab');
-            tabs.forEach(function(tab) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
-            document.getElementById('tab-' + tabName).classList.add('active');
-        }
-
-        // ========== PROJECT TAB NAVIGATION ==========
-        function showProjectTab(tabName) {
-            // Hide all project tabs
-            document.getElementById('live-projects').classList.add('section-hidden');
-            document.getElementById('practice-projects').classList.add('section-hidden');
-            document.getElementById('ecommerce-projects').classList.add('section-hidden');
-            document.getElementById('b2b-projects').classList.add('section-hidden');
-
+            
             // Show selected tab
-            document.getElementById(tabName + '-projects').classList.remove('section-hidden');
-
-            // Update tab active state
-            const tabs = document.querySelectorAll('#projects-section .btn-tab');
-            tabs.forEach(function(tab) {
-                tab.classList.remove('active');
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update active tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
-            document.getElementById('project-tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
         }
 
-        // ========== MOBILE MENU ==========
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('open');
+        // Filter Projects
+        function filterProjects(category) {
+            const projects = projectsData[category] || projectsData.all;
+            const container = document.getElementById('projects-container');
+            
+            // Update active tab buttons
+            document.querySelectorAll('#projects-section .tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Render projects
+            container.innerHTML = projects.map(project => `
+                <a href="${project.link}" target="_blank" class="project-card">
+                    <img src="${project.image}" alt="${project.name}" class="project-image">
+                    <div class="project-info">
+                        <h3>${project.name}</h3>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </a>
+            `).join('');
         }
 
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.remove('open');
-        }
-
-        // ========== FORM SUBMIT ==========
-        function handleFormSubmit(event) {
+        // Contact Form Handler
+        function handleContact(event) {
             event.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            alert('Thank you for your message, ' + name + '! I will get back to you soon.');
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
             
+            // Here you would typically send the data to a server
+            alert(`Thank you for your message, ${name}! I will get back to you soon.`);
+            
+            // Reset form
             event.target.reset();
         }
 
-        // ========== INITIALIZE ==========
-        window.addEventListener('DOMContentLoaded', function() {
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
             showSection('home');
         });
     </script>
