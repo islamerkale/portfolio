@@ -1226,28 +1226,38 @@
         projectsData.b2b = projectsData.all.filter(p => p.category === 'b2b');
 
         // Navigation Functions
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(`${sectionId}-section`).classList.add('active');
-            
-            // Update active nav
-            document.querySelectorAll('.nav-item').forEach(nav => {
-                nav.classList.remove('active');
-            });
-            
-            // Load projects if showing projects section
-            if (sectionId === 'projects') {
-                filterProjects('all');
-            }
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
+      // NAVIGATION FUNCTIONS - GÜNCELLENMİŞ VERSİYON
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Show selected section
+    const targetSection = document.getElementById(`${sectionId}-section`);
+    if (targetSection) {
+        targetSection.classList.add('active');
+    }
+    
+    // Update active nav
+    document.querySelectorAll('.nav-item').forEach(nav => {
+        nav.classList.remove('active');
+    });
+    
+    // Load projects if showing projects section
+    if (sectionId === 'projects') {
+        // Projeleri yükle
+        setTimeout(() => {
+            filterProjects('all');
+        }, 10);
+    }
+    
+    // URL hash'ini güncelle
+    window.location.hash = `${sectionId}-section`;
+    
+    // Scroll to top
+    window.scrollTo(0, 0);
+}
 
         // Tab Navigation for About Section
         function showTab(tabId) {
