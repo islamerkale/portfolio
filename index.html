@@ -148,16 +148,27 @@
             overflow-y: auto;
             max-height: calc(100vh - 160px);
             background: rgba(255, 255, 255, 0.5);
+            position: relative;
         }
 
-        /* BÖLÜM STİLLERİ */
+        /* BÖLÜM STİLLERİ - TAM DÜZGÜN */
         .section {
             display: none;
             min-height: calc(100vh - 240px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
         }
 
         .section.active {
             display: block;
+            opacity: 1;
+            visibility: visible;
+            position: relative;
             animation: fadeIn 0.5s ease;
         }
 
@@ -388,7 +399,7 @@
             text-align: center;
         }
 
-        /* PROJECTS BÖLÜMÜ */
+        /* PROJECTS BÖLÜMÜ - DÜZGÜN */
         .projects-header {
             margin-bottom: 40px;
             padding-top: 20px;
@@ -737,7 +748,6 @@
                         <div class="tool-tag">HTML/CSS/JS</div>
                         <div class="tool-tag">SQL</div>
                         <div class="tool-tag">PHP</div>
-                        
                     </div>
                 </div>
             </div>
@@ -900,61 +910,61 @@
                     <div class="tools-grid">
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/figma.png" alt="Figma">
+                                <img src="images/logos/figma.png" alt="Figma" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">Figma</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/framer.png" alt="Framer">
+                                <img src="images/logos/framer.png" alt="Framer" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">Framer</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/balsamiq.png" alt="Balsamiq">
+                                <img src="images/logos/balsamiq.png" alt="Balsamiq" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">Balsamiq</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/sketch.png" alt="Sketch">
+                                <img src="images/logos/sketch.png" alt="Sketch" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">Sketch</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/ps.png" alt="Adobe Photoshop">
+                                <img src="images/logos/ps.png" alt="Adobe Photoshop" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">Adobe Photoshop</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/google.png" alt="Google Analytics">
+                                <img src="images/logos/google.png" alt="Google Analytics" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">Google Analytics</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/html.png" alt="HTML">
+                                <img src="images/logos/html.png" alt="HTML" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">HTML</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/css.png" alt="CSS">
+                                <img src="images/logos/css.png" alt="CSS" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">CSS</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/js.png" alt="JavaScript">
+                                <img src="images/logos/js.png" alt="JavaScript" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">JS</div>
                         </div>
                         <div class="tool-card">
                             <div class="tool-icon">
-                                <img src="images/logos/github.png" alt="GitHub">
+                                <img src="images/logos/github.png" alt="GitHub" onerror="this.style.display='none'">
                             </div>
                             <div class="tool-name">GitHub</div>
                         </div>
@@ -1162,62 +1172,59 @@
     </footer>
 
     <script>
-        // Projects Data - TARGET="_BLANK" KALDIRILDI
+        // Projects Data
         const projectsData = {
             all: [
                 {
                     name: 'Jumper Zhang',
-                    image: 'https://islamerkale.github.io/portfolio/images/jumperzhang.jpg',
+                    image: 'images/jumperzhang.jpg',
                     link: 'jumperzhang.html',
                     tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
                     category: 'ecommerce'
                 },
                 {
                     name: "HANS' GARDEN",
-                    image: 'https://islamerkale.github.io/portfolio/images/hansgarden/51.jpg',
+                    image: 'images/hansgarden/51.jpg',
                     link: 'hansgarden.html',
                     tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
                     category: 'ecommerce'
                 },
                 {
                     name: 'Private Plates',
-                    image: 'https://islamerkale.github.io/portfolio/images/privateplates/mockup-desktop.jpg',
+                    image: 'images/privateplates/mockup-desktop.jpg',
                     link: 'privateplates.html',
                     tags: ['Web DesIgn', 'Corporate', 'LIve'],
                     category: 'ecommerce'
                 },
                 {
                     name: 'In Plus One',
-                    image: 'https://islamerkale.github.io/portfolio/images/inplusplus/IN PLUS LOGO BLUE.jpg',
-                    link: 'inplus.html', // Burayı düzeltim: inplus.html yerine inplusone.html
+                    image: 'images/inplusplus/IN PLUS LOGO BLUE.jpg',
+                    link: 'inplus.html',
                     tags: ['Web DesIgn','Web Development', 'B2B','SaaS', 'LIve'],
                     category: 'b2b'
                 },
                 {
                     name: 'Livolab',
-                    image: 'https://islamerkale.github.io/portfolio/images/livolab.jpg',
+                    image: 'images/livolab.jpg',
                     link: 'livolab.html',
                     tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
                     category: 'ecommerce'
                 },
                 {
                     name: 'DC TICKET',
-                    image: 'https://islamerkale.github.io/portfolio/images/dc.jpg',
+                    image: 'images/dc.jpg',
                     link: 'dcticket.html',
                     tags: ['MobIle App', 'UX DesIgn', 'PractIce'],
                     category: 'practice'
                 },
                 {
                     name: 'OAK',
-                    image: 'https://islamerkale.github.io/portfolio/images/oak.jpg',
+                    image: 'images/oak.jpg',
                     link: 'oak.html',
                     tags: ['Web DesIgn', 'E-Commerce', 'PractIce'],
                     category: 'practice'
                 }
-            ],
-            practice: [],
-            ecommerce: [],
-            b2b: []
+            ]
         };
 
         // Initialize filtered arrays
@@ -1225,49 +1232,60 @@
         projectsData.ecommerce = projectsData.all.filter(p => p.category === 'ecommerce');
         projectsData.b2b = projectsData.all.filter(p => p.category === 'b2b');
 
-        // Navigation Functions
-      // NAVIGATION FUNCTIONS - GÜNCELLENMİŞ VERSİYON
-function showSection(sectionId) {
-    // Hide all sections
-    document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    // Show selected section
-    const targetSection = document.getElementById(`${sectionId}-section`);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
-    
-    // Update active nav
-    document.querySelectorAll('.nav-item').forEach(nav => {
-        nav.classList.remove('active');
-    });
-    
-    // Load projects if showing projects section
-    if (sectionId === 'projects') {
-        // Projeleri yükle
-        setTimeout(() => {
-            filterProjects('all');
-        }, 10);
-    }
-    
-    // URL hash'ini güncelle
-    window.location.hash = `${sectionId}-section`;
-    
-    // Scroll to top
-    window.scrollTo(0, 0);
-}
+        // Navigation Functions - DÜZGÜN ÇALIŞAN
+        function showSection(sectionId) {
+            console.log('Showing section:', sectionId);
+            
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+                section.style.opacity = '0';
+                section.style.visibility = 'hidden';
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(`${sectionId}-section`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.style.display = 'block';
+                targetSection.style.opacity = '1';
+                targetSection.style.visibility = 'visible';
+                
+                // Özel olarak projects section için projeleri yükle
+                if (sectionId === 'projects') {
+                    setTimeout(() => {
+                        filterProjects('all');
+                    }, 50);
+                }
+            }
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            // Update URL hash
+            window.location.hash = `${sectionId}-section`;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Tab Navigation for About Section
         function showTab(tabId) {
             // Hide all tab contents
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
+                tab.style.display = 'none';
             });
             
             // Show selected tab
-            document.getElementById(tabId).classList.add('active');
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+                targetTab.style.display = 'block';
+            }
             
             // Update active tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -1276,29 +1294,62 @@ function showSection(sectionId) {
             event.target.classList.add('active');
         }
 
-        // Filter Projects - TARGET="_BLANK" KALDIRILDI
+        // Filter Projects
         function filterProjects(category) {
+            console.log('Filtering projects:', category);
+            
             const projects = projectsData[category] || projectsData.all;
             const container = document.getElementById('projects-container');
+            
+            if (!container) {
+                console.error('Projects container not found!');
+                return;
+            }
             
             // Update active tab buttons
             document.querySelectorAll('#projects-section .tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
             
-            // Render projects - target="_blank" KALDIRILDI
-            container.innerHTML = projects.map(project => `
-                <a href="${project.link}" class="project-card">
-                    <img src="${project.image}" alt="${project.name}" class="project-image">
+            // Event target kontrolü
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // Manuel olarak "all" tab'ını aktif yap
+                const allBtn = document.querySelector('#projects-section .tab-btn');
+                if (allBtn) allBtn.classList.add('active');
+            }
+            
+            // Clear container
+            container.innerHTML = '';
+            
+            // Render projects
+            projects.forEach(project => {
+                const projectCard = document.createElement('a');
+                projectCard.href = project.link;
+                projectCard.className = 'project-card';
+                
+                // Resim için fallback
+                const imageSrc = project.image || 'https://via.placeholder.com/400x200?text=Project+Image';
+                
+                projectCard.innerHTML = `
+                    <img src="${imageSrc}" alt="${project.name}" class="project-image" onerror="this.src='https://via.placeholder.com/400x200?text=Project+Image'">
                     <div class="project-info">
                         <h3>${project.name}</h3>
                         <div class="project-tags">
                             ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
                         </div>
                     </div>
-                </a>
-            `).join('');
+                `;
+                container.appendChild(projectCard);
+            });
+            
+            // If no projects, show message
+            if (projects.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">No projects in this category yet.</p>';
+            }
+            
+            console.log('Projects rendered:', projects.length);
         }
 
         // Contact Form Handler
@@ -1317,39 +1368,23 @@ function showSection(sectionId) {
             event.target.reset();
         }
 
-        // HASH URL HANDLING - PORTFOLIO SAYFASINDAN GELEN LİNKLER İÇİN
+        // Sayfa yüklendiğinde
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if there's a hash in the URL
+            console.log('DOM loaded');
+            
+            // Check URL hash
             const hash = window.location.hash;
-            
-            if (hash) {
-                const sectionId = hash.substring(1).replace('-section', '');
-                
-                // Wait a bit for page to load
-                setTimeout(() => {
-                    if (sectionId) {
-                        showSection(sectionId);
-                    }
-                }, 100);
-            }
-            
-            // Initialize home section as default
-            showSection('home');
-            
-            // Load projects initially
-            filterProjects('all');
-        });
-
-        // Hash change handler for browser back/forward buttons
-        window.addEventListener('hashchange', function() {
-            const hash = window.location.hash;
-            
-            if (hash) {
-                const sectionId = hash.substring(1).replace('-section', '');
-                
+            if (hash && hash !== '#') {
+                const sectionId = hash.replace('#', '').replace('-section', '');
                 if (sectionId) {
-                    showSection(sectionId);
+                    // Hash varsa o bölümü göster
+                    setTimeout(() => {
+                        showSection(sectionId);
+                    }, 100);
                 }
+            } else {
+                // Varsayılan olarak home'u göster
+                showSection('home');
             }
         });
     </script>
