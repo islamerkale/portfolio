@@ -144,14 +144,14 @@
 
         /* ORTA ALAN */
         .content-area {
-            padding:  20px 20px 20px 20px;
+            padding: 20px;
             overflow-y: auto;
             max-height: calc(100vh - 160px);
             background: rgba(255, 255, 255, 0.5);
             position: relative;
         }
 
-        /* BÖLÜM STİLLERİ - TAM DÜZGÜN */
+        /* BÖLÜM STİLLERİ */
         .section {
             display: none;
             min-height: calc(100vh - 240px);
@@ -401,9 +401,9 @@
             text-align: center;
         }
 
-        /* PROJECTS BÖLÜMÜ - DÜZGÜN */
+        /* GÜNCELLENMİŞ PROJECTS BÖLÜMÜ */
         .projects-header {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding-top: 20px;
         }
 
@@ -419,59 +419,206 @@
             line-height: 1.2;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
+        /* DROPDOWN FİLTRE SİSTEMİ */
+        .filter-system {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: flex-end;
         }
 
+        .filter-group {
+            position: relative;
+            min-width: 180px;
+            flex: 1;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown-toggle {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #000;
+            background: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-toggle:after {
+            content: '▼';
+            font-size: 10px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+        .dropdown-toggle.active:after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #000;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            z-index: 100;
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-item.active {
+            background: #000;
+            color: white;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Reset Filtre Butonu */
+        .reset-filters {
+            padding: 10px 20px;
+            border: 1px solid #000;
+            background: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .reset-filters:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* GÜNCELLENMİŞ PROJE GRID */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        /* GÜNCELLENMİŞ PROJE KARTI - DAHA UZUN VE DAR */
         .project-card {
             border: 1px solid #000;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             transition: all 0.3s;
             text-decoration: none;
             color: inherit;
             display: block;
-           
+            height: 280px;
+            position: relative;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        /* KÜÇÜK VE UZUN RESİM */
         .project-image {
             width: 100%;
-            height: 100px;
+            height: 140px;
             object-fit: cover;
             border-bottom: 1px solid #000;
+            background: #f5f5f5;
         }
 
         .project-info {
-            padding: 20px;
+            padding: 15px;
+            height: calc(100% - 140px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-info h3 {
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 10px;
             font-weight: 400;
+            line-height: 1.3;
         }
 
         .project-tags {
             display: flex;
-            gap: 8px;
+            gap: 5px;
             flex-wrap: wrap;
+            margin-bottom: 5px;
         }
 
         .project-tag {
-            padding: 4px 8px;
+            padding: 3px 6px;
             background: #000;
             color: #fff;
-            border-radius: 4px;
+            border-radius: 3px;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-sector {
             font-size: 10px;
+            color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         /* CONTACT BÖLÜMÜ */
@@ -692,8 +839,53 @@
                 gap: 20px;
             }
             
+            /* MOBİLDE YANYANA DROPDOWN'LAR */
+            .filter-system {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            
+            .filter-group {
+                min-width: auto;
+                margin-bottom: 0;
+            }
+            
+            .filter-label {
+                font-size: 10px;
+                margin-bottom: 5px;
+            }
+            
+            .dropdown-toggle {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .dropdown-item {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .reset-filters {
+                grid-column: 1 / -1;
+                padding: 8px 12px;
+                font-size: 12px;
+                height: auto;
+                margin-top: 5px;
+            }
+            
             .projects-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .project-card {
+                height: 250px;
+            }
+            
+            .project-image {
+                height: 120px;
             }
             
             .tools-grid {
@@ -705,8 +897,38 @@
             }
         }
 
-
-
+        @media (max-width: 480px) {
+            .filter-system {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .reset-filters {
+                grid-column: 1;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .project-card {
+                height: 220px;
+            }
+            
+            .project-image {
+                height: 100px;
+            }
+            
+            .project-info h3 {
+                font-size: 14px;
+            }
+            
+            .project-tag {
+                font-size: 8px;
+                padding: 2px 4px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -978,18 +1200,87 @@
                 </div>
             </div>
 
-            <!-- PROJECTS SECTION -->
+            <!-- GÜNCELLENMİŞ PROJECTS SECTION -->
             <div id="projects-section" class="section">
                 <div class="projects-header">
                     <h1>PROJECTS</h1>
                 </div>
 
-                <div class="about-tabs">
-                    <button onclick="filterProjects('all')" class="tab-btn active">ALL</button>
-                    
-                    <button onclick="filterProjects('practice')" class="tab-btn">PractIce Projects</button>
-                    <button onclick="filterProjects('ecommerce')" class="tab-btn">E-Commerce</button>
-                    <button onclick="filterProjects('b2b')" class="tab-btn">B2B</button>
+                <!-- DROPDOWN FİLTRE SİSTEMİ -->
+                <div class="filter-system">
+                    <!-- Status Dropdown -->
+                    <div class="filter-group">
+                        <div class="filter-label">Status</div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" onclick="toggleDropdown('status')">
+                                <span id="status-label">All Status</span>
+                            </button>
+                            <div class="dropdown-menu" id="status-menu">
+                                <div class="dropdown-item active" onclick="selectFilter('all', 'status')">All Status</div>
+                                <div class="dropdown-item" onclick="selectFilter('live', 'status')">Live</div>
+                                <div class="dropdown-item" onclick="selectFilter('practice', 'status')">Practice</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Industry Dropdown -->
+                    <div class="filter-group">
+                        <div class="filter-label">Industry</div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" onclick="toggleDropdown('industry')">
+                                <span id="industry-label">All Industries</span>
+                            </button>
+                            <div class="dropdown-menu" id="industry-menu">
+                                <div class="dropdown-item active" onclick="selectFilter('all', 'industry')">All Industries</div>
+                                <div class="dropdown-item" onclick="selectFilter('apparel', 'industry')">Apparel</div>
+                                <div class="dropdown-item" onclick="selectFilter('fashion', 'industry')">Fashion</div>
+                                <div class="dropdown-item" onclick="selectFilter('restaurant', 'industry')">Restaurant</div>
+                                <div class="dropdown-item" onclick="selectFilter('health-wellness', 'industry')">Health & Wellness</div>
+                                <div class="dropdown-item" onclick="selectFilter('food', 'industry')">Food</div>
+                                <div class="dropdown-item" onclick="selectFilter('service', 'industry')">Service</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type Dropdown -->
+                    <div class="filter-group">
+                        <div class="filter-label">Type</div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" onclick="toggleDropdown('type')">
+                                <span id="type-label">All Types</span>
+                            </button>
+                            <div class="dropdown-menu" id="type-menu">
+                                <div class="dropdown-item active" onclick="selectFilter('all', 'type')">All Types</div>
+                                <div class="dropdown-item" onclick="selectFilter('e-commerce', 'type')">E-Commerce</div>
+                                <div class="dropdown-item" onclick="selectFilter('landing-page', 'type')">Landing Page</div>
+                                <div class="dropdown-item" onclick="selectFilter('saas', 'type')">SaaS</div>
+                                <div class="dropdown-item" onclick="selectFilter('b2b', 'type')">B2B</div>
+                                <div class="dropdown-item" onclick="selectFilter('mobile-app', 'type')">Mobile App</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Dropdown -->
+                    <div class="filter-group">
+                        <div class="filter-label">Service</div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" onclick="toggleDropdown('service')">
+                                <span id="service-label">All Services</span>
+                            </button>
+                            <div class="dropdown-menu" id="service-menu">
+                                <div class="dropdown-item active" onclick="selectFilter('all', 'service')">All Services</div>
+                                <div class="dropdown-item" onclick="selectFilter('web-design', 'service')">Web Design</div>
+                                <div class="dropdown-item" onclick="selectFilter('no-code', 'service')">No-Code Platform</div>
+                                <div class="dropdown-item" onclick="selectFilter('web-development', 'service')">Web Development</div>
+                                <div class="dropdown-item" onclick="selectFilter('mobile-app-design', 'service')">Mobile App Design</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reset Butonu -->
+                    <button class="reset-filters" onclick="resetAllFilters()">
+                        Reset FIlters
+                    </button>
                 </div>
 
                 <div class="projects-grid" id="projects-container">
@@ -1179,70 +1470,267 @@
     </footer>
 
     <script>
-        // Projects Data
-        const projectsData = {
-            all: [
-                {
-                    name: 'Jumper Zhang',
-                    image: 'images/jumperzhang.jpg',
-                    link: 'jumperzhang.html',
-                    tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
-                    category: 'ecommerce,live'
-                },
-                {
-                    name: "HANS' GARDEN",
-                    image: 'images/hansgarden/51.jpg',
-                    link: 'hansgarden.html',
-                    tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
-                    category: 'ecommerce'
-                },
-                {
-                    name: 'Private Plates',
-                    image: 'images/privateplates/mockup-desktop.jpg',
-                    link: 'privateplates.html',
-                    tags: ['Web DesIgn', 'Corporate', 'LIve'],
-                    category: 'ecommerce'
-                },
-                {
-                    name: 'In Plus One',
-                    image: 'images/inplusplus/IN PLUS LOGO BLUE.jpg',
-                    link: 'inplus.html',
-                    tags: ['Web DesIgn','Web Development', 'B2B','SaaS', 'LIve'],
-                    category: 'b2b'
-                },
-                {
-                    name: 'Livolab',
-                    image: 'images/livolab.jpg',
-                    link: 'livolab.html',
-                    tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
-                    category: 'ecommerce'
-                },
-                {
-                    name: 'DC TICKET',
-                    image: 'images/dc.jpg',
-                    link: 'dcticket.html',
-                    tags: ['MobIle App', 'UX DesIgn', 'PractIce'],
-                    category: 'practice'
-                },
-                {
-                    name: 'OAK',
-                    image: 'images/oak.jpg',
-                    link: 'oak.html',
-                    tags: ['Web DesIgn', 'E-Commerce', 'PractIce'],
-                    category: 'practice'
-                }
-            ]
-        };
+        // VERİLEN PROJELER
+        const projectsData = [
+            {
+                name: 'Jumper Zhang',
+                image: 'images/jumperzhang.jpg',
+                link: 'jumperzhang.html',
+                status: 'live',
+                industry: ['apparel', 'fashion'],
+                type: 'e-commerce',
+                service: ['web-design', 'no-code'],
+                skills: ['wordpress'],
+                tags: ['E-Commerce', 'WordPress', 'No-Code']
+            },
+            {
+                name: 'Private Plates',
+                image: 'images/privateplates/mockup-desktop.jpg',
+                link: 'privateplates.html',
+                status: 'live',
+                industry: 'restaurant',
+                type: 'landing-page',
+                service: ['web-design', 'web-development'],
+                skills: ['html', 'css', 'js'],
+                tags: ['Restaurant', 'Landing Page', 'HTML/CSS/JS']
+            },
+            {
+                name: 'In Plus One',
+                image: 'images/inplusplus/IN PLUS LOGO BLUE.jpg',
+                link: 'inplus.html',
+                status: 'live',
+                industry: 'restaurant',
+                type: ['saas', 'b2b'],
+                service: ['web-design', 'web-development'],
+                skills: ['php', 'sql', 'html', 'css', 'js'],
+                tags: ['SaaS', 'B2B', 'PHP/SQL', 'Restaurant']
+            },
+            {
+                name: 'Livolab',
+                image: 'images/livolab.jpg',
+                link: 'livolab.html',
+                status: 'live',
+                industry: 'health-wellness',
+                type: 'landing-page',
+                service: ['web-design', 'web-development'],
+                skills: ['html', 'css', 'js'],
+                tags: ['Health & Wellness', 'Landing Page', 'HTML/CSS/JS']
+            },
+            {
+                name: "Hans' Garden",
+                image: 'images/hansgarden/51.jpg',
+                link: 'hansgarden.html',
+                status: 'live',
+                industry: 'food',
+                type: 'e-commerce',
+                service: ['web-design', 'no-code'],
+                skills: ['wordpress'],
+                tags: ['E-Commerce', 'WordPress', 'Food', 'No-Code']
+            },
+            {
+                name: 'OAK',
+                image: 'images/oak.jpg',
+                link: 'oak.html',
+                status: 'practice',
+                industry: 'apparel',
+                type: 'e-commerce',
+                service: ['web-design'],
+                skills: ['figma'],
+                tags: ['E-Commerce', 'Apparel', 'Figma', 'Practice']
+            },
+            {
+                name: 'DC Ticket',
+                image: 'images/dc.jpg',
+                link: 'dcticket.html',
+                status: 'practice',
+                industry: 'service',
+                type: 'e-commerce',
+                service: ['mobile-app-design'],
+                skills: ['figma'],
+                tags: ['Mobile App', 'Service', 'Figma', 'Practice']
+            }
+        ];
 
-        // Initialize filtered arrays
-        projectsData.practice = projectsData.all.filter(p => p.category === 'practice');
-        projectsData.ecommerce = projectsData.all.filter(p => p.category === 'ecommerce');
-        projectsData.b2b = projectsData.all.filter(p => p.category === 'b2b');
+        // Filtreleme durumu
+        let currentStatus = 'all';
+        let currentIndustry = 'all';
+        let currentType = 'all';
+        let currentService = 'all';
 
-        // Navigation Functions - DÜZGÜN ÇALIŞAN
-        function showSection(sectionId) {
-            console.log('Showing section:', sectionId);
+        // Dropdown açma/kapama
+        function toggleDropdown(type) {
+            const menu = document.getElementById(`${type}-menu`);
+            const toggle = event.currentTarget;
             
+            // Diğer dropdownları kapat
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                if (m !== menu) m.classList.remove('show');
+            });
+            
+            // Bu dropdown'ın toggle buttonlarını güncelle
+            document.querySelectorAll('.dropdown-toggle').forEach(t => {
+                if (t !== toggle) t.classList.remove('active');
+            });
+            
+            // Mevcut dropdown'ı aç/kapat
+            menu.classList.toggle('show');
+            toggle.classList.toggle('active');
+            
+            event.stopPropagation();
+        }
+
+        // Dropdown item seçimi
+        function selectFilter(value, type) {
+            // Filtre durumunu güncelle
+            switch(type) {
+                case 'status':
+                    currentStatus = value;
+                    updateDropdownLabel('status', value);
+                    break;
+                case 'industry':
+                    currentIndustry = value;
+                    updateDropdownLabel('industry', value);
+                    break;
+                case 'type':
+                    currentType = value;
+                    updateDropdownLabel('type', value);
+                    break;
+                case 'service':
+                    currentService = value;
+                    updateDropdownLabel('service', value);
+                    break;
+            }
+            
+            // Aktif item'ı güncelle
+            const menu = document.getElementById(`${type}-menu`);
+            menu.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Dropdown'ı kapat
+            menu.classList.remove('show');
+            document.querySelector(`[onclick="toggleDropdown('${type}')"]`).classList.remove('active');
+            
+            // Projeleri filtrele
+            filterProjects();
+        }
+
+        // Dropdown label güncelleme
+        function updateDropdownLabel(type, value) {
+            const labelMap = {
+                'status': {
+                    'all': 'All Status',
+                    'live': 'Live',
+                    'practice': 'Practice'
+                },
+                'industry': {
+                    'all': 'All Industries',
+                    'apparel': 'Apparel',
+                    'fashion': 'Fashion',
+                    'restaurant': 'Restaurant',
+                    'health-wellness': 'Health & Wellness',
+                    'food': 'Food',
+                    'service': 'Service'
+                },
+                'type': {
+                    'all': 'All Types',
+                    'e-commerce': 'E-Commerce',
+                    'landing-page': 'Landing Page',
+                    'saas': 'SaaS',
+                    'b2b': 'B2B',
+                    'mobile-app': 'Mobile App'
+                },
+                'service': {
+                    'all': 'All Services',
+                    'web-design': 'Web Design',
+                    'no-code': 'No-Code Platform',
+                    'web-development': 'Web Development',
+                    'mobile-app-design': 'Mobile App Design'
+                }
+            };
+            
+            document.getElementById(`${type}-label`).textContent = labelMap[type][value] || value;
+        }
+
+        // Projeleri filtrele
+        function filterProjects() {
+            const filteredProjects = projectsData.filter(project => {
+                // Status kontrolü
+                const statusMatch = currentStatus === 'all' || project.status === currentStatus;
+                
+                // Industry kontrolü (array veya string olabilir)
+                let industryMatch = currentIndustry === 'all';
+                if (!industryMatch) {
+                    if (Array.isArray(project.industry)) {
+                        industryMatch = project.industry.includes(currentIndustry);
+                    } else {
+                        industryMatch = project.industry === currentIndustry;
+                    }
+                }
+                
+                // Type kontrolü (array veya string olabilir)
+                let typeMatch = currentType === 'all';
+                if (!typeMatch) {
+                    if (Array.isArray(project.type)) {
+                        typeMatch = project.type.includes(currentType);
+                    } else {
+                        typeMatch = project.type === currentType;
+                    }
+                }
+                
+                // Service kontrolü (array veya string olabilir)
+                let serviceMatch = currentService === 'all';
+                if (!serviceMatch) {
+                    if (Array.isArray(project.service)) {
+                        serviceMatch = project.service.includes(currentService);
+                    } else {
+                        serviceMatch = project.service === currentService;
+                    }
+                }
+                
+                return statusMatch && industryMatch && typeMatch && serviceMatch;
+            });
+            
+            // Projeleri render et
+            renderProjects(filteredProjects);
+        }
+
+        // Tüm filtreleri sıfırla
+        function resetAllFilters() {
+            currentStatus = 'all';
+            currentIndustry = 'all';
+            currentType = 'all';
+            currentService = 'all';
+            
+            // Dropdown label'larını sıfırla
+            updateDropdownLabel('status', 'all');
+            updateDropdownLabel('industry', 'all');
+            updateDropdownLabel('type', 'all');
+            updateDropdownLabel('service', 'all');
+            
+            // Dropdown item'larını sıfırla
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                menu.querySelector('.dropdown-item').classList.add('active');
+            });
+            
+            // Dropdown'ları kapat
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                toggle.classList.remove('active');
+            });
+            
+            // Tüm projeleri göster
+            renderProjects(projectsData);
+        }
+
+        // Navigation Functions
+        function showSection(sectionId) {
             // Hide all sections
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
@@ -1262,7 +1750,7 @@
                 // Özel olarak projects section için projeleri yükle
                 if (sectionId === 'projects') {
                     setTimeout(() => {
-                        filterProjects('all');
+                        renderProjects(projectsData);
                     }, 50);
                 }
             }
@@ -1301,11 +1789,8 @@
             event.target.classList.add('active');
         }
 
-        // Filter Projects
-        function filterProjects(category) {
-            console.log('Filtering projects:', category);
-            
-            const projects = projectsData[category] || projectsData.all;
+        // PROJE RENDER FONKSİYONU
+        function renderProjects(projects) {
             const container = document.getElementById('projects-container');
             
             if (!container) {
@@ -1313,24 +1798,10 @@
                 return;
             }
             
-            // Update active tab buttons
-            document.querySelectorAll('#projects-section .tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Event target kontrolü
-            if (event && event.target) {
-                event.target.classList.add('active');
-            } else {
-                // Manuel olarak "all" tab'ını aktif yap
-                const allBtn = document.querySelector('#projects-section .tab-btn');
-                if (allBtn) allBtn.classList.add('active');
-            }
-            
-            // Clear container
+            // Container'ı temizle
             container.innerHTML = '';
             
-            // Render projects
+            // Projeleri render et
             projects.forEach(project => {
                 const projectCard = document.createElement('a');
                 projectCard.href = project.link;
@@ -1340,23 +1811,54 @@
                 const imageSrc = project.image || 'https://via.placeholder.com/400x200?text=Project+Image';
                 
                 projectCard.innerHTML = `
-                    <img src="${imageSrc}" alt="${project.name}" class="project-image" onerror="this.src='https://via.placeholder.com/400x200?text=Project+Image'">
+                    <img src="${imageSrc}" alt="${project.name}" class="project-image" 
+                         onerror="this.src='https://via.placeholder.com/300x140/000000/ffffff?text=${encodeURIComponent(project.name)}'">
                     <div class="project-info">
                         <h3>${project.name}</h3>
-                        <div class="project-tags">
-                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                        <div>
+                            <div class="project-tags">
+                                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                                <span class="project-tag">${project.status === 'live' ? 'Live' : 'Practice'}</span>
+                            </div>
+                            <div class="project-sector">
+                                ${getIndustryLabel(project.industry)}
+                            </div>
                         </div>
                     </div>
                 `;
                 container.appendChild(projectCard);
             });
             
-            // If no projects, show message
+            // Eğer proje yoksa mesaj göster
             if (projects.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">No projects in this category yet.</p>';
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
+                        <p style="margin-bottom: 20px; font-size: 18px;">No projects found for the selected filters.</p>
+                        <button onclick="resetAllFilters()" 
+                                style="padding: 10px 20px; background: #000; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Reset All Filters
+                        </button>
+                    </div>
+                `;
             }
+        }
+
+        // Sektör etiketini al
+        function getIndustryLabel(industry) {
+            const labels = {
+                'apparel': 'Apparel',
+                'fashion': 'Fashion',
+                'restaurant': 'Restaurant',
+                'health-wellness': 'Health & Wellness',
+                'food': 'Food',
+                'service': 'Service'
+            };
             
-            console.log('Projects rendered:', projects.length);
+            if (Array.isArray(industry)) {
+                return industry.map(ind => labels[ind] || ind).join(' • ');
+            } else {
+                return labels[industry] || industry;
+            }
         }
 
         // Contact Form Handler
@@ -1375,10 +1877,20 @@
             event.target.reset();
         }
 
+        // Sayfa yüklendiğinde dropdown'ları kapat
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+                document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                    toggle.classList.remove('active');
+                });
+            }
+        });
+
         // Sayfa yüklendiğinde
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded');
-            
             // Check URL hash
             const hash = window.location.hash;
             if (hash && hash !== '#') {
