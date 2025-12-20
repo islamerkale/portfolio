@@ -419,7 +419,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 30px;
         }
 
@@ -431,6 +431,7 @@
             text-decoration: none;
             color: inherit;
             display: block;
+           
         }
 
         .project-card:hover {
@@ -440,7 +441,7 @@
 
         .project-image {
             width: 100%;
-            height: 200px;
+            height: 100px;
             object-fit: cover;
             border-bottom: 1px solid #000;
         }
@@ -525,7 +526,7 @@
         /* SKILLS BÖLÜMÜ */
         .skills-categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             max-width: 1000px;
             margin: 0 auto;
@@ -979,7 +980,8 @@
                 </div>
 
                 <div class="about-tabs">
-                    <button onclick="filterProjects('all')" class="tab-btn active">LIve Projects</button>
+                    <button onclick="filterProjects('all')" class="tab-btn active">ALL</button>
+                    
                     <button onclick="filterProjects('practice')" class="tab-btn">PractIce Projects</button>
                     <button onclick="filterProjects('ecommerce')" class="tab-btn">E-Commerce</button>
                     <button onclick="filterProjects('b2b')" class="tab-btn">B2B</button>
@@ -1180,7 +1182,7 @@
                     image: 'images/jumperzhang.jpg',
                     link: 'jumperzhang.html',
                     tags: ['Web DesIgn', 'E-Commerce', 'LIve'],
-                    category: 'ecommerce'
+                    category: 'ecommerce,live'
                 },
                 {
                     name: "HANS' GARDEN",
